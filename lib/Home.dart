@@ -1067,11 +1067,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ],
                         ),
                     AnimatedContainer(
+                      height: showDate ? 350 : 0,
                       duration: const Duration(milliseconds: 400),
-                      child: Visibility(
-                        visible: showDate,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: SingleChildScrollView(
                           child: CalendarDatePicker(
                             initialDate: DateTime.now(),
                             firstDate: DateTime(2000),
@@ -1613,4 +1613,3 @@ class RepeatScreen extends StatelessWidget {
     );
   }
 }
-
