@@ -124,12 +124,11 @@ class _DateClockSectionState extends State<DateClockSection> {
               duration: const Duration(milliseconds: 400),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: Flexible(
-                  child:CupertinoDatePicker(
-                    mode: CupertinoDatePickerMode.time,
-                    initialDateTime: DateTime.now(),
-                    onDateTimeChanged: (DateTime DateTime){},
-                ),
+                child: SingleChildScrollView(
+                  child:CupertinoTimerPicker(
+                    mode: CupertinoTimerPickerMode.hms,
+                    onTimerDurationChanged: (Duration value) {},
+                  ),
               ),
             ),
             ),

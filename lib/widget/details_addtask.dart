@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/class_detailscreen.dart';
+import '../screens/class_detailscreen.dart';
 
 class Chitiet extends StatelessWidget {
   const Chitiet({super.key});

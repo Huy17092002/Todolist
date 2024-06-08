@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'date_clock_DetailScreen.dart';
+import 'date_clock_detailscreen.dart';
 import 'priority_DetailScreen.dart';
 import 'package:todolist/screens/repeat.detailscreen.dart';
 import 'location_DetailScreen.dart';

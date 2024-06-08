@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/title_note_AddTask.dart';
-
-
 
 class AddTask extends StatelessWidget {
   const AddTask({super.key});
@@ -66,15 +63,6 @@ class AddTask extends StatelessWidget {
                   );
                 },
               ),
-            ],
-          ),
-        ),
-        body: const Center(
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              SizedBox(height: 20),
-              TitleNoteWidget(),
             ],
           ),
         ),
