@@ -3,15 +3,6 @@ import 'BottomNavigationBarWidget.dart';
 import 'SearchBarWidget.dart';
 import 'package:todolist/routes.dart';
 
-
-void main() {
-  runApp(
-    const MaterialApp(
-      home: TodoListApp(),
-    ),
-  );
-}
-
 class TodoListApp extends StatefulWidget {
   const TodoListApp({super.key});
 

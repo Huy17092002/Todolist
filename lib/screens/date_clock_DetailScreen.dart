@@ -15,12 +15,14 @@ class _DateClockSectionState extends State<DateClockSection> {
   void _toggleDate(bool value) {
     setState(() {
       showDate = value;
+      showClock = false;
     });
   }
 
   void _toggleClock(bool value) {
     setState(() {
       showClock = value;
+      showDate = false;
     });
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/title_note_AddTask.dart';
-import 'details_AddTask.dart';
+import 'package:todolist/widget/title_note_AddTask.dart';
+
 
 
 class AddTask extends StatelessWidget {
@@ -73,7 +73,6 @@ class AddTask extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 20),
-              Chitiet(),
               SizedBox(height: 20),
               TitleNoteWidget(),
             ],

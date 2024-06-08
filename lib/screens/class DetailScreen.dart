@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'date_clock_DetailScreen.dart';
 import 'priority_DetailScreen.dart';
 import 'repeat.DetailScreen.dart';
@@ -89,15 +88,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
         body: SingleChildScrollView(
           child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
+          child: const Column(
             children: [
-              const DateClockSection(),
-              const SizedBox(height: 30),
-              const RepeatSection(),
-              const SizedBox(height: 30),
-              const LocationSection(),
-              const SizedBox(height: 30),
-              const PrioritySection(),
+              DateClockSection(),
+              SizedBox(height: 30),
+              RepeatSection(),
+              SizedBox(height: 30),
+              LocationSection(),
+              SizedBox(height: 30),
+              PrioritySection(),
             ],
           ),
         ),
