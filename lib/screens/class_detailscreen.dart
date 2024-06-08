@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'date_clock_DetailScreen.dart';
 import 'priority_DetailScreen.dart';
-import 'package:todolist/screens/repeat_detailscreen.dart';
+import 'package:todolist/screens/repeat.detailscreen.dart';
 import 'location_DetailScreen.dart';
 
 class DetailsScreen extends StatefulWidget {
