@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/classWidget.dart';
+import 'package:todolist/widget/class_widget.dart';
 
 
 
