@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/widget/class_widget.dart';
 
-
-
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
 
