@@ -126,7 +126,7 @@ class _DateClockSectionState extends State<DateClockSection> {
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
                   child:CupertinoTimerPicker(
-                    mode: CupertinoTimerPickerMode.hms,
+                    mode: CupertinoTimerPickerMode.hm,
                     onTimerDurationChanged: (Duration value) {},
                   ),
               ),

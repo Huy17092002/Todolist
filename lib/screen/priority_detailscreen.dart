@@ -24,17 +24,20 @@ class _PrioritySectionState extends State<PrioritySection> {
         padding: const EdgeInsets.only(top: 0, left: 15),
         child: Row(
           children: [
-            const Icon(
-              Icons.flag,
-              color: Colors.grey,
-              size: 30,
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'Priority',
+     Container(
+       width: 30,
+       height: 30,
+       decoration: BoxDecoration(
+         shape: BoxShape.rectangle,
+         color: Colors.red,
+         borderRadius: BorderRadius.circular(5),
+       ),
+       child: Icon(Icons.priority_high,color: Colors.white,size: 20,),
+     ),
+            SizedBox(width: 10,),
+            Text('Priority',
               style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
+                fontSize: 18,
               ),
             ),
             const SizedBox(width: 160),

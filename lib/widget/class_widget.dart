@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/screens/class_detailscreen.dart';
+import 'package:todolist/screen/class_detailscreen.dart';
 
 class AddList extends StatelessWidget {
   const AddList({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widget/class_widget.dart';
-import 'screens/class_detailscreen.dart';
+import 'screen/class_detailscreen.dart';
 
 class TaskListWidget extends StatelessWidget {
   const TaskListWidget({super.key});
