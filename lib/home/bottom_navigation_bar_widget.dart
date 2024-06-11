@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/class_widget.dart';
+import 'package:todolist/screen/newreminder_screen.dart';
+import 'package:todolist/screen/addlist_screen.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
@@ -30,7 +31,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return const Addtask();
+                  return const NewReminder();
                 },
               );
             },

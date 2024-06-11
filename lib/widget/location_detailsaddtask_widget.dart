@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class LocationSection extends StatefulWidget {
-  const LocationSection({super.key});
+class Location extends StatefulWidget {
+  const Location({super.key});
 
   @override
-  State<LocationSection> createState() => _LocationSectionState();
+  State<Location> createState() => _LocationState();
 }
 
-class _LocationSectionState extends State<LocationSection> {
+class _LocationState extends State<Location> {
   bool switchValue = false;
   bool showText = false;
 

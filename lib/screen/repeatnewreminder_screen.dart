@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import '../screens/class_detailscreen.dart';
+import 'package:todolist/screen/repeatscreen_screen.dart';
 
-class Chitiet extends StatelessWidget {
-  const Chitiet({super.key});
+class RepeatNewrenminder extends StatelessWidget {
+  const RepeatNewrenminder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
+    return GestureDetector(
       onTap: () {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
-            return const DetailsScreen();
+            return const RepeatScreen();
           },
         );
       },
@@ -24,21 +24,35 @@ class Chitiet extends StatelessWidget {
           color: Colors.grey[300],
         ),
         child: const Padding(
-          padding: EdgeInsets.only(top: 2, left: 20),
+          padding: EdgeInsets.only(top: 0, left: 15),
           child: Row(
             children: [
+              Icon(
+                Icons.repeat_on,
+                color: Colors.grey,
+                size: 30,
+              ),
+              SizedBox(width: 10),
               Text(
-                'Chi tiết',
+                'Repeat',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(width: 238),
+              SizedBox(width: 160),
+              Text(
+                'Never',
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(width: 1),
               Icon(
                 Icons.arrow_forward_ios,
-                size: 19,
                 color: Colors.grey,
+                size: 16,
               ),
             ],
           ),

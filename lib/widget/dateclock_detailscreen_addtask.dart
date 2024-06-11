@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class DateClockSection extends StatefulWidget {
-  const DateClockSection({super.key});
+class DateClock extends StatefulWidget {
+  const DateClock({super.key});
 
   @override
-  State<DateClockSection> createState() => _DateClockSectionState();
+  State<DateClock> createState() => _DateClockState();
 }
 
-class _DateClockSectionState extends State<DateClockSection> {
+class _DateClockState extends State<DateClock> {
   bool showDate = false;
   bool showClock = false;
 
@@ -129,8 +129,8 @@ class _DateClockSectionState extends State<DateClockSection> {
                     mode: CupertinoTimerPickerMode.hm,
                     onTimerDurationChanged: (Duration value) {},
                   ),
+                ),
               ),
-            ),
             ),
           ],
         ),

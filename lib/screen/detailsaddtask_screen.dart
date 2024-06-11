@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'date_clock_detailscreen.dart';
-import 'priority_detailscreen.dart';
-import 'repeat_details.dart';
-import 'location_detailscreen.dart';
+import 'package:todolist/widget/location_detailsaddtask_widget.dart';
+import 'repeatnewreminder_screen.dart';
+import 'package:todolist/widget/priority_detailsaddtask_widget.dart';
+import 'package:todolist/widget/dateclock_detailscreen_addtask.dart';
 
-class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key});
+class DetailsAddtask extends StatefulWidget {
+  const DetailsAddtask({super.key});
 
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
+  State<DetailsAddtask> createState() => _DetailsAddtaskState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsAddtaskState extends State<DetailsAddtask> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,13 +90,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: const Column(
             children: [
-              DateClockSection(),
+              DateClock(),
               SizedBox(height: 30),
-              RepeatSection(),
+              RepeatNewrenminder(),
               SizedBox(height: 30),
-              LocationSection(),
+              Location(),
               SizedBox(height: 30),
-              PrioritySection(),
+              Priority(),
             ],
           ),
         ),
