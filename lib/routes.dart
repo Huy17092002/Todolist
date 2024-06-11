@@ -4,7 +4,7 @@ import 'widget/listaddtask_widget.dart';
 import 'screen/detailsaddtask_screen.dart';
 import 'widget/detailsaddtaskwidget_widget.dart';
 import 'widget/listwidgetnewreminder_widget.dart';
-import 'screen/repeatscreen_screen.dart';
+import 'screen/repeat_screen.dart';
 import 'screen/addtaskscreen_screen.dart';
 
 class ListAddtask extends StatelessWidget {
