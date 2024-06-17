@@ -29,7 +29,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+       children: [
         Padding(
           padding: const EdgeInsets.only(left: 320),
           child: GestureDetector(
@@ -62,7 +62,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                         );
                       },
                     );
-
                   },
                   child: const Text(
                     'Sửa',

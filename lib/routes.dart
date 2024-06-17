@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'screen/addtaskscreen_screen.dart';
-import 'screen/listscreen_screen.dart';
-import 'screen/detailsaddtask_screen.dart';
-import 'screen/repeat_screen.dart';
+import 'package:todolist/home/home_page.dart';
+import 'task/addtaskscreen_screen.dart';
+import 'task/listscreen_screen.dart';
+import 'task/detailsaddtask_screen.dart';
+import 'task/repeat_screen.dart';
 
 class Routes {
   static const String addTaskScreen = '/addTask';
@@ -24,7 +25,7 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const RepeatScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold()
+          builder: (_) =>const HomePage()
         );
     }
   }

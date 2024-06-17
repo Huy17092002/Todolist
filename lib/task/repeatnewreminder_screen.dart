@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/screen/repeatscreen_screen.dart';
+import 'package:todolist/task/repeat_screen.dart';
 
 class RepeatNewrenminder extends StatelessWidget {
   const RepeatNewrenminder({super.key});
@@ -48,7 +48,7 @@ class RepeatNewrenminder extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(width: 1),
+              SizedBox(width:1),
               Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.grey,
@@ -61,3 +61,4 @@ class RepeatNewrenminder extends StatelessWidget {
     );
   }
 }
+

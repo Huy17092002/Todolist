@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/screen/detailsaddtask_screen.dart';
-import 'package:todolist/screen/listscreen_screen.dart';
+import 'package:todolist/task/detailsaddtask_screen.dart';
+import 'package:todolist/task/listscreen_screen.dart';
 
 class NewReminder extends StatelessWidget {
   const NewReminder({super.key});
