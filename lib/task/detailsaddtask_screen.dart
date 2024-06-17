@@ -16,7 +16,7 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey,
-      height: 770,
+      height: 780,
       width: 390,
       child: Scaffold(
         appBar: AppBar(
@@ -60,7 +60,7 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text('Thank you very much'),
+                        title: const Text('Xong'),
                         actions: [
                           ElevatedButton(
                             child: const Text('OK'),

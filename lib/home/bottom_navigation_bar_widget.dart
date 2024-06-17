@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/screen/newreminder_screen.dart';
-import 'package:todolist/screen/addlist_screen.dart';
+import 'package:todolist/task/newreminder_screen.dart';
+import 'package:todolist/task/addlist_screen.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});

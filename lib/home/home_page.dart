@@ -3,6 +3,7 @@ import 'searchbar_widget.dart';
 import 'bottom_navigation_bar_widget.dart';
 import 'tasklist_widget.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:Colors.white,
         toolbarHeight: 65,
         title: SearchBarWidget(
           isSearch: _isSearch,
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 5),
+              padding:  EdgeInsets.only(left: 5),
               child: Text(
                 'Danh sách của tôi',
                 style: TextStyle(
@@ -72,10 +73,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 8,
             ),
-            const TaskListWidget(),
+            TaskListWidget(),
           ],
         ),
       ),
