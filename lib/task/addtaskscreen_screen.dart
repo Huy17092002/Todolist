@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/app_configs.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -118,7 +119,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                 'Xong',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.blue,
+                  color: textButtonColor,
                 ),
               ),
               onPressed: () {
@@ -170,25 +171,27 @@ class AddTaskScreenState extends State<AddTaskScreen> {
           bottom: 33,
           right: 210,
         ),
-        child: TextButton.icon(
-          icon: const Icon(
-            Icons.add_circle,
-            size: 30,
-            color: Colors.blue,
-          ),
-          label: const Text(
-            'Lời nhắc mới',
-            style: TextStyle(
-              fontSize: 17,
+        child: SingleChildScrollView(
+          child: TextButton.icon(
+            icon: const Icon(
+              Icons.add_circle,
+              size: 30,
               color: Colors.blue,
-              fontWeight: FontWeight.bold,
             ),
+            label: const Text(
+              'Lời nhắc mới',
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () {
+              setState(() {
+                _reminderInputs.add(_buildReminderInput());
+              });
+            },
           ),
-          onPressed: () {
-            setState(() {
-              _reminderInputs.add(_buildReminderInput());
-            });
-          },
         ),
       ),
     );

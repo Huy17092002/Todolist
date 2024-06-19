@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/app_configs.dart';
 
 class AddList extends StatelessWidget {
   const AddList({super.key});
@@ -16,7 +17,7 @@ class AddList extends StatelessWidget {
                 'Cancel',
                 style: TextStyle(
                   fontSize: 17,
-                  color: Colors.blue,
+                  color: textButtonColor,
                 ),
               ),
               onPressed: () {
@@ -39,7 +40,7 @@ class AddList extends StatelessWidget {
                 'Done',
                 style: TextStyle(
                   fontSize: 17,
-                  color: Colors.blue,
+                  color: textButtonColor,
                 ),
               ),
               onPressed: () {

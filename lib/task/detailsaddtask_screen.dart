@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/widget/location_detailsaddtask_widget.dart';
-import 'repeatnewreminder_screen.dart';
+import 'package:todolist/widget/repeatdetailsaddtask_widget.dart';
 import 'package:todolist/widget/priority_detailsaddtask_widget.dart';
 import 'package:todolist/widget/dateclock_detailscreen_addtask.dart';
+import 'package:todolist/app_configs.dart';
 
 class DetailsAddtask extends StatefulWidget {
   const DetailsAddtask({super.key});
@@ -53,36 +54,36 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 90),
-              GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Xong'),
-                        actions: [
-                          ElevatedButton(
-                            child: const Text('OK'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: const Text(
-                  'Add',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+              const SizedBox(width: 80),
+        TextButton(
+          child: const Text(
+            'Add',
+            style: TextStyle(
+              fontSize: 17,
+              color: textButtonColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Xong'),
+                  actions: [
+                    ElevatedButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
+          ],
           ),
         ),
         body: SingleChildScrollView(

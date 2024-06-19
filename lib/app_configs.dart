@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 
+// App Name
+const String appName = 'TodoListApp';
 
-class AppConfigs {
-  // App Name
-  static const String appName = 'TodoListApp';
+// Colors
+const Color primaryColor = Colors.blue;
+const Color appBarBackgroundColor = Colors.white;
+const Color textButtonColor = Colors.blue;
 
-  // Colors 
-  static const Color primaryColor = Colors.blue;
-  static const Color appBarBackgroundColor = Colors.white;
-  static const Color searchBarColor = Colors.grey;
-  static const Color listItemBackgroundColor = Colors.grey;
-  static const Color listBorderColor = Colors.black26;
-  static const Color iconColor = Colors.blueAccent;
-  static const Color trailingIconColor = Colors.grey;
-  static const Color textButtonColor = Colors.blue;
+//Duration
+const Duration kDuration = Duration(milliseconds: 400);
 
-  // Icon Sizes
-  static const double iconSize = 38;
-  static const double trailingIconSize = 17;
-  static const double searchBarIconSize = 17;
-
-}
