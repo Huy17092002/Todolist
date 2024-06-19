@@ -6,7 +6,7 @@ import 'task/detailsaddtask_screen.dart';
 import 'task/repeat_screen.dart';
 
 class Routes {
-  static const String addTaskScreen = '/addTask';
+  static const String addtaskScreen = '/addTask';
   static const String listScreen = '/list';
   static const String detailScreen = '/detail';
   static const String repeatScreen = '/repeat';
@@ -15,7 +15,7 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case addTaskScreen:
+      case addtaskScreen:
         return MaterialPageRoute(builder: (_) => const AddTaskScreen());
       case listScreen:
         return MaterialPageRoute(builder: (_) => const ListScreen());

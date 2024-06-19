@@ -46,10 +46,9 @@ class TaskListWidget extends StatelessWidget {
                 ),
               ),
               const Divider(
-                height: 0,
                 thickness: 0.5,
                 indent: 70,
-                endIndent: 0,
+                height: 0,
               ),
             ],
           );

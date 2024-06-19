@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/repeat_screen.dart';
+import 'package:todolist/task/listscreen_screen.dart';
 
-class RepeatNewrenminder extends StatelessWidget {
-  const RepeatNewrenminder({super.key});
+class ListNewReminder extends StatelessWidget {
+  const ListNewReminder({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class RepeatNewrenminder extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
-            return const RepeatScreen();
+            return const ListScreen();
           },
         );
       },
@@ -24,35 +26,41 @@ class RepeatNewrenminder extends StatelessWidget {
           color: Colors.grey[300],
         ),
         child: const Padding(
-          padding: EdgeInsets.only(top: 0, left: 15),
+          padding: EdgeInsets.only(top: 2, left: 15),
           child: Row(
             children: [
               Icon(
-                Icons.repeat_on,
-                color: Colors.grey,
-                size: 30,
+                Icons.playlist_add_circle,
+                color: Colors.green,
+                size: 36,
               ),
-              SizedBox(width: 10),
+              SizedBox(
+                width: 10,
+              ),
               Text(
-                'Repeat',
+                'List',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(width: 160),
+              SizedBox(
+                width: 175,
+              ),
               Text(
-                'Never',
+                'Wear',
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 16,
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(width:1),
+              SizedBox(
+                width: 10,
+              ),
               Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.grey,
-                size: 16,
+                size: 18,
               ),
             ],
           ),

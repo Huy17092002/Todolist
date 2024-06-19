@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/app_configs.dart';
 
 class SearchBarWidget extends StatefulWidget {
   final bool isSearch;
@@ -10,8 +11,8 @@ class SearchBarWidget extends StatefulWidget {
   final Function() onCancel;
   final Function() onTapSearch;
 
-  const SearchBarWidget(
-      {required this.isSearch,
+  const SearchBarWidget({
+      required this.isSearch,
       required this.isSua,
       required this.opacityCancel,
       required this.opacitySua,
@@ -31,21 +32,30 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     return Column(
        children: [
         Padding(
-          padding: const EdgeInsets.only(left: 320),
+          padding: const EdgeInsets.only(left: 303,),
           child: GestureDetector(
             onTap: widget.onTapSearch,
             child: AnimatedContainer(
-              width: widget.isSua ? 40 : 40,
-              height: widget.isSua ? 0 : 30,
-              duration: const Duration(milliseconds: 300),
+              width: widget.isSua ? 40 : 55,
+              height: widget.isSua ? 0 : 33,
+              duration: kDuration,
               curve: Curves.easeOutQuad,
               alignment: Alignment.center,
               child: AnimatedOpacity(
                 opacity: widget.opacitySua,
-                duration: const Duration(milliseconds: 300),
+                duration: kDuration,
                 curve: Curves.easeOutCirc,
-                child: GestureDetector(
-                  onTap: (){
+                child:
+                TextButton(
+                  child: const Text(
+                    'Sửa',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: textButtonColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -63,14 +73,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                       },
                     );
                   },
-                  child: const Text(
-                    'Sửa',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                      color: Colors.blue,
-                    ),
-                  ),
                 ),
               ),
             ),
@@ -82,11 +84,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               child: AnimatedContainer(
                 width: widget.isSua ? 305 : 360,
                 height: 35,
-                duration: const Duration(milliseconds: 300),
+                duration: kDuration,
                 curve: Curves.easeOutQuad,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(9),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
