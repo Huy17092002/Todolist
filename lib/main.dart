@@ -20,8 +20,8 @@ class _TodoListAppState extends State<TodoListApp> {
   Widget build(BuildContext context) {
     return  MaterialApp(
       theme: AppTheme.lightTheme(),
-      home: const HomePage(),
       onGenerateRoute: Routes.generateRoute,
+      home: const HomePage(),
     );
   }
 }
