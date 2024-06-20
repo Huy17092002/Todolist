@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/app_configs.dart';
+import 'package:todolist/configs.dart';
 
 class SearchBarWidget extends StatefulWidget {
   final bool isSearch;

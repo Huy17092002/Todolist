@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/app_configs.dart';
+import 'package:todolist/configs.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});

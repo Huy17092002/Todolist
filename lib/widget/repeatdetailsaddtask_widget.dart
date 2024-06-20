@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/repeat_screen.dart';
+import 'package:todolist/routes.dart';
 
 class RepeatNewrenminder extends StatelessWidget {
   const RepeatNewrenminder({super.key});
@@ -8,13 +8,7 @@ class RepeatNewrenminder extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (BuildContext context) {
-            return const RepeatScreen();
-          },
-        );
+        Navigator.pushNamed(context, Routes.repeat);
       },
       child: Container(
         height: 45,

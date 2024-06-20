@@ -3,7 +3,7 @@ import 'package:todolist/widget/location_detailsaddtask_widget.dart';
 import 'package:todolist/widget/repeatdetailsaddtask_widget.dart';
 import 'package:todolist/widget/priority_detailsaddtask_widget.dart';
 import 'package:todolist/widget/dateclock_detailscreen_addtask.dart';
-import 'package:todolist/app_configs.dart';
+import 'package:todolist/configs.dart';
 
 class DetailsAddtask extends StatefulWidget {
   const DetailsAddtask({super.key});

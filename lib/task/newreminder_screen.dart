@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/detailsnewrenmider.dart';
-import 'package:todolist/widget/listnewreminder.dart';
+import 'package:todolist/widget/detailsnewrenmider_widget.dart';
+import 'package:todolist/widget/list_newreminder_widget.dart';
 
 
 class NewReminder extends StatelessWidget {

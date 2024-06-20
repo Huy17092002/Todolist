@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todolist/app_configs.dart';
+import 'package:todolist/configs.dart';
 
 class DateClock extends StatefulWidget {
   const DateClock({super.key});
@@ -122,7 +122,7 @@ class _DateClockState extends State<DateClock> {
             ),
             AnimatedContainer(
               height: showClock ? 200 : 0,
-              duration: const Duration(milliseconds: 400),
+              duration:kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(

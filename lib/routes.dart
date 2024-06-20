@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/home/home_page.dart';
-import 'task/addtaskscreen_screen.dart';
-import 'task/listscreen_screen.dart';
-import 'task/detailsaddtask_screen.dart';
-import 'task/repeat_screen.dart';
+import 'package:todolist/task/addtaskscreen_screen.dart';
+import 'package:todolist/task/listscreen_screen.dart';
+import 'package:todolist/task/detailsaddtask_screen.dart';
+import 'package:todolist/task/repeat_screen.dart';
 
 class Routes {
-  static const String addtaskScreen = '/addTask';
-  static const String listScreen = '/list';
-  static const String detailScreen = '/detail';
-  static const String repeatScreen = '/repeat';
-  static const String homepageScreen = '/homepage';
-
+  static const String home = '/';
+  static const String addTask = '/addTask';
+  static const String list = '/list';
+  static const String detail = '/detail';
+  static const String repeat = '/repeat';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case addtaskScreen:
+      case home:
+        return MaterialPageRoute(builder: (_) => const HomePage());
+      case addTask:
         return MaterialPageRoute(builder: (_) => const AddTaskScreen());
-      case listScreen:
+      case list:
         return MaterialPageRoute(builder: (_) => const ListScreen());
-      case detailScreen:
+      case detail:
         return MaterialPageRoute(builder: (_) => const DetailsAddtask());
-      case repeatScreen:
+      case repeat:
         return MaterialPageRoute(builder: (_) => const RepeatScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) =>const HomePage()
+          builder: (_) => Scaffold(),
         );
     }
   }
