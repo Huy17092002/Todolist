@@ -14,8 +14,6 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case home:
-        return MaterialPageRoute(builder: (_) => const HomePage());
       case addTask:
         return MaterialPageRoute(builder: (_) => const AddTaskScreen());
       case list:
@@ -26,7 +24,7 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const RepeatScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => Text(''),
+          builder: (_) => const HomePage(),
         );
     }
   }
