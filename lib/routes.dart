@@ -26,7 +26,7 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const RepeatScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(),
+          builder: (_) => Text(''),
         );
     }
   }
