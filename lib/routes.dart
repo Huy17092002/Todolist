@@ -6,7 +6,7 @@ import 'package:todolist/task/detailsaddtask_screen.dart';
 import 'package:todolist/task/repeat_screen.dart';
 
 class Routes {
-  static const String home = '/';
+  static const String home = '/home';
   static const String addTask = '/addTask';
   static const String list = '/list';
   static const String detail = '/detail';
@@ -24,7 +24,7 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const RepeatScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
+            builder: (_) => const HomePage(),
         );
     }
   }
