@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/routes.dart';
+import 'package:todolist/task/detailsreminder_screen.dart';
 
 
 class DetailsNewReminDer extends StatelessWidget {
@@ -15,7 +15,13 @@ class DetailsNewReminDer extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, Routes.detail);
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return const DetailsAddtask();
+                },
+              );
             },
             child: Container(
               height: 45,

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/routes.dart';
+import 'package:todolist/task/repeat_screen.dart';
 
-class RepeatNewrenminder extends StatelessWidget {
-  const RepeatNewrenminder({super.key});
+class RepeatNewreminder extends StatelessWidget {
+  const RepeatNewreminder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.repeat);
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return const RepeatScreen();
+          },
+        );
       },
       child: Container(
         height: 45,
@@ -28,7 +34,7 @@ class RepeatNewrenminder extends StatelessWidget {
               ),
               SizedBox(width: 10),
               Text(
-                'Repeat',
+                'Lặp lại',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
@@ -36,7 +42,7 @@ class RepeatNewrenminder extends StatelessWidget {
               ),
               SizedBox(width: 160),
               Text(
-                'Never',
+                'Không',
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.grey,

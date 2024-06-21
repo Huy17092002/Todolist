@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/detailsnewrenmider_widget.dart';
+import 'package:todolist/widget/details_newrenmider_widget.dart';
 import 'package:todolist/widget/list_newreminder_widget.dart';
 
 
@@ -8,7 +8,7 @@ class NewReminder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 780,
       width: 390,
       child: Scaffold(
@@ -18,7 +18,7 @@ class NewReminder extends StatelessWidget {
             children: [
               TextButton(
                 child: const Text(
-                  'Cancel',
+                  'Hủy',
                   style: TextStyle(
                     fontSize: 17,
                     color: Colors.blue,
@@ -32,16 +32,16 @@ class NewReminder extends StatelessWidget {
                 width: 60,
               ),
               const Text(
-                'New Reminder',
+                'Lời nhắc mới',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 45),
+              const SizedBox(width: 70),
               TextButton(
                 child: const Text(
-                  'Add',
+                  'Thêm',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -84,8 +84,8 @@ class NewReminder extends StatelessWidget {
                   padding: EdgeInsets.only(left: 20),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Title',
-                      helperText: 'Notes',
+                      hintText: 'Tiêu đề',
+                      helperText: 'Ghi chú',
                     ),
                   ),
                 ),

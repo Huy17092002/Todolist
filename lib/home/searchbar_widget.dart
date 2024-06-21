@@ -32,7 +32,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     return Column(
        children: [
         Padding(
-          padding: const EdgeInsets.only(left: 303,),
+          padding: const EdgeInsets.only(left: 303),
           child: GestureDetector(
             onTap: widget.onTapSearch,
             child: AnimatedContainer(
@@ -51,7 +51,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                     'Sửa',
                     style: TextStyle(
                       fontSize: 16,
-                      color: textButtonColor,
+                      color: Colors.blue,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -88,7 +88,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 curve: Curves.easeOutQuad,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(11),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -114,7 +114,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                           });
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8.5, right: 4),
+                          padding: const EdgeInsets.only(bottom: 9, right: 4),
                           child: Icon(
                             Icons.cancel,
                             color: Colors.grey[500],
@@ -135,7 +135,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                   child: const Text(
                     'Hủy',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.blue,
                       fontWeight: FontWeight.w500,
                     ),

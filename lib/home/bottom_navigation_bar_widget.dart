@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/task/newreminder_screen.dart';
 import 'package:todolist/task/addlist_screen.dart';
-import 'package:todolist/configs.dart';
+
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
@@ -17,13 +17,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
             icon: const Icon(
               Icons.add_circle,
               size: 30,
-              color: textButtonColor,
+              color: Colors.blue,
             ),
             label: const Text(
               'Lời nhắc mới',
               style: TextStyle(
                 fontSize: 17,
-                color: textButtonColor,
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -43,7 +43,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
               'Thêm danh sách',
               style: TextStyle(
                 fontSize: 17,
-                color: textButtonColor,
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -52,9 +52,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return Container(
+                  return const SizedBox(
                     height: 780,
-                    child: const AddList(),
+                    child:  AddList(),
                   );
                 },
               );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/configs.dart';
+
 
 class AddList extends StatelessWidget {
   const AddList({super.key});
@@ -14,10 +14,10 @@ class AddList extends StatelessWidget {
             const Padding(padding: EdgeInsets.only(left: 5)),
             TextButton(
               child: const Text(
-                'Cancel',
+                'Hủy',
                 style: TextStyle(
                   fontSize: 17,
-                  color: textButtonColor,
+                  color: Colors.blue,
                 ),
               ),
               onPressed: () {
@@ -25,22 +25,22 @@ class AddList extends StatelessWidget {
               },
             ),
             const SizedBox(
-              width: 75,
+              width: 60,
             ),
             const Text(
-              'New List',
+              'Danh sách mới',
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(width: 80),
+            const SizedBox(width: 65),
             TextButton(
               child: const Text(
-                'Done',
+                'Xong',
                 style: TextStyle(
                   fontSize: 17,
-                  color: textButtonColor,
+                  color: Colors.blue,
                 ),
               ),
               onPressed: () {
@@ -92,7 +92,7 @@ class AddList extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Container(
+                  SizedBox(
                     width: 320,
                     height: 53,
                     child: TextField(
@@ -100,7 +100,7 @@ class AddList extends StatelessWidget {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: 'List name',
+                        hintText: 'Tên danh sách',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none,

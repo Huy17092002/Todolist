@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ListScreen extends StatelessWidget {
-  const ListScreen({super.key});
+class ListScreenReminder extends StatelessWidget {
+  const ListScreenReminder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 770,
       width: 390,
       child: Scaffold(
@@ -35,7 +35,7 @@ class ListScreen extends StatelessWidget {
                 ),
               ),
               const Text(
-                'List',
+                'Danh sách',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

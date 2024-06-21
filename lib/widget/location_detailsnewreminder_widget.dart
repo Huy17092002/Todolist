@@ -59,7 +59,7 @@ class _LocationState extends State<Location> {
                       const Padding(
                         padding: EdgeInsets.only(top: 4),
                         child: Text(
-                          'Location',
+                          'Vị trí',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,

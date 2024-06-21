@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class Priority extends StatefulWidget {
   const Priority({super.key});
@@ -9,7 +8,7 @@ class Priority extends StatefulWidget {
 }
 
 class _PriorityState extends State<Priority> {
-  String priority = 'Low';
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +16,12 @@ class _PriorityState extends State<Priority> {
       onTap: () {
         showMenu(
           context: context,
-          position: const RelativeRect.fromLTRB(5, 255, 0, 0),
+          position: const RelativeRect.fromLTRB(5, 510, 0, 0),
           items: <PopupMenuItem>[
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
-                  'None',
+                  'Không có',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -30,7 +29,7 @@ class _PriorityState extends State<Priority> {
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
-                  'Low',
+                  'Thấp',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -38,7 +37,17 @@ class _PriorityState extends State<Priority> {
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
-                  'Medium',
+                  'Trung bình',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+            const PopupMenuItem(
+              child: ListTile(
+                leading: Text(
+                  'Cao',
                   style: TextStyle(
                     fontSize: 18,
                   ),
@@ -67,19 +76,19 @@ class _PriorityState extends State<Priority> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: Icon(Icons.priority_high,color: Colors.white,size: 20,),
+                child: const Icon(Icons.priority_high,color: Colors.white,size: 20,),
               ),
-              SizedBox(width: 10,),
-              Text('Priority',
+             const SizedBox(width: 10,),
+             const Text('Mức ưu tiên',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
-              const SizedBox(width: 160),
+              const SizedBox(width: 90),
               const Row(
                 children: [
                   Text(
-                    'None',
+                    'Không có',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,

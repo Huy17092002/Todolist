@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/routes.dart';
 
-class AddTask extends StatelessWidget {
-  const AddTask({
-    super.key,
-  });
-
+class ListsWidget extends StatelessWidget {
+  const ListsWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,11 +16,21 @@ class AddTask extends StatelessWidget {
       child: ListView.builder(
         itemCount: 100,
         itemBuilder: (BuildContext context, int index) {
-          index++;
+          index;
+          Color iconColor;
+          if (index == 0){
+            iconColor = Colors.purple;
+          }else{
+            iconColor = Colors.blue;
+          }
           return Column(
             children: [
               ListTile(
-                leading: const Icon(Icons.playlist_add_circle, size: 38, color: Colors.blueAccent),
+                leading: Icon(
+                  Icons.playlist_add_circle,
+                  size: 39,
+                  color: iconColor,
+                ),
                 title: const Text(
                   'view',
                   style: TextStyle(
@@ -32,8 +39,7 @@ class AddTask extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  print('view $index');
-
+                  print('view$index');
                   Navigator.pushNamed(context, Routes.addTask);
                 },
                 trailing: const Icon(
@@ -43,9 +49,10 @@ class AddTask extends StatelessWidget {
                 ),
               ),
               const Divider(
+                height: 0,
                 thickness: 0.5,
                 indent: 70,
-                height: 0,
+                endIndent: 0,
               ),
             ],
           );
@@ -54,3 +61,5 @@ class AddTask extends StatelessWidget {
     );
   }
 }
+
+

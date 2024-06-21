@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'searchbar_widget.dart';
 import 'bottom_navigation_bar_widget.dart';
-import 'tasklist_widget.dart';
+import 'lists_widget.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.white,
-        toolbarHeight: 65,
+        toolbarHeight: 67,
         title: SearchBarWidget(
           isSearch: _isSearch,
           isSua: _isSua,
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 8,
             ),
-            TaskListWidget(),
+            ListsWidget(),
           ],
         ),
       ),

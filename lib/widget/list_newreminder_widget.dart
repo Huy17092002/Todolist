@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/routes.dart';
+import 'package:todolist/task/listscreenreminder_screen.dart';
 
 class ListNewReminder extends StatelessWidget {
   const ListNewReminder({
@@ -10,7 +10,13 @@ class ListNewReminder extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.list);
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return const ListScreenReminder();
+          },
+        );
       },
       child: Container(
         height: 45,
@@ -32,14 +38,14 @@ class ListNewReminder extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                'List',
+                'Danh sách',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               SizedBox(
-                width: 175,
+                width: 121,
               ),
               Text(
                 'Wear',

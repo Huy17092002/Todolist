@@ -58,14 +58,14 @@ class _DateClockState extends State<DateClock> {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'Date',
+                  'Ngày',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 19,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 173,),
                 CupertinoSwitch(
                   value: showDate,
                   onChanged: _toggleDate,
@@ -73,7 +73,7 @@ class _DateClockState extends State<DateClock> {
               ],
             ),
             AnimatedContainer(
-              height: showDate ? 350 : 0,
+              height: showDate ? 345 : 0,
               duration: kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -106,14 +106,14 @@ class _DateClockState extends State<DateClock> {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'Time',
+                  'Thời gian',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 19,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(width: 176,),
+                const SizedBox(width: 135,),
                 CupertinoSwitch(
                   value: showClock,
                   onChanged: _toggleClock,

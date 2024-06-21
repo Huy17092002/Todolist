@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/location_detailsaddtask_widget.dart';
-import 'package:todolist/widget/repeatdetailsaddtask_widget.dart';
-import 'package:todolist/widget/priority_detailsaddtask_widget.dart';
-import 'package:todolist/widget/dateclock_detailscreen_addtask.dart';
-import 'package:todolist/configs.dart';
+import 'package:todolist/widget/location_detailsnewreminder_widget.dart';
+import 'package:todolist/widget/repeatdetailnewreminder_widget.dart';
+import 'package:todolist/widget/priority_detailsnewreminder_widget.dart';
+import 'package:todolist/widget/dateclock_detailsnewreminder_widget.dart';
+
 
 class DetailsAddtask extends StatefulWidget {
   const DetailsAddtask({super.key});
@@ -38,7 +38,7 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
                     Text(
                       'Lời nhắc mới',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 17,
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
                       ),
@@ -48,19 +48,19 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
               ),
               const SizedBox(width: 30),
               const Text(
-                'Details',
+                'Chi Tiết',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 80),
+              const SizedBox(width: 70),
         TextButton(
           child: const Text(
-            'Add',
+            'Thêm',
             style: TextStyle(
               fontSize: 17,
-              color: textButtonColor,
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -92,11 +92,11 @@ class _DetailsAddtaskState extends State<DetailsAddtask> {
           child: const Column(
             children: [
               DateClock(),
-              SizedBox(height: 30),
-              RepeatNewrenminder(),
-              SizedBox(height: 30),
+              SizedBox(height:30),
+              RepeatNewreminder(),
+              SizedBox(height:30),
               Location(),
-              SizedBox(height: 30),
+              SizedBox(height:30),
               Priority(),
             ],
           ),

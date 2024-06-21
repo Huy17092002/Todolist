@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/configs.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+
+class TaskListPage extends StatefulWidget {
+  const TaskListPage({super.key});
 
   @override
-  State<AddTaskScreen> createState() => AddTaskScreenState();
+  State<TaskListPage> createState() => TaskListPageState();
 }
 
-class AddTaskScreenState extends State<AddTaskScreen> {
-  List<Widget> _reminderInputs = [];
+class TaskListPageState extends State<TaskListPage> {
+  final List<Widget> _reminderInputs = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,13 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                 showMenu(
                   context: context,
                   position: const RelativeRect.fromLTRB(10, 99, 9, 0),
-                  items: <PopupMenuItem>[
+                  items:
+                  <PopupMenuItem>[
                     const PopupMenuItem(
                       value: Icons.preview,
                       child: ListTile(
                         leading: Text(
-                          'Show List Info',
+                          'Thông tin danh sách',
                           style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.info_outline),
@@ -63,7 +64,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                       value: Icons.share,
                       child: ListTile(
                         leading: Text(
-                          'Select Reminders',
+                          'Chọn lời nhắc',
                           style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.check_circle_outline),
@@ -72,7 +73,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                     const PopupMenuItem(
                       child: ListTile(
                         leading: Text(
-                          'Sort By',
+                          'Sắp xếp theo',
                           style: TextStyle(
                             fontSize: 18,
                           ),
@@ -83,7 +84,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
-                            'Show Completed',
+                            'Lời nhắc đã hoàn tất',
                             style: TextStyle(
                               fontSize: 18,
                             ),
@@ -93,7 +94,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
-                            'Print',
+                            'In',
                             style: TextStyle(
                               fontSize: 18,
                             ),
@@ -103,12 +104,13 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
-                            'Delete List',
+                            'Xóa danh sách',
                             style: TextStyle(
                               fontSize: 18,
+                              color: Colors.red
                             ),
                           ),
-                          title: Icon(Icons.delete_rounded),
+                          title: Icon(Icons.delete_rounded,color: Colors.red,),
                         )),
                   ],
                 );
@@ -119,7 +121,7 @@ class AddTaskScreenState extends State<AddTaskScreen> {
                 'Xong',
                 style: TextStyle(
                   fontSize: 18,
-                  color: textButtonColor,
+                  color: Colors.blue,
                 ),
               ),
               onPressed: () {
