@@ -90,7 +90,7 @@ class TaskListPageState extends State<TaskListPage> {
                             ),
                           ),
                           title: Icon(Icons.remove_red_eye_outlined),
-                        )),
+                        ),),
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
@@ -100,7 +100,7 @@ class TaskListPageState extends State<TaskListPage> {
                             ),
                           ),
                           title: Icon(Icons.print),
-                        )),
+                        ),),
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
@@ -206,7 +206,8 @@ class TaskListPageState extends State<TaskListPage> {
         decoration: const InputDecoration(
             icon: Icon(Icons.radio_button_unchecked, color: Colors.grey),
             hintText: 'Add note',
-            suffixIcon: Icon(Icons.info_outline)),
+            // suffixIcon: Icon(Icons.info_outline),
+        ),
       ),
     );
   }

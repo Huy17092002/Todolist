@@ -8,16 +8,21 @@ class Priority extends StatefulWidget {
 }
 
 class _PriorityState extends State<Priority> {
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        final RenderBox renderBox = context.findRenderObject() as RenderBox;
+        final offset = renderBox.localToGlobal(Offset.zero);
         showMenu(
           context: context,
-          position: const RelativeRect.fromLTRB(5, 510, 0, 0),
-          items: <PopupMenuItem>[
+          position: RelativeRect.fromLTRB(
+              offset.dx + renderBox.size.width,
+              offset.dy,
+              0,
+              offset.dy + renderBox.size.height
+          ),
+          items: <PopupMenuEntry>[
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
@@ -26,6 +31,7 @@ class _PriorityState extends State<Priority> {
                 ),
               ),
             ),
+            const PopupMenuDivider(),
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
@@ -34,6 +40,7 @@ class _PriorityState extends State<Priority> {
                 ),
               ),
             ),
+            const PopupMenuDivider(),
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
@@ -44,6 +51,7 @@ class _PriorityState extends State<Priority> {
                 ),
               ),
             ),
+            const PopupMenuDivider(),
             const PopupMenuItem(
               child: ListTile(
                 leading: Text(
@@ -76,10 +84,12 @@ class _PriorityState extends State<Priority> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Icon(Icons.priority_high,color: Colors.white,size: 20,),
+                child: const Icon(Icons.priority_high,
+                    color: Colors.white, size: 20),
               ),
-             const SizedBox(width: 10,),
-             const Text('Mức ưu tiên',
+              const SizedBox(width: 10),
+              const Text(
+                'Mức ưu tiên',
                 style: TextStyle(
                   fontSize: 18,
                 ),
