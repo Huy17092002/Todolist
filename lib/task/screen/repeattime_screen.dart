@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/constant/configs.dart';
 
-class RepeatScreen extends StatelessWidget {
-  const RepeatScreen({super.key});
+class RepeatTime extends StatelessWidget {
+  const RepeatTime({super.key});
 
   @override
   Widget build(BuildContext context) {

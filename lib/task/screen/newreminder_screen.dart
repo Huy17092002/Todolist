@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/details_newrenmider_widget.dart';
-import 'package:todolist/widget/list_newreminder_widget.dart';
+import 'package:todolist/constant/configs.dart';
+import 'package:todolist/task/screen/components/details_newrenmider_widget.dart';
+import 'package:todolist/task/screen/components/list_newreminder_widget.dart';
 
 
 class NewReminder extends StatelessWidget {
@@ -42,11 +43,7 @@ class NewReminder extends StatelessWidget {
               TextButton(
                 child: const Text(
                   'Thêm',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blue,
-                  ),
+                  style: textstyleThem,
                 ),
                 onPressed: () {
                   showDialog(

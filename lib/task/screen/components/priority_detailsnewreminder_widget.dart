@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/constant/configs.dart';
 
 class Priority extends StatefulWidget {
   const Priority({super.key});
@@ -27,7 +28,7 @@ class _PriorityState extends State<Priority> {
               child: ListTile(
                 leading: Text(
                   'Không có',
-                  style: TextStyle(fontSize: 18),
+                  style: textstylePopupmenu,
                 ),
               ),
             ),
@@ -36,7 +37,7 @@ class _PriorityState extends State<Priority> {
               child: ListTile(
                 leading: Text(
                   'Thấp',
-                  style: TextStyle(fontSize: 18),
+                  style: textstylePopupmenu,
                 ),
               ),
             ),
@@ -45,9 +46,7 @@ class _PriorityState extends State<Priority> {
               child: ListTile(
                 leading: Text(
                   'Trung bình',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                  style: textstylePopupmenu,
                 ),
               ),
             ),
@@ -56,9 +55,7 @@ class _PriorityState extends State<Priority> {
               child: ListTile(
                 leading: Text(
                   'Cao',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                  style: textstylePopupmenu,
                 ),
               ),
             ),
@@ -90,9 +87,7 @@ class _PriorityState extends State<Priority> {
               const SizedBox(width: 10),
               const Text(
                 'Mức ưu tiên',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
+                style: textstylePopupmenu,
               ),
               const SizedBox(width: 90),
               const Row(

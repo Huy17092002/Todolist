@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/widget/location_detailsnewreminder_widget.dart';
-import 'package:todolist/widget/repeatdetailnewreminder_widget.dart';
-import 'package:todolist/widget/priority_detailsnewreminder_widget.dart';
-import 'package:todolist/widget/dateclock_detailsnewreminder_widget.dart';
+import 'package:todolist/constant/configs.dart';
+import 'package:todolist/task/screen/components/location_detailsnewreminder_widget.dart';
+import 'package:todolist/task/screen/components/repeatdetailstask_widget.dart';
+import 'package:todolist/task/screen/components/priority_detailsnewreminder_widget.dart';
+import 'package:todolist/task/screen/components/dateclock_detailsnewreminder_widget.dart';
 
 
 class DetailsTask extends StatefulWidget {
@@ -58,11 +59,7 @@ class _DetailsTaskState extends State<DetailsTask> {
         TextButton(
           child: const Text(
             'Thêm',
-            style: TextStyle(
-              fontSize: 17,
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-            ),
+            style: textstyleThem,
           ),
           onPressed: () {
             showDialog(

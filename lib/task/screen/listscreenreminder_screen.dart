@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:todolist/constant/configs.dart';
 class ListScreenReminder extends StatelessWidget {
   const ListScreenReminder({super.key});
 
@@ -67,12 +67,7 @@ class ListScreenReminder extends StatelessWidget {
                     );
                   },
                 ),
-                const Divider(
-                  thickness: 0.3,
-                  indent: 70,
-                  endIndent: 0,
-                  height: 0.2,
-                ),
+                dividerListView,
               ],
             );
           },

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/listscreenreminder_screen.dart';
+import 'package:todolist/constant/configs.dart';
+import 'package:todolist/task/screen/repeattime_screen.dart';
 
-class ListNewReminder extends StatelessWidget {
-  const ListNewReminder({
-    super.key,
-  });
+class RepeatNewreminder extends StatelessWidget {
+  const RepeatNewreminder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class ListNewReminder extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
-            return const ListScreenReminder();
+            return const RepeatTime();
           },
         );
       },
@@ -26,41 +25,35 @@ class ListNewReminder extends StatelessWidget {
           color: Colors.grey[300],
         ),
         child: const Padding(
-          padding: EdgeInsets.only(top: 2, left: 15),
+          padding: EdgeInsets.only(top: 0, left: 15),
           child: Row(
             children: [
               Icon(
-                Icons.playlist_add_circle,
-                color: Colors.green,
-                size: 36,
+                Icons.repeat_on,
+                color: Colors.grey,
+                size: 30,
               ),
-              SizedBox(
-                width: 10,
-              ),
+              SizedBox(width: 10),
               Text(
-                'Danh sách',
+                'Lặp lại',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(
-                width: 121,
-              ),
+              SizedBox(width: 160),
               Text(
-                'Wear',
+                'Không',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 17,
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(
-                width: 10,
-              ),
+              SizedBox(width:1),
               Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.grey,
-                size: 18,
+                size: 16,
               ),
             ],
           ),
@@ -69,4 +62,3 @@ class ListNewReminder extends StatelessWidget {
     );
   }
 }
-

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'searchbar_widget.dart';
-import 'bottom_navigation_bar_widget.dart';
-import 'lists_widget.dart';
-
+import 'interface/searchbar_widget.dart';
+import 'interface/bottom_navigation_bar_widget.dart';
+import 'interface/lists_widget.dart';
+import 'package:todolist/home/search/searchbarcontroller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,49 +12,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _myController = TextEditingController();
-  bool _isSearch = false;
-  bool _isSua = false;
-  double _opacitySua = 1;
-  double _opacityCancel = 0;
+  late SearchBarController searchbarcontroller;
 
-  final FocusNode _focusNode = FocusNode();
-
-  void _cancel() {
-    setState(() {
-      _isSearch = false;
-      _isSua = false;
-      _opacitySua = 1;
-      _opacityCancel = 0;
-    });
-    _myController.clear();
-    _focusNode.unfocus();
-  }
-
-  void _onTapSearch() {
-    setState(() {
-      _isSearch = true;
-      _isSua = true;
-      _opacityCancel = 1;
-      _opacitySua = 0;
-    });
+  @override
+  void initState() {
+    super.initState();
+    searchbarcontroller = SearchBarController(
+      isSearch: false,
+      isFix: false,
+      opacityFix: 1,
+      opacityCancel: 0,
+      myController: TextEditingController(),
+      focusNode: FocusNode(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Colors.white,
+        backgroundColor: Colors.white,
         toolbarHeight: 67,
         title: SearchBarWidget(
-          isSearch: _isSearch,
-          isSua: _isSua,
-          opacityCancel: _opacityCancel,
-          opacitySua: _opacitySua,
-          myController: _myController,
-          focusNode: _focusNode,
-          onCancel: _cancel,
-          onTapSearch: _onTapSearch,
+          paramater: searchbarcontroller,
         ),
       ),
       body: const SingleChildScrollView(
@@ -63,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding:  EdgeInsets.only(left: 5),
+              padding: EdgeInsets.only(left: 5),
               child: Text(
                 'Danh sách của tôi',
                 style: TextStyle(
@@ -84,3 +64,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

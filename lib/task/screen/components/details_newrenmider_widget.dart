@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/detailstask_screen.dart';
+import 'package:todolist/constant/configs.dart';
+import 'package:todolist/task/screen/detailstask_screen.dart';
 
 
 class DetailsNewReminDer extends StatelessWidget {

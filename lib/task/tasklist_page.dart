@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/detailstask_screen.dart';
+import 'package:todolist/constant/configs.dart';
+import 'package:todolist/task/screen/detailstask_screen.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({super.key});
@@ -54,7 +55,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Thông tin danh sách',
-                          style: TextStyle(fontSize: 18),
+                          style:textstylePopupmenu,
                         ),
                         title: Icon(Icons.info_outline),
                       ),
@@ -64,7 +65,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Chọn lời nhắc',
-                          style: TextStyle(fontSize: 18),
+                          style: textstylePopupmenu,
                         ),
                         title: Icon(Icons.check_circle_outline),
                       ),
@@ -73,9 +74,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Sắp xếp theo',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                          style: textstylePopupmenu,
                         ),
                         title: Icon(Icons.import_export),
                       ),
@@ -84,9 +83,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Lời nhắc đã hoàn tất',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                          style: textstylePopupmenu,
                         ),
                         title: Icon(Icons.remove_red_eye_outlined),
                       ),
@@ -95,9 +92,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'In',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                          style: textstylePopupmenu,
                         ),
                         title: Icon(Icons.print),
                       ),

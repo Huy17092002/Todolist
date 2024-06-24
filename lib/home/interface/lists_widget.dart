@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/routes.dart';
+import 'package:todolist/constant/routes.dart';
+import 'package:todolist/constant/configs.dart';
 
 class ListsWidget extends StatelessWidget {
   const ListsWidget({super.key});
@@ -48,12 +49,7 @@ class ListsWidget extends StatelessWidget {
                   size: 17,
                 ),
               ),
-              const Divider(
-                height: 0,
-                thickness: 0.5,
-                indent: 70,
-                endIndent: 0,
-              ),
+              dividerListView,
             ],
           );
         },
