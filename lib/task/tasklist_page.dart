@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:todolist/task/detailstask_screen.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({super.key});
@@ -48,8 +48,7 @@ class TaskListPageState extends State<TaskListPage> {
                 showMenu(
                   context: context,
                   position: const RelativeRect.fromLTRB(10, 99, 9, 0),
-                  items:
-                  <PopupMenuItem>[
+                  items: <PopupMenuItem>[
                     const PopupMenuItem(
                       value: Icons.preview,
                       child: ListTile(
@@ -82,36 +81,39 @@ class TaskListPageState extends State<TaskListPage> {
                       ),
                     ),
                     const PopupMenuItem(
-                        child: ListTile(
-                          leading: Text(
-                            'Lời nhắc đã hoàn tất',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                      child: ListTile(
+                        leading: Text(
+                          'Lời nhắc đã hoàn tất',
+                          style: TextStyle(
+                            fontSize: 18,
                           ),
-                          title: Icon(Icons.remove_red_eye_outlined),
-                        ),),
+                        ),
+                        title: Icon(Icons.remove_red_eye_outlined),
+                      ),
+                    ),
                     const PopupMenuItem(
-                        child: ListTile(
-                          leading: Text(
-                            'In',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                      child: ListTile(
+                        leading: Text(
+                          'In',
+                          style: TextStyle(
+                            fontSize: 18,
                           ),
-                          title: Icon(Icons.print),
-                        ),),
+                        ),
+                        title: Icon(Icons.print),
+                      ),
+                    ),
                     const PopupMenuItem(
                         child: ListTile(
                           leading: Text(
                             'Xóa danh sách',
                             style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red
+                                fontSize: 18,
+                                color: Colors.red
                             ),
                           ),
                           title: Icon(Icons.delete_rounded,color: Colors.red,),
-                        )),
+                        )
+                    ),
                   ],
                 );
               },
@@ -160,10 +162,11 @@ class TaskListPageState extends State<TaskListPage> {
             ),
           ),
           Expanded(
-            child: ListView(
-              children: [
-                ..._reminderInputs,
-              ],
+            child: ListView.builder(
+              itemCount: _reminderInputs.length,
+              itemBuilder: (context, index) {
+                return _reminderInputs[index];
+              },
             ),
           ),
         ],
@@ -190,7 +193,30 @@ class TaskListPageState extends State<TaskListPage> {
             ),
             onPressed: () {
               setState(() {
-                _reminderInputs.add(_buildReminderInput());
+                _reminderInputs.add(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, top: 5),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        icon: const Icon(Icons.radio_button_unchecked, color: Colors.grey),
+                        hintText: 'Add note',
+                        suffixIcon:
+                        GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (BuildContext context) {
+                                return const DetailsTask();
+                              },
+                            );
+                          },
+                            child: const Icon(Icons.info_outline),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -198,21 +224,4 @@ class TaskListPageState extends State<TaskListPage> {
       ),
     );
   }
-
-  Widget _buildReminderInput() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, top: 5),
-      child: TextFormField(
-        decoration: const InputDecoration(
-            icon: Icon(Icons.radio_button_unchecked, color: Colors.grey),
-            hintText: 'Add note',
-            // suffixIcon: Icon(Icons.info_outline),
-        ),
-      ),
-    );
-  }
 }
-
-
-
-

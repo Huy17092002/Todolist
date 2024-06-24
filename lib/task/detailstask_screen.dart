@@ -5,14 +5,14 @@ import 'package:todolist/widget/priority_detailsnewreminder_widget.dart';
 import 'package:todolist/widget/dateclock_detailsnewreminder_widget.dart';
 
 
-class DetailsAddtask extends StatefulWidget {
-  const DetailsAddtask({super.key});
+class DetailsTask extends StatefulWidget {
+  const DetailsTask({super.key});
 
   @override
-  State<DetailsAddtask> createState() => _DetailsAddtaskState();
+  State<DetailsTask> createState() => _DetailsTaskState();
 }
 
-class _DetailsAddtaskState extends State<DetailsAddtask> {
+class _DetailsTaskState extends State<DetailsTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
