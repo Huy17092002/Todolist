@@ -8,7 +8,7 @@ class ListsWidget extends StatelessWidget {
     return Container(
       width: 360,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black26, width: 0.24),
+        border: Border.all(color: Colors.black26, width: 0.25),
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
       ),
