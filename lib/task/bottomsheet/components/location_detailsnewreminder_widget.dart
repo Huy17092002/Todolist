@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todolist/constant/configs.dart';
+import 'package:todolist/configs.dart';
 
 class Location extends StatefulWidget {
   const Location({super.key});

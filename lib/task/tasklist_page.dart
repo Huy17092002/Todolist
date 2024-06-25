@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-import 'package:todolist/task/screen/detailstask_screen.dart';
+import 'package:todolist/task/bottomsheet/detailstask_bottomsheet.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({super.key});
@@ -55,7 +54,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Thông tin danh sách',
-                          style:textstylePopupmenu,
+                          style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.info_outline),
                       ),
@@ -65,7 +64,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Chọn lời nhắc',
-                          style: textstylePopupmenu,
+                          style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.check_circle_outline),
                       ),
@@ -74,7 +73,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Sắp xếp theo',
-                          style: textstylePopupmenu,
+                          style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.import_export),
                       ),
@@ -83,7 +82,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'Lời nhắc đã hoàn tất',
-                          style: textstylePopupmenu,
+                          style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.remove_red_eye_outlined),
                       ),
@@ -92,7 +91,7 @@ class TaskListPageState extends State<TaskListPage> {
                       child: ListTile(
                         leading: Text(
                           'In',
-                          style: textstylePopupmenu,
+                          style: TextStyle(fontSize: 18),
                         ),
                         title: Icon(Icons.print),
                       ),
@@ -202,7 +201,7 @@ class TaskListPageState extends State<TaskListPage> {
                               context: context,
                               isScrollControlled: true,
                               builder: (BuildContext context) {
-                                return const DetailsTask();
+                                return const DetailsTaskBottomsheet();
                               },
                             );
                           },

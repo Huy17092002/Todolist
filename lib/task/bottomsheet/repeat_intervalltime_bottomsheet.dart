@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
 
-class RepeatTime extends StatelessWidget {
-  const RepeatTime({super.key});
+class RepeatIntervallTime extends StatelessWidget {
+  const RepeatIntervallTime({super.key});
 
   @override
   Widget build(BuildContext context) {

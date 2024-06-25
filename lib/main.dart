@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/routes.dart';
-import 'package:todolist/constant/themes.dart';
+import 'package:todolist/routes.dart';
+import 'package:todolist/themes.dart';
 
 void main() {
   runApp(const TodoListApp());

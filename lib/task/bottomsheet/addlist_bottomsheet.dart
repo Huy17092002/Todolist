@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-
-
-class AddList extends StatelessWidget {
-  const AddList({super.key});
+class AddListBottomsheet extends StatelessWidget {
+  const AddListBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {

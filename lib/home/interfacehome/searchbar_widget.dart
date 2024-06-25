@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
+import 'package:todolist/configs.dart';
 import 'package:todolist/home/search/searchbarcontroller.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -7,8 +7,8 @@ class SearchBarWidget extends StatefulWidget {
 
   const SearchBarWidget({
     required this.paramater,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SearchBarWidget> createState() => _SearchBarWidgetState();

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-class ListScreenReminder extends StatelessWidget {
-  const ListScreenReminder({super.key});
+import 'package:todolist/configs.dart';
+
+class ListNameBottomsheet extends StatelessWidget {
+  const ListNameBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {

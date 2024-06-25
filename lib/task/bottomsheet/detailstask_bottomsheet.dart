@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-import 'package:todolist/task/screen/components/location_detailsnewreminder_widget.dart';
-import 'package:todolist/task/screen/components/repeatdetailstask_widget.dart';
-import 'package:todolist/task/screen/components/priority_detailsnewreminder_widget.dart';
-import 'package:todolist/task/screen/components/dateclock_detailsnewreminder_widget.dart';
+import 'package:todolist/task/bottomsheet/components/location_detailsnewreminder_widget.dart';
+import 'package:todolist/task/bottomsheet/components/repeatdetailstask_widget.dart';
+import 'package:todolist/task/bottomsheet/components/priority_detailsnewreminder_widget.dart';
+import 'package:todolist/task/bottomsheet/components/dateclock_detailsnewreminder_widget.dart';
 
 
-class DetailsTask extends StatefulWidget {
-  const DetailsTask({super.key});
+class DetailsTaskBottomsheet extends StatefulWidget {
+  const DetailsTaskBottomsheet({super.key});
 
   @override
-  State<DetailsTask> createState() => _DetailsTaskState();
+  State<DetailsTaskBottomsheet> createState() => _DetailsTaskBottomsheetState();
 }
 
-class _DetailsTaskState extends State<DetailsTask> {
+class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +58,7 @@ class _DetailsTaskState extends State<DetailsTask> {
         TextButton(
           child: const Text(
             'Thêm',
-            style: textstyleThem,
+            style: TextStyle(fontSize: 18, color: Colors.blue, fontWeight: FontWeight.bold),
           ),
           onPressed: () {
             showDialog(
@@ -89,11 +88,11 @@ class _DetailsTaskState extends State<DetailsTask> {
           child: const Column(
             children: [
               DateClock(),
-              SizedBox(height:30),
+              SizedBox(height:20),
               RepeatNewreminder(),
-              SizedBox(height:30),
+              SizedBox(height:20),
               Location(),
-              SizedBox(height:30),
+              SizedBox(height:20),
               Priority(),
             ],
           ),

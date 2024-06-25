@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/routes.dart';
-import 'package:todolist/constant/configs.dart';
+import 'package:todolist/routes.dart';
+import 'package:todolist/configs.dart';
 
 class ListsWidget extends StatelessWidget {
   const ListsWidget({super.key});

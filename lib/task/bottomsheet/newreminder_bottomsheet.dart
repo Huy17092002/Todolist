@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-import 'package:todolist/task/screen/components/details_newrenmider_widget.dart';
-import 'package:todolist/task/screen/components/list_newreminder_widget.dart';
+import 'package:todolist/task/bottomsheet/components/details_newrenmider_widget.dart';
+import 'package:todolist/task/bottomsheet/components/list_newreminder_widget.dart';
 
 
-class NewReminder extends StatelessWidget {
-  const NewReminder({super.key});
+ class NewReminderBottomsheet extends StatelessWidget {
+ const NewReminderBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class NewReminder extends StatelessWidget {
               TextButton(
                 child: const Text(
                   'Thêm',
-                  style: textstyleThem,
+                  style: TextStyle(fontSize: 18, color: Colors.blue, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
                   showDialog(

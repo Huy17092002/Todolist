@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-import 'package:todolist/task/screen/newreminder_screen.dart';
-import 'package:todolist/task/screen/addlist_screen.dart';
-
+import 'package:todolist/task/bottomsheet/newreminder_bottomsheet.dart';
+import 'package:todolist/task/bottomsheet/addlist_bottomsheet.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
@@ -33,7 +31,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return const NewReminder();
+                  return const NewReminderBottomsheet();
                 },
               );
             },
@@ -55,7 +53,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 builder: (BuildContext context) {
                   return const SizedBox(
                     height: 780,
-                    child:  AddList(),
+                    child:  AddListBottomsheet(),
                   );
                 },
               );

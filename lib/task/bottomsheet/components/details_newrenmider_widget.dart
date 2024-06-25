@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/constant/configs.dart';
-import 'package:todolist/task/screen/detailstask_screen.dart';
+import 'package:todolist/task/bottomsheet/detailstask_bottomsheet.dart';
 
 
 class DetailsNewReminDer extends StatelessWidget {
@@ -20,7 +19,7 @@ class DetailsNewReminDer extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return const DetailsTask();
+                  return const DetailsTaskBottomsheet();
                 },
               );
             },
