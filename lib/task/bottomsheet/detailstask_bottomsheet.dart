@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/bottomsheet/components/location_detailsnewreminder_widget.dart';
-import 'package:todolist/task/bottomsheet/components/repeatdetailstask_widget.dart';
-import 'package:todolist/task/bottomsheet/components/priority_detailsnewreminder_widget.dart';
-import 'package:todolist/task/bottomsheet/components/dateclock_detailsnewreminder_widget.dart';
+import 'package:todolist/task/bottomsheet/components/location_detailstask.dart';
+import 'package:todolist/task/bottomsheet/components/repeat_detailstask.dart';
+import 'package:todolist/task/bottomsheet/components/priority_detailstask.dart';
+import 'package:todolist/task/bottomsheet/components/dateclock_detailstask.dart';
 
 
 class DetailsTaskBottomsheet extends StatefulWidget {
@@ -89,7 +89,7 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
             children: [
               DateClock(),
               SizedBox(height:20),
-              RepeatNewreminder(),
+              RepeatTimeTask(),
               SizedBox(height:20),
               Location(),
               SizedBox(height:20),
