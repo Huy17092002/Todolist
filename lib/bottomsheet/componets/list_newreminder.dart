@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/bottomsheet/listname_bottomsheet.dart';
+import 'package:todolist/bottomsheet/listname_bottomsheet.dart';
 
 class ListNewReminder extends StatelessWidget {
   const ListNewReminder({
@@ -48,7 +48,7 @@ class ListNewReminder extends StatelessWidget {
                 width: 121,
               ),
               Text(
-                'Wear',
+                'View',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -69,4 +69,6 @@ class ListNewReminder extends StatelessWidget {
     );
   }
 }
+
+
 

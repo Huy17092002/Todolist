@@ -1,7 +1,36 @@
+
 import 'package:flutter/material.dart';
 
-class AddListBottomsheet extends StatelessWidget {
+class AddListBottomsheet extends StatefulWidget {
   const AddListBottomsheet({super.key});
+
+  @override
+  State<AddListBottomsheet> createState() => _AddListBottomsheetState();
+}
+
+class _AddListBottomsheetState extends State<AddListBottomsheet> {
+  Color? selectedColor;
+
+  Widget buildColorContainer(Color color) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedColor = color;
+        });
+      },
+      child: Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color,
+          border: selectedColor == color
+              ? Border.all(color: Colors.grey.shade600, width: 4)
+              : null,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,62 +153,20 @@ class AddListBottomsheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 17, top: 13),
+                    padding: const EdgeInsets.only(left: 15, top: 10),
                     child: Row(
                       children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.orange,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.yellow,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.green,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.purple,
-                          ),
-                        ),
+                        buildColorContainer(Colors.red),
+                        const SizedBox(width: 10,),
+                        buildColorContainer(Colors.orange),
+                        const SizedBox(width: 10,),
+                        buildColorContainer(Colors.yellow),
+                        const SizedBox(width: 10,),
+                        buildColorContainer(Colors.green),
+                        const SizedBox(width: 10,),
+                        buildColorContainer(Colors.blue),
+                        const SizedBox(width: 10,),
+                        buildColorContainer(Colors.purple),
                       ],
                     ),
                   ),

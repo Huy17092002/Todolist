@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/task/bottomsheet/newreminder_bottomsheet.dart';
-import 'package:todolist/task/bottomsheet/addlist_bottomsheet.dart';
+import 'package:todolist/bottomsheet/newreminder_bottomsheet.dart';
+import 'package:todolist/bottomsheet/addlist_bottomsheet.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});

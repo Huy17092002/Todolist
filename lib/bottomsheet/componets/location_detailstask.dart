@@ -47,7 +47,7 @@ class _LocationState extends State<Location> {
                         height: 30,
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
-                          color: Colors.blue[700],
+                          color: Colors.blue[600],
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: const Icon(

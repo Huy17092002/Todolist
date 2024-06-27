@@ -96,7 +96,7 @@ class _DateClockState extends State<DateClock> {
                   height: 30,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    color: Colors.blue,
+                    color: Colors.blue[600],
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: const Icon(
@@ -121,17 +121,23 @@ class _DateClockState extends State<DateClock> {
               ],
             ),
             AnimatedContainer(
-              height: showClock ? 200 : 0,
+              height: showClock ? 170 : 0,
               duration:kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
-                  child:CupertinoTimerPicker(
-                    mode: CupertinoTimerPickerMode.hm,
-                    onTimerDurationChanged: (Duration value) {},
+                  child:
+                  SizedBox(
+                    width: 200,
+                    height: 150,
+                      child:CupertinoDatePicker(
+                        mode: CupertinoDatePickerMode.time,
+                        use24hFormat: true,
+                        onDateTimeChanged: (value){},
                   ),
                 ),
               ),
+            ),
             ),
           ],
         ),

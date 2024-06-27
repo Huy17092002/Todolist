@@ -1,9 +1,73 @@
+// import 'package:flutter/material.dart';
+// import 'package:todolist/routes.dart';
+// import 'package:todolist/configs.dart';
+//
+// class ListsWidget extends StatelessWidget {
+//   const ListsWidget({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 360,
+//       decoration: BoxDecoration(
+//         border: Border.all(color: Colors.black26, width: 0.25),
+//         color: Colors.grey[200],
+//         borderRadius: BorderRadius.circular(8),
+//       ),
+//       height: MediaQuery.of(context).size.height - 260,
+//       child: ListView.builder(
+//         itemCount: 100,
+//         itemBuilder: (BuildContext context, int index) {
+//           index;
+//           Color iconColor;
+//           if (index == 0){
+//             iconColor = Colors.purple;
+//           }else{
+//             iconColor = Colors.blue;
+//           }
+//           return Column(
+//             children: [
+//               ListTile(
+//                 leading: Icon(
+//                   Icons.playlist_add_circle,
+//                   size: 39,
+//                   color: iconColor,
+//                 ),
+//                 title: const Text(
+//                   'view',
+//                   style: TextStyle(
+//                     fontSize: 18,
+//                     fontWeight: FontWeight.normal,
+//                   ),
+//                 ),
+//                 onTap: () {
+//                   print('view$index');
+//                   Navigator.pushNamed(context, Routes.addTask);
+//                 },
+//                 trailing: const Icon(
+//                   Icons.arrow_forward_ios,
+//                   color: Colors.grey,
+//                   size: 17,
+//                 ),
+//               ),
+//               dividerListView,
+//             ],
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+//
+//
+
+
 import 'package:flutter/material.dart';
+import 'package:todolist/items/homelistitem/task_group_item.dart';
 import 'package:todolist/routes.dart';
-import 'package:todolist/configs.dart';
 
 class ListsWidget extends StatelessWidget {
-  const ListsWidget({super.key});
+  const ListsWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,45 +81,15 @@ class ListsWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: 100,
         itemBuilder: (BuildContext context, int index) {
-          index;
-          Color iconColor;
-          if (index == 0){
-            iconColor = Colors.purple;
-          }else{
-            iconColor = Colors.blue;
-          }
-          return Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.playlist_add_circle,
-                  size: 39,
-                  color: iconColor,
-                ),
-                title: const Text(
-                  'view',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                onTap: () {
-                  print('view$index');
-                  Navigator.pushNamed(context, Routes.addTask);
-                },
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey,
-                  size: 17,
-                ),
-              ),
-              dividerListView,
-            ],
+          return TaskGroupItem(
+            index: index,
+            onTap: () {
+              print('view $index');
+              Navigator.pushNamed(context, Routes.addTask);
+            },
           );
         },
       ),
     );
   }
 }
-
-

@@ -12,7 +12,7 @@ class TodoListApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.lightTheme(),
+      theme: AppTheme.theme,
       onGenerateRoute: Routes.generateRoute,
       initialRoute: Routes.home,
     );

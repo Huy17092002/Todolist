@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/configs.dart';
+import 'package:todolist/items/homelistitem/task_group_item.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
   const ListNameBottomsheet({super.key});
@@ -47,29 +47,13 @@ class ListNameBottomsheet extends StatelessWidget {
         ),
         body: ListView.builder(
           padding: const EdgeInsets.only(top: 1),
+          itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            index++;
-            return Column(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.playlist_add_circle, size: 38, color: Colors.redAccent),
-                  title: const Text(
-                    ' Item',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  onTap: () {
-                    print('Item $index');
-
-                    Navigator.pop(
-                      context,
-                    );
-                  },
-                ),
-                dividerListView,
-              ],
+            return TaskGroupItem(
+              index: index,
+              onTap: () {
+                Navigator.pop(context);
+              },
             );
           },
         ),
