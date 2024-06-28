@@ -152,7 +152,7 @@ class TaskListPageState extends State<TaskListPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
-          bottom: 32,
+          bottom: 33,
           right: 210,
         ),
         child: SingleChildScrollView(
