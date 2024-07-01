@@ -69,7 +69,7 @@ import 'package:todolist/bottomsheet/componets/list_newreminder.dart';
         body: Center(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 12),
+              Padding( padding: const EdgeInsets.only(top: 12),
                 child: Container(
                   width: 350,
                   height: 150,

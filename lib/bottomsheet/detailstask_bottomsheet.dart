@@ -54,52 +54,53 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
                 ),
               ),
               const SizedBox(width: 70),
-        TextButton(
-          child: const Text(
-            'Thêm',
-            style: TextStyle(fontSize: 18, color: Colors.blue, fontWeight: FontWeight.bold),
-          ),
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Xong'),
-                  actions: [
-                    ElevatedButton(
-                      child: const Text('OK'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-        ),
-          ],
+              TextButton(
+                child: const Text(
+                  'Thêm',
+                  style: TextStyle(fontSize: 18, color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Xong'),
+                        actions: [
+                          ElevatedButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
           ),
         ),
         body: SingleChildScrollView(
-          child: Padding(padding: EdgeInsets.only(top: 10),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
             child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Column(
-              children: [
-                DateClock(),
-                SizedBox(height:20),
-                RepeatTimeTask(),
-                SizedBox(height:20),
-                Location(),
-                SizedBox(height:20),
-                Priority(),
-              ],
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Column(
+                children: [
+                  DateClock(),
+                  SizedBox(height: 20),
+                  RepeatTimeTask(),
+                  SizedBox(height: 20),
+                  Location(),
+                  SizedBox(height: 20),
+                  Priority(),
+                ],
+              ),
             ),
-                    ),
           ),
+        ),
       ),
-    ),
     );
   }
 }
