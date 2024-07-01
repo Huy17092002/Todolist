@@ -73,7 +73,7 @@ class _DateClockState extends State<DateClock> {
               ],
             ),
             AnimatedContainer(
-              height: showDate ? 345 : 0,
+              height: showDate ? 300 : 0,
               duration: kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -104,7 +104,7 @@ class _DateClockState extends State<DateClock> {
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 const Text(
                   'Thời gian',
                   style: TextStyle(
@@ -113,7 +113,7 @@ class _DateClockState extends State<DateClock> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(width: 135,),
+                const SizedBox(width: 135),
                 CupertinoSwitch(
                   value: showClock,
                   onChanged: _toggleClock,
@@ -121,7 +121,7 @@ class _DateClockState extends State<DateClock> {
               ],
             ),
             AnimatedContainer(
-              height: showClock ? 170 : 0,
+              height: showClock ? 210 : 0,
               duration:kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -129,7 +129,7 @@ class _DateClockState extends State<DateClock> {
                   child:
                   SizedBox(
                     width: 200,
-                    height: 150,
+                    height: 200,
                       child:CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.time,
                         use24hFormat: true,

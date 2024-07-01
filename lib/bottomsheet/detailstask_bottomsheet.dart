@@ -82,20 +82,22 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: const Column(
-            children: [
-              DateClock(),
-              SizedBox(height:20),
-              RepeatTimeTask(),
-              SizedBox(height:20),
-              Location(),
-              SizedBox(height:20),
-              Priority(),
-            ],
+          child: Padding(padding: EdgeInsets.only(top: 10),
+            child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Column(
+              children: [
+                DateClock(),
+                SizedBox(height:20),
+                RepeatTimeTask(),
+                SizedBox(height:20),
+                Location(),
+                SizedBox(height:20),
+                Priority(),
+              ],
+            ),
+                    ),
           ),
-        ),
       ),
     ),
     );

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:todolist/bottomsheet/listname_bottomsheet.dart';
 
@@ -69,6 +70,3 @@ class ListNewReminder extends StatelessWidget {
     );
   }
 }
-
-
-

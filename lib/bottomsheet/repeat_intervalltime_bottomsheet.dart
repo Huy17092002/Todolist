@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/configs.dart';
 
 class RepeatIntervallTime extends StatelessWidget {
   const RepeatIntervallTime({super.key});
+
+  void _onTap(BuildContext context) {
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,37 +54,130 @@ class RepeatIntervallTime extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Container(
-                height: 450,
+                height: 555,
                 width: 360,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.grey[300],
                 ),
-                child: ListView.builder(
+                child: ListView(
                   padding: const EdgeInsets.only(top: 1),
-                  itemCount: 100,
-                  itemBuilder: (BuildContext context, int index) {
-                    index++;
-                    return const Column(
+                  children: [
+                    Column(
                       children: [
                         ListTile(
-                          title: Text(
-                            'view',
+                          title: const Text(
+                            'Never',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
+                          trailing: const Icon(Icons.check_outlined,color: Colors.blueAccent,size: 25,),
+                          onTap: () => _onTap(context),
                         ),
-                        Divider(
-                          thickness: 0.8,
-                          indent: 10,
-                          endIndent: 0,
-                          height: 0.2,
+                       dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Daily',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Weekdays',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Weekends',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Weekly',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Biweekly',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Monthly',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Every 3 Months',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Every 6 Months',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
+                        ),
+                        dividerRepeatBottomSheet,
+                        ListTile(
+                          title: const Text(
+                            'Yearly',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onTap: () => _onTap(context),
                         ),
                       ],
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
             ),

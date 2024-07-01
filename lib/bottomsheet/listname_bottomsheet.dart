@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/items/homelistitem/task_group_item.dart';
+import 'package:todolist/items/task_group_item.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
   const ListNameBottomsheet({super.key});
@@ -11,37 +11,51 @@ class ListNameBottomsheet extends StatelessWidget {
       width: 390,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 80,
           leadingWidth: 400,
-          leading: Row(
+          leading: Column(
             children: [
-              const Padding(padding: EdgeInsets.only(left: 10)),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Row(
-                  children: [
-                    Icon(Icons.arrow_back_ios, color: Colors.blue),
-                    Text(
-                      'Danh sách mới',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue,
-                      ),
+              Row(
+                children: [
+                  const Padding(padding: EdgeInsets.only(left: 10, top: 50)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(Icons.arrow_back_ios, color: Colors.blue),
+                        Text(
+                          'Danh sách mới',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 30,
+                  ),
+                  const Text(
+                    'Danh sách',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const Text(
-                'Danh sách',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+             const Padding(
+                padding: EdgeInsets.only(left: 10, top: 5),
+              child: Text('Reminder will be created in "Wear"',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
+              ),
+              )
             ],
           ),
         ),
@@ -50,7 +64,6 @@ class ListNameBottomsheet extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return TaskGroupItem(
-              index: index,
               onTap: () {
                 Navigator.pop(context);
               },
@@ -61,3 +74,6 @@ class ListNameBottomsheet extends StatelessWidget {
     );
   }
 }
+
+
+

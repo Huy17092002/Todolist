@@ -34,7 +34,7 @@ import 'package:todolist/bottomsheet/componets/list_newreminder.dart';
               const Text(
                 'Lời nhắc mới',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -69,19 +69,21 @@ import 'package:todolist/bottomsheet/componets/list_newreminder.dart';
         body: Center(
           child: Column(
             children: [
-              Container(
-                width: 350,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius:BorderRadius.circular(10),
-                  color: Colors.grey[300],
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Tiêu đề',
-                      helperText: 'Ghi chú',
+              Padding(padding: EdgeInsets.only(top: 12),
+                child: Container(
+                  width: 350,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    borderRadius:BorderRadius.circular(10),
+                    color: Colors.grey[300],
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Tiêu đề',
+                        helperText: 'Ghi chú',
+                      ),
                     ),
                   ),
                 ),

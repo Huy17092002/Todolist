@@ -43,7 +43,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 17,
                 color: Colors.blue,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               ),
             ),
             onPressed: () {

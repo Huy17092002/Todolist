@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../bottomsheet/detailstask_bottomsheet.dart';
+import 'package:todolist/items/task_item.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({super.key});
@@ -9,6 +9,16 @@ class TaskListPage extends StatefulWidget {
 }
 
 class TaskListPageState extends State<TaskListPage> {
+  late List<Widget> _reminderInputs;
+
+  @override
+  void initState() {
+    super.initState();
+    _reminderInputs = List.generate(10,
+      (index) => const TaskItems(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +45,7 @@ class TaskListPageState extends State<TaskListPage> {
               ),
             ),
             const SizedBox(
-              width: 220,
+              width: 155,
             ),
             IconButton(
               icon: const Icon(
@@ -48,61 +58,89 @@ class TaskListPageState extends State<TaskListPage> {
                   position: const RelativeRect.fromLTRB(10, 99, 9, 0),
                   items: <PopupMenuEntry>[
                     const PopupMenuItem(
-                      height: 40,
-                      value: Icons.preview,
                       child: ListTile(
-                        leading: Icon(Icons.info_outline, size: 24),
-                        title: Text('Thông tin danh sách', style: TextStyle(fontSize: 16)),
+                        leading: Icon(Icons.info_outline, size: 30),
+                        title: Text(
+                          'Thông tin danh sách',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    const PopupMenuDivider(),
                     const PopupMenuItem(
-                      height: 40, // Adjusted height here
-                      value: Icons.share,
                       child: ListTile(
-                        leading: Icon(Icons.check_circle_outline, size: 24),
-                        title: Text('Chọn lời nhắc', style: TextStyle(fontSize: 16)),
+                        leading: Icon(Icons.check_circle_outline, size: 30),
+                        title: Text(
+                          'Chọn lời nhắc',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    const PopupMenuDivider(),
                     const PopupMenuItem(
-                      height: 40,
-                      value: Icons.sort_by_alpha,
                       child: ListTile(
-                        leading: Icon(Icons.import_export, size: 24),
-                        title: Text('Sắp xếp theo', style: TextStyle(fontSize: 16)),
+                        leading: Icon(Icons.import_export, size: 30),
+                        title: Text(
+                          'Sắp xếp theo',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    const PopupMenuDivider(),
                     const PopupMenuItem(
-                      height: 40,
-                      value: Icons.remove_red_eye,
                       child: ListTile(
-                        leading: Icon(Icons.remove_red_eye_outlined, size: 24),
-                        title: Text('Lời nhắc đã hoàn tất', style: TextStyle(fontSize: 16)),
+                        leading: Icon(Icons.remove_red_eye_outlined, size: 30),
+                        title: Text(
+                          'Lời nhắc đã hoàn tất',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    const PopupMenuDivider(),
                     const PopupMenuItem(
-                      height: 40,
-                      value: Icons.print,
                       child: ListTile(
-                        leading: Icon(Icons.print, size: 24),
-                        title: Text('In', style: TextStyle(fontSize: 16)),
+                        leading: Icon(Icons.print, size: 30),
+                        title: Text(
+                          'In',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    const PopupMenuDivider(),
                     const PopupMenuItem(
-                      height: 40,
-                      value: Icons.delete,
                       child: ListTile(
-                        leading: Icon(Icons.delete_rounded, color: Colors.red, size: 24),
-                        title: Text('Xóa danh sách', style: TextStyle(fontSize: 16, color: Colors.red)),
+                        leading: Icon(Icons.delete_rounded, color: Colors.red, size: 30),
+                        title: Text(
+                          'Xóa danh sách',
+                          style: TextStyle(fontSize: 18, color: Colors.red),
+                        ),
                       ),
                     ),
                   ],
                 );
               },
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Xong'),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text(
+                'Xong',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.blue,
+                ),
+              ),
             ),
           ],
         ),
@@ -122,29 +160,9 @@ class TaskListPageState extends State<TaskListPage> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      icon: const Icon(Icons.radio_button_unchecked, color: Colors.grey),
-                      hintText: 'Add note',
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext context) {
-                              return const DetailsTaskBottomsheet();
-                            },
-                          );
-                        },
-                        child: const Icon(Icons.info_outline),
-                      ),
-                    ),
-                  ),
-                );
+              itemCount: _reminderInputs.length,
+              itemBuilder: (context, index) {
+                return _reminderInputs[index];
               },
             ),
           ),
@@ -171,7 +189,13 @@ class TaskListPageState extends State<TaskListPage> {
               ),
             ),
             onPressed: () {
-              setState(() {});
+              setState(
+                () {
+                  _reminderInputs.add(
+                    const TaskItems(),
+                  );
+                },
+              );
             },
           ),
         ),
@@ -179,6 +203,3 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
-
-
-
