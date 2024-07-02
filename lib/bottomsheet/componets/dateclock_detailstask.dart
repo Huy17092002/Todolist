@@ -65,7 +65,9 @@ class _DateClockState extends State<DateClock> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(width: 173,),
+                const SizedBox(
+                  width: 173,
+                ),
                 CupertinoSwitch(
                   value: showDate,
                   onChanged: _toggleDate,
@@ -73,7 +75,7 @@ class _DateClockState extends State<DateClock> {
               ],
             ),
             AnimatedContainer(
-              height: showDate ? 300 : 0,
+              height: showDate ? 320 : 0,
               duration: kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -122,22 +124,21 @@ class _DateClockState extends State<DateClock> {
             ),
             AnimatedContainer(
               height: showClock ? 210 : 0,
-              duration:kDuration,
+              duration: kDuration,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
-                  child:
-                  SizedBox(
+                  child: SizedBox(
                     width: 200,
                     height: 200,
-                      child:CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.time,
-                        use24hFormat: true,
-                        onDateTimeChanged: (value){},
+                    child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.time,
+                      use24hFormat: true,
+                      onDateTimeChanged: (value) {},
+                    ),
                   ),
                 ),
               ),
-            ),
             ),
           ],
         ),
@@ -145,4 +146,3 @@ class _DateClockState extends State<DateClock> {
     );
   }
 }
-

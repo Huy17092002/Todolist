@@ -9,7 +9,7 @@ class TaskItems extends StatefulWidget {
 }
 
 class _TaskItemsState extends State<TaskItems> {
-  bool isCheck = false;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class _TaskItemsState extends State<TaskItems> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  isCheck = !isCheck;
+                  isChecked = !isChecked;
                 });
               },
               child: (() {
-                if (isCheck) {
+                if (isChecked) {
                   return const Icon(
                     Icons.radio_button_checked,
                     size: 27,
