@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'searchbar_home.dart';
-import 'bottom_navigation_bar_home.dart';
-import 'lists_home.dart';
+import 'home component/searchbar_home.dart';
+import 'home component/bottom_navigation_bar_home.dart';
+import 'home component/lists_home.dart';
 import 'package:todolist/home/search/searchbarcontroller.dart';
 
 class HomePage extends StatefulWidget {
