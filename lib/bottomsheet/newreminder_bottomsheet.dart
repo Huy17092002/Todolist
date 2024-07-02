@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/bottomsheet/componets/details_newrenmider.dart';
-import 'package:todolist/bottomsheet/componets/list_newreminder.dart';
+import 'package:todolist/bottomsheet/component/details_newrenmider.dart';
+import 'package:todolist/bottomsheet/component/list_newreminder.dart';
 
 
  class NewReminderBottomsheet extends StatelessWidget {
