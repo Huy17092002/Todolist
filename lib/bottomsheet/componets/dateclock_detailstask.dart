@@ -113,7 +113,7 @@ class _DateClockState extends State<DateClock> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(width: 135),
+                const SizedBox(width: 138),
                 CupertinoSwitch(
                   value: showClock,
                   onChanged: _toggleClock,
