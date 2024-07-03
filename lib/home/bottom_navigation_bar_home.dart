@@ -53,7 +53,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 builder: (BuildContext context) {
                   return const SizedBox(
                     height: 780,
-                    child:  AddListBottomsheet(),
+                    child: AddListBottomsheet(),
                   );
                 },
               );

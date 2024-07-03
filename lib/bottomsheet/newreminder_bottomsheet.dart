@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todolist/bottomsheet/component/details_newrenmider.dart';
 import 'package:todolist/bottomsheet/component/list_newreminder.dart';
 
-
- class NewReminderBottomsheet extends StatelessWidget {
- const NewReminderBottomsheet({super.key});
+class NewReminderBottomsheet extends StatelessWidget {
+  const NewReminderBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +68,13 @@ import 'package:todolist/bottomsheet/component/list_newreminder.dart';
         body: Center(
           child: Column(
             children: [
-              Padding( padding: const EdgeInsets.only(top: 12),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
                 child: Container(
                   width: 350,
                   height: 150,
                   decoration: BoxDecoration(
-                    borderRadius:BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10),
                     color: Colors.grey[300],
                   ),
                   child: const Padding(
@@ -91,11 +91,11 @@ import 'package:todolist/bottomsheet/component/list_newreminder.dart';
               const SizedBox(
                 height: 20,
               ),
-             const DetailsNewReminDer(),
+              const DetailsNewReminDer(),
               const SizedBox(
                 height: 20,
               ),
-           const ListNewReminder(),
+              const ListNewReminder(),
             ],
           ),
         ),
@@ -103,4 +103,3 @@ import 'package:todolist/bottomsheet/component/list_newreminder.dart';
     );
   }
 }
-

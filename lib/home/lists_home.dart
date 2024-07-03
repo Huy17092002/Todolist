@@ -19,7 +19,7 @@ class ListsWidget extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           index;
           return TaskGroupItem(
-            onTap:(){
+            onTap: () {
               print('view $index');
               Navigator.pushNamed(context, Routes.addTask);
             },
@@ -29,4 +29,3 @@ class ListsWidget extends StatelessWidget {
     );
   }
 }
-
