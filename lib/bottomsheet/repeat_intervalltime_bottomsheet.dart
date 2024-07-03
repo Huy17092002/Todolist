@@ -37,7 +37,7 @@ class RepeatIntervallTime extends StatelessWidget {
                       width: 70,
                     ),
                     Text(
-                      'Repeat',
+                      'Lặp lại',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
