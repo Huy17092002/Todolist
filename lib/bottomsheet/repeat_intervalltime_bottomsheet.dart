@@ -67,7 +67,7 @@ class RepeatIntervallTime extends StatelessWidget {
                       children: [
                         ListTile(
                           title: const Text(
-                            'Never',
+                            'Không',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -79,7 +79,7 @@ class RepeatIntervallTime extends StatelessWidget {
                        dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Daily',
+                            'Hàng giờ',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -90,7 +90,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Weekdays',
+                            'Hàng ngày',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -101,7 +101,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Weekends',
+                            'Ngày thường',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -112,7 +112,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Weekly',
+                            'Cuối tuần',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -123,7 +123,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Biweekly',
+                            'Hàng tuần',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -134,7 +134,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Monthly',
+                            'Hai tuần 1 lần',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -145,7 +145,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Every 3 Months',
+                            'Hàng tháng',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -156,7 +156,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Every 6 Months',
+                            'Mỗi 3 tháng',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
@@ -167,7 +167,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         dividerRepeatBottomSheet,
                         ListTile(
                           title: const Text(
-                            'Yearly',
+                            'Hàng năm',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
