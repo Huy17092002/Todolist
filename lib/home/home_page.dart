@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 5),
+              padding: EdgeInsets.only(left: 5,top: 15),
               child: Text(
                 'Danh sách của tôi',
                 style: TextStyle(
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 8,
+              height: 5,
             ),
             ListsWidget(),
           ],
