@@ -13,9 +13,9 @@ class ListsWidget extends StatelessWidget {
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
       ),
-      height: MediaQuery.of(context).size.height - 260,
       child: ListView.builder(
-        itemCount: 4,
+        shrinkWrap: true,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           index;
           return TaskGroupItem(
@@ -29,3 +29,4 @@ class ListsWidget extends StatelessWidget {
     );
   }
 }
+
