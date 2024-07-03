@@ -61,7 +61,7 @@ class TaskGroupItem extends StatelessWidget {
             size: 39,
             color: Colors.green,
           ),
-          title: const Text(
+          title:  const Text(
             'cold',
             style: TextStyle(
               fontSize: 18,
