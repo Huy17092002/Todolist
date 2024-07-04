@@ -15,7 +15,7 @@ class TaskListPageState extends State<TaskListPage> {
   @override
   void initState() {
     super.initState();
-    _reminderInputs = List.generate(10,(index) => const TaskItems());
+    _reminderInputs = List.generate(10, (index) => const TaskItems());
   }
 
   @override
@@ -197,11 +197,13 @@ class TaskListPageState extends State<TaskListPage> {
               ),
             ),
             onPressed: () {
-              setState(() {
-                _reminderInputs.add(
-                  const TaskItems(),
-                );
-              });
+              setState(
+                () {
+                  _reminderInputs.add(
+                    const TaskItems(),
+                  );
+                },
+              );
             },
           ),
         ),
@@ -209,4 +211,3 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
-
