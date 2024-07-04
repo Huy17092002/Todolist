@@ -28,8 +28,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             ),
             onPressed: () {
               showModalBottomSheet(
-                context: context,
                 isScrollControlled: true,
+                context: context,
                 builder: (BuildContext context) {
                   return const NewReminderBottomsheet();
                 },
@@ -51,10 +51,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return const SizedBox(
-                    height: 780,
-                    child: AddListBottomsheet(),
-                  );
+                  return const AddListBottomsheet();
                 },
               );
             },

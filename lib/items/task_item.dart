@@ -40,7 +40,6 @@ class _TaskItemsState extends State<TaskItems> {
                   );
                 }
               })(),
-
             ),
           ),
           Expanded(

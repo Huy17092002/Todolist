@@ -9,3 +9,4 @@ class AppTheme {
   );
   static const Color backgroundColor = Colors.white;
 }
+

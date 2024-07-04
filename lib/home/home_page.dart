@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'searchbar_home.dart';
 import 'bottom_navigation_bar_home.dart';
 import 'lists_home.dart';
-import 'package:todolist/home/search/searchbarcontroller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,30 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late SearchBarController searchbarcontroller;
-
-  @override
-  void initState() {
-    super.initState();
-    searchbarcontroller = SearchBarController(
-      isSearch: false,
-      isFix: false,
-      opacityFix: 1,
-      opacityCancel: 0,
-      myController: TextEditingController(),
-      focusNode: FocusNode(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         toolbarHeight: 67,
-        title: SearchBarWidget(
-          paramater: searchbarcontroller,
-        ),
+        title: const SearchBarWidget(),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -43,7 +25,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 5,top: 15),
+              padding: EdgeInsets.only(left: 5, top: 15),
               child: Text(
                 'Danh sách của tôi',
                 style: TextStyle(
