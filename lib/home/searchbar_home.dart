@@ -66,7 +66,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 duration: kDuration,
                 curve: Curves.easeOutCirc,
                 child: TextButton(
-                  child: const Text(
+                  child:const Text(
                     'Sửa',
                     style: TextStyle(
                       fontSize: 16,
