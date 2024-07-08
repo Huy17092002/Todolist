@@ -17,7 +17,7 @@ class RepeatIntervallTime extends StatelessWidget {
       ),
       child: SizedBox(
         height: 770,
-        width: 390,
+        width: 500,
         child: Scaffold(
           appBar: AppBar(
             leadingWidth: 400,

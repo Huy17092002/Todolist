@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'searchbar_home.dart';
-import 'bottom_navigation_bar_home.dart';
-import 'lists_home.dart';
+import 'home_searchbar.dart';
+import 'home_bottom_navigation_bar.dart';
+import 'home_lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

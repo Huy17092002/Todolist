@@ -52,7 +52,7 @@ class _DateClockState extends State<DateClock> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: const Icon(
-                    Icons.date_range,
+                    Icons.calendar_month,
                     color: Colors.white,
                   ),
                 ),
@@ -102,7 +102,7 @@ class _DateClockState extends State<DateClock> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: const Icon(
-                    Icons.access_time,
+                    Icons.access_time_filled,
                     color: Colors.white,
                   ),
                 ),

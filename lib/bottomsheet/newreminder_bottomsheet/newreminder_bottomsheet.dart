@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/bottomsheet/new_reminder_component/details_newrenmider.dart';
-import 'package:todolist/bottomsheet/new_reminder_component/list_newreminder.dart';
+import 'package:todolist/bottomsheet/newreminder_bottomsheet/details_newrenmider.dart';
+import 'package:todolist/bottomsheet/newreminder_bottomsheet/list_newreminder.dart';
 
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
@@ -14,7 +14,7 @@ class NewReminderBottomsheet extends StatelessWidget {
       ),
       child: SizedBox(
         height: 780,
-        width: 390,
+        width: 500,
         child: Scaffold(
           appBar: AppBar(
             leadingWidth: 400,
@@ -75,37 +75,38 @@ class NewReminderBottomsheet extends StatelessWidget {
             ),
           ),
           body: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Container(
-                    width: 350,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[300],
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Tiêu đề',
-                          helperText: 'Ghi chú',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Container(
+                      width: 350,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Tiêu đề',
+                            helperText: 'Ghi chú',
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const DetailsNewReminDer(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const ListNewReminder(),
-              ],
+                  const SizedBox(height: 20),
+                  const DetailsNewReminder(),
+                  const SizedBox(height: 20),
+                  const ListNewReminder(),
+
+                ],
+              ),
             ),
           ),
         ),

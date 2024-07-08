@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddListBottomsheet extends StatefulWidget {
   const AddListBottomsheet({super.key});
@@ -40,7 +41,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
       ),
       child: SizedBox(
         height: 780,
-        width: 390,
+        width: 500,
         child: Scaffold(
           appBar: AppBar(
             leadingWidth: 400,
@@ -79,22 +80,22 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thank you'),
-                          actions: [
-                            ElevatedButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    CupertinoAlertDialog(
+                      title: Text('Title'),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text('Discard'),
+                          isDestructiveAction: true,
+                          onPressed: () =>
+                              Navigator.of(context, rootNavigator: true).pop('Discard'),
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('Cancel'),
+                          isDefaultAction: true,
+                          onPressed: () =>
+                              Navigator.of(context, rootNavigator: true).pop('Cancel'),
+                        ),
+                      ],);
                   },
                 ),
               ],

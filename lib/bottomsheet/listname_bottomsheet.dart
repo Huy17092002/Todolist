@@ -13,7 +13,7 @@ class ListNameBottomsheet extends StatelessWidget {
       ),
       child: SizedBox(
         height: 780,
-        width: 390,
+        width: 500,
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 80,
