@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class AddListBottomsheet extends StatefulWidget {
   const AddListBottomsheet({super.key});
@@ -80,22 +79,22 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    CupertinoAlertDialog(
-                      title: Text('Title'),
-                      actions: [
-                        CupertinoDialogAction(
-                          child: Text('Discard'),
-                          isDestructiveAction: true,
-                          onPressed: () =>
-                              Navigator.of(context, rootNavigator: true).pop('Discard'),
-                        ),
-                        CupertinoDialogAction(
-                          child: Text('Cancel'),
-                          isDefaultAction: true,
-                          onPressed: () =>
-                              Navigator.of(context, rootNavigator: true).pop('Cancel'),
-                        ),
-                      ],);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Thank you'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
               ],
