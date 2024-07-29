@@ -90,7 +90,7 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 21),
                 child: const Column(
                   children: [
                     DateClock(),

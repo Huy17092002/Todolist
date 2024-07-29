@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/provider/taskprovider.dart';
 import 'package:todolist/routes.dart';
 import 'package:todolist/themes.dart';
 
@@ -11,10 +13,15 @@ class TodoListApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => TaskProvider()),
+      ],
+      child: MaterialApp(
       theme: AppTheme.theme,
       onGenerateRoute: Routes.generateRoute,
       initialRoute: Routes.home,
+    ),
     );
   }
 }

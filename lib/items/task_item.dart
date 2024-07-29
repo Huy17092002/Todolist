@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/task_model.dart';
+import '../provider/taskprovider.dart';
 import 'package:todolist/bottomsheet/detailstask_bottomsheet/detailstask_bottomsheet.dart';
 
 class TaskItems extends StatefulWidget {
-  const TaskItems({super.key});
+  final TaskModel task;
+
+  const TaskItems({required this.task, super.key});
 
   @override
   State<TaskItems> createState() => _TaskItemsState();
@@ -10,6 +15,19 @@ class TaskItems extends StatefulWidget {
 
 class _TaskItemsState extends State<TaskItems> {
   bool isChecked = false;
+  late TextEditingController _titleController;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.task.title);
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +43,22 @@ class _TaskItemsState extends State<TaskItems> {
                   isChecked = !isChecked;
                 });
               },
-              child: (() {
-                if (isChecked) {
-                  return const Icon(
-                    Icons.radio_button_checked,
-                    size: 27,
-                    color: Colors.blueAccent,
-                  );
-                } else {
-                  return const Icon(
-                    Icons.radio_button_unchecked,
-                    size: 27,
-                    color: Colors.grey,
-                  );
-                }
-              })(),
+              child: isChecked
+                  ? const Icon(
+                Icons.radio_button_checked,
+                size: 27,
+                color: Colors.blueAccent,
+              )
+                  : const Icon(
+                Icons.radio_button_unchecked,
+                size: 27,
+                color: Colors.grey,
+              ),
             ),
           ),
           Expanded(
             child: TextFormField(
+              controller: _titleController,
               decoration: InputDecoration(
                 hintText: 'Add note',
                 suffixIcon: GestureDetector(
@@ -59,6 +74,12 @@ class _TaskItemsState extends State<TaskItems> {
                   child: const Icon(Icons.info_outline),
                 ),
               ),
+              onChanged: (value) {
+                Provider.of<TaskProvider>(context, listen: false).updateTask(
+                  widget.task,
+                  value,
+                );
+              },
             ),
           ),
         ],
@@ -66,3 +87,4 @@ class _TaskItemsState extends State<TaskItems> {
     );
   }
 }
+

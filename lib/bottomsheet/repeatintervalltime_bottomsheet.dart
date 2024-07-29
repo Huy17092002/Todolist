@@ -75,7 +75,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Không',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             trailing: const Icon(
@@ -91,7 +91,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hàng giờ',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -102,7 +102,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hàng ngày',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -113,7 +113,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Ngày thường',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -124,7 +124,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Cuối tuần',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -135,7 +135,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hàng tuần',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -146,7 +146,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hai tuần 1 lần',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -157,7 +157,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hàng tháng',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -168,7 +168,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Mỗi 3 tháng',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -179,7 +179,7 @@ class RepeatIntervallTime extends StatelessWidget {
                               'Hàng năm',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             onTap: () => _onTap(context),
