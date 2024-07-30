@@ -95,20 +95,13 @@
 //   });
 // }
 
-//
-// class TaskModel{
-//   final String title;
-//
-//   TaskModel({required this.title});
-// }
 
-//
+
 class TaskModel {
   final String id;
   String title;
 
   TaskModel({required this.title}) : id = DateTime.now().toString();
-
 
   void updateTitle(String newTitle) {
     title = newTitle;

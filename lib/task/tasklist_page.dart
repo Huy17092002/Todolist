@@ -40,7 +40,7 @@ class TaskListPageState extends State<TaskListPage> {
                 ],
               ),
             ),
-            const SizedBox(width: 224),
+            const SizedBox(width: 220),
             IconButton(
               icon: const Icon(Icons.pending_outlined, color: Colors.blue),
               onPressed: () {
@@ -170,7 +170,7 @@ class TaskListPageState extends State<TaskListPage> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     backgroundColor: Colors.white,
-                    title: Text('Add Task'),
+                    title: const Text('Add Task'),
                     content: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
@@ -189,8 +189,21 @@ class TaskListPageState extends State<TaskListPage> {
                         onPressed: () {
                           final title = titleController.text.trim();
                           if (title.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('nhập dữ liệu')),
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Vui lòng nhập nội dung'),
+                                  actions: [
+                                    ElevatedButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
                             );
                             return;
                           }

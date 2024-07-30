@@ -1,21 +1,17 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:todolist/model/task_group_model.dart';
 import '../model/task_model.dart';
 
-class TaskProvider with ChangeNotifier {
-  final List<TaskModel> _tasks = [];
+class TaskGroupProvider with ChangeNotifier {
+  final List<TaskGroupModel> _tasks = [];
 
-  List<TaskModel> get tasks => _tasks;
+  List<TaskGroupModel> get tasks => _tasks;
 
-  void addTask(TaskModel task) {
+  void addTask(TaskGroupModel task) {
     _tasks.add(task);
     notifyListeners();
   }
 
-  void removeTask(TaskModel task) {
-    _tasks.remove(task);
-    notifyListeners();
-  }
 
   void updateTask(TaskModel oldTask, String newTitle) {
     final task = _tasks.firstWhere((t) => t.id == oldTask.id);
@@ -23,4 +19,3 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 }
-
