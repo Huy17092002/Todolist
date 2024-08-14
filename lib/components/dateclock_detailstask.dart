@@ -56,7 +56,7 @@ class _DateClockState extends State<DateClock> {
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 10), 
                 const Text(
                   'Ngày',
                   style: TextStyle(
