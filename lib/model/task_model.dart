@@ -35,7 +35,7 @@ class Task {
 
   String getDueDate() {
     if (dueDate == null) {
-      return 'No due date';
+      return 'No duedate';
     }
     final DateFormat formatter = DateFormat('HH:mm:ss dd/MM/yyyy');
     return formatter.format(dueDate!);
