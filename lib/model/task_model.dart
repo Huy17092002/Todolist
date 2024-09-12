@@ -1,112 +1,99 @@
-// class TaskModel {
-//   final String id;
-//   String title;
-//   bool isCompleted;
-//   bool isImportant;
-//   final DateTime createDate;
-//   DateTime? dueDate;
-//   String? repeat;
-//   String? note;
-//
-//   TaskModel({
-//     required this.id,
-//     required this.title,
-//     required this.isCompleted,
-//     required this.isImportant,
-//     required this.createDate,
-//     this.dueDate,
-//     this.repeat,
-//     this.note,
-//   });
-//
-//   TaskModel copyWith({
-//     String? id,
-//     String? title,
-//     bool? isCompleted,
-//     bool? isImportant,
-//     DateTime? createDate,
-//     DateTime? dueDate,
-//     String? repeat,
-//     String? note,
-//   }) {
-//     return TaskModel(
-//       id: id ?? this.id,
-//       title: title ?? this.title,
-//       isCompleted: isCompleted ?? this.isCompleted,
-//       isImportant: isImportant ?? this.isImportant,
-//       createDate: createDate ?? this.createDate,
-//       dueDate: dueDate ?? this.dueDate,
-//       repeat: repeat ?? this.repeat,
-//       note: note ?? this.note,
-//     );
-//   }
-//
-//   Map<String, dynamic> toMap() {
-//     return {
-//       'id': id,
-//       'title': title,
-//       'isCompleted': isCompleted,
-//       'isImportant': isImportant,
-//       'createDate': createDate,
-//       'dueDate': dueDate,
-//       'repeat': repeat,
-//       'note': note,
-//     };
-//   }
-//
-//   factory TaskModel.fromMap(Map<String, dynamic> map) {
-//     return TaskModel(
-//       id: map['id'] ?? '-1',
-//       title: map['title'] ?? 'title',
-//       isCompleted: map['isCompleted'] ?? false,
-//       isImportant: map['isImportant'] ?? false,
-//       createDate: (map['createDate'] is DateTime) ? map['createDate'] : DateTime.parse(map['createDate']),
-//       dueDate: (map['dueDate'] is DateTime)
-//           ? map['dueDate']
-//           : (map['dueDate'] != null ? DateTime.parse(map['dueDate']) : null),
-//       repeat: map['repeat'],
-//       note: map['note'],
-//     );
-//   }
-// }
-
-
-
-
-// class TaskModel {
-//   final String id;
-//   String title;
-//   bool isCompleted;
-//   bool isImportant;
-//   final DateTime createDate;
-//   DateTime? dueDate;
-//   String? repeat;
-//   String? note;
-//
-//   TaskModel({
-//     required this.id,
-//     required this.title,
-//     required this.isCompleted,
-//     required this.isImportant,
-//     required this.createDate,
-//     this.dueDate,
-//     this.repeat,
-//     this.note, required String description, required bool completed,
-//   });
-// }
-
-
+enum Priority {
+  none,
+  low,
+  medium,
+  high
+}
 
 class TaskModel {
-  final String id;
-  String title;
+  final String title;
+  String? description;
+  bool? isCompleted;
+  DateTime? dueDate;
+  int repeatDays;
+  Priority priority;
+  Location? location;
 
-  TaskModel({required this.title}) : id = DateTime.now().toString();
+  TaskModel({
+    required this.title,
+    this.description,
+    this.isCompleted,
+    this.dueDate,
+    this.repeatDays = 0,
+    this.priority = Priority.none,
+    this.location,
+  });
 
-  void updateTitle(String newTitle) {
-    title = newTitle;
+  factory TaskModel.fromMap(Map<String, dynamic> map) {
+    return TaskModel(
+      title: map['title'],
+      description: map['description'],
+      isCompleted: map['isCompleted'],
+      dueDate: map['dueDate'] != null ? DateTime.parse(map['dueDate']) : null,
+      repeatDays: map['repeatDays'],
+      priority: Priority.values.firstWhere(
+            (repeatDays) => repeatDays.toString() == map['priority'],
+      ),
+      location: map['location'] != null
+          ? Location.fromMap(map['location'])
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'description': description,
+      'isCompleted': isCompleted,
+      'dueDate': dueDate?.toString(),
+      'repeatDays': repeatDays,
+      'priority': priority.toString(),
+      'location': location?.toMap(),
+    };
   }
 }
+
+
+enum LocationType {
+  currentLocation,
+  departurePoint,
+  destinationPoint,
+  location,
+}
+
+class Location {
+  final String address;
+  final LocationType type;
+
+  Location({
+    required this.address,
+    required this.type,
+  });
+
+  factory Location.fromMap(Map<String, dynamic> map) {
+    return Location(
+      address: map['address'],
+      type: LocationType.values.firstWhere(
+            (type) => type.toString().split(',').last == map['type'],
+      ),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'address': address,
+      'type': type.toString().split(',').last,
+    };
+  }
+}
+
+
+
+
+
+
+
+
 
 
 

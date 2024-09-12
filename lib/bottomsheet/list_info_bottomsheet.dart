@@ -60,16 +60,16 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                   },
                 ),
                 const SizedBox(
-                  width: 30,
+                  width: 40,
                 ),
                 const Text(
-                  'Danh sách thông tin',
+                  'Thông tin danh sách',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 45),
+                const SizedBox(width: 35),
                 TextButton(
                   child: const Text(
                     'Xong',

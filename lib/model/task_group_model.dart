@@ -1,17 +1,27 @@
-import 'package:flutter/material.dart';
+import 'package:todolist/model/tasklist_model.dart';
 
-class TaskGroupModel {
-  final String id;
+class TasklistCollection {
   final String title;
-  final Color color;
-  final List<String> tasks; 
+  final List<TaskList> tasklists;
 
-  TaskGroupModel({
-    required this.id,
+  TasklistCollection({
     required this.title,
-    required this.color,
-    required this.tasks,
+    required this.tasklists,
   });
 
-  void updateTitle(String newTitle) {}
+  factory TasklistCollection.fromMap(Map<String, dynamic> map) {
+    return TasklistCollection(
+      title: map['title'],
+      tasklists: (map['tasklists'] as List<dynamic>).map((tasklistMap) => TaskList.fromMap(tasklistMap as Map<String, dynamic>)).toList(),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'tasklists': tasklists.map((tasklist) => tasklist.toMap()).toList(),
+    };
+  }
 }
+
+

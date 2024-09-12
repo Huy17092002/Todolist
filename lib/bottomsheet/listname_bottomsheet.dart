@@ -72,7 +72,7 @@ class ListNameBottomsheet extends StatelessWidget {
               return TaskGroupItem(
                 onTap: () {
                   Navigator.pop(context);
-                }, title: '', color: Colors.white,
+                },
               );
             },
           ),

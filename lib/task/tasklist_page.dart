@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todolist/bottomsheet/addlist_bottomsheet.dart';
-import 'package:todolist/model/task_model.dart';
-import '../provider/taskprovider.dart';
+import 'package:todolist/bottomsheet/list_info_bottomsheet.dart';
 import 'package:todolist/items/task_item.dart';
+import 'package:todolist/bottomsheet/addlist_bottomsheet.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({super.key});
@@ -13,7 +11,13 @@ class TaskListPage extends StatefulWidget {
 }
 
 class TaskListPageState extends State<TaskListPage> {
-  final TextEditingController titleController = TextEditingController();
+  late List<Widget> _reminderInputs;
+
+  @override
+  void initState() {
+    super.initState();
+    _reminderInputs = List.generate(10, (index) => const TaskItems());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +44,14 @@ class TaskListPageState extends State<TaskListPage> {
                 ],
               ),
             ),
-            const SizedBox(width: 220),
+            const SizedBox(
+              width: 155,
+            ),
             IconButton(
-              icon: const Icon(Icons.pending_outlined, color: Colors.blue),
+              icon: const Icon(
+                Icons.pending_outlined,
+                color: Colors.blue,
+              ),
               onPressed: () {
                 showMenu(
                   context: context,
@@ -61,7 +70,7 @@ class TaskListPageState extends State<TaskListPage> {
                           context: context,
                           isScrollControlled: true,
                           builder: (BuildContext context) {
-                            return const AddListBottomsheet();
+                            return const ListInfoBottomsheet();
                           },
                         );
                       },
@@ -115,40 +124,64 @@ class TaskListPageState extends State<TaskListPage> {
                 );
               },
             ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Xong'),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text(
+                'Xong',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
           ],
         ),
       ),
-      body: Consumer<TaskProvider>(
-        builder: (context, taskProvider, child) {
-          final tasks = taskProvider.tasks;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'View',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(
+              'View',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    final task = tasks[index];
-                    return TaskItems(task: task);
-                  },
-                ),
-              ),
-            ],
-          );
-        },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _reminderInputs.length,
+              itemBuilder: (context, index) {
+                return _reminderInputs[index];
+              },
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 33, right: 210),
+        padding: const EdgeInsets.only(
+          bottom: 33,
+          right: 210,
+        ),
         child: SingleChildScrollView(
           child: TextButton.icon(
             icon: const Icon(
@@ -165,63 +198,10 @@ class TaskListPageState extends State<TaskListPage> {
               ),
             ),
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    backgroundColor: Colors.white,
-                    title: const Text('Add Task'),
-                    content: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextField(
-                            controller: titleController,
-                            decoration: const InputDecoration(labelText: 'Title'),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        onPressed: () {
-                          final title = titleController.text.trim();
-                          if (title.isEmpty) {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Vui lòng nhập nội dung'),
-                                  actions: [
-                                    ElevatedButton(
-                                      child: const Text('OK'),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                            return;
-                          }
-                          final task = TaskModel(title: title);
-                          Provider.of<TaskProvider>(context, listen: false).addTask(task);
-                          titleController.clear();
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Add Task'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          titleController.clear();
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel'),
-                      ),
-                    ],
+              setState(
+                    () {
+                  _reminderInputs.add(
+                    const TaskItems(),
                   );
                 },
               );

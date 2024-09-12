@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_searchbar.dart';
+import 'package:todolist/home/home_searchbar.dart';
 import 'home_bottom_navigation_bar.dart';
 import 'home_lists.dart';
 
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         toolbarHeight: 67,
-        title: const SearchBarWidget(),
+        title: const HomeSearchBar(),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -42,7 +42,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
+      bottomNavigationBar: HomeBottomNavigationBar(),
     );
   }
 }
+
+
+
+

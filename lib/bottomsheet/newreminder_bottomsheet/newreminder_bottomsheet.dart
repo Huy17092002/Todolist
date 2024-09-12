@@ -91,11 +91,28 @@ class NewReminderBottomsheet extends StatelessWidget {
                       ),
                       child: const Padding(
                         padding: EdgeInsets.only(left: 20),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Tiêu đề',
-                            helperText: 'Ghi chú',
-                          ),
+                        child:   Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Tieu de',
+                                  border: UnderlineInputBorder(
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Ghi chu',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

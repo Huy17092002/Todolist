@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todolist/model/task_group_model.dart';
-import '../provider/task_group_provider.dart';
 
 class AddListBottomsheet extends StatefulWidget {
   const AddListBottomsheet({super.key});
@@ -12,7 +9,6 @@ class AddListBottomsheet extends StatefulWidget {
 
 class _AddListBottomsheetState extends State<AddListBottomsheet> {
   Color? selectedColor;
-  final TextEditingController _titleController = TextEditingController();
 
   Widget buildColorContainer(Color color) {
     return GestureDetector(
@@ -83,39 +79,22 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    final title = _titleController.text;
-                    final color = selectedColor ?? Colors.grey;
-
-                    if (title.isNotEmpty) {
-                      final taskGroup = TaskGroupModel(
-                        id: DateTime.now().toString(),
-                        title: title,
-                        color: color,
-                        tasks: [],
-                      );
-
-                      Provider.of<TaskGroupProvider>(context, listen: false)
-                          .addTask(taskGroup);
-
-                      Navigator.pop(context);
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('vui lòng nhập nội dung'),
-                            actions: [
-                              ElevatedButton(
-                                child: const Text('OK'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Thank you'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
               ],
@@ -157,7 +136,6 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                           width: 320,
                           height: 53,
                           child: TextField(
-                            controller: _titleController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -226,5 +204,3 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
     );
   }
 }
-
-

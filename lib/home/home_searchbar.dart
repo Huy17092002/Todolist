@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
 
-class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key});
+class HomeSearchBar extends StatefulWidget {
+  const HomeSearchBar({super.key});
 
   @override
-  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+  State<HomeSearchBar> createState() => _HomeSearchBarState();
 }
 
-class _SearchBarWidgetState extends State<SearchBarWidget> {
+class _HomeSearchBarState extends State<HomeSearchBar> {
   late bool isSearch;
   late bool isFix;
   late double opacityFix;

@@ -12,7 +12,7 @@ class Routes {
       case home:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case addTask:
-        return MaterialPageRoute(builder: (_) => const TaskListPage());
+        return MaterialPageRoute(builder: (_) =>  TaskListPage());
       default:
         return MaterialPageRoute(builder: (_) => const HomePage());
     }
