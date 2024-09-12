@@ -5,7 +5,7 @@ enum Priority {
   high
 }
 
-class TaskModel {
+class Task {
   final String title;
   String? description;
   bool? isCompleted;
@@ -14,7 +14,7 @@ class TaskModel {
   Priority? priority;
   Location? location;
 
-  TaskModel({
+  Task({
     required this.title,
     this.description,
     this.isCompleted,
@@ -24,8 +24,8 @@ class TaskModel {
     this.location,
   });
 
-  factory TaskModel.fromMap(Map<String, dynamic> map) {
-    return TaskModel(
+  factory Task.fromMap(Map<String, dynamic> map) {
+    return Task(
       title: map['title'],
       description: map['description'],
       isCompleted: map['isCompleted'],
