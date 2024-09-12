@@ -10,8 +10,8 @@ class TaskModel {
   String? description;
   bool? isCompleted;
   DateTime? dueDate;
-  int repeatDays;
-  Priority priority;
+  int? repeatDays;
+  Priority? priority;
   Location? location;
 
   TaskModel({
@@ -19,8 +19,8 @@ class TaskModel {
     this.description,
     this.isCompleted,
     this.dueDate,
-    this.repeatDays = 0,
-    this.priority = Priority.none,
+    this.repeatDays,
+    this.priority,
     this.location,
   });
 
