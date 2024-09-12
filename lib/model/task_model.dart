@@ -1,8 +1,17 @@
+import 'package:intl/intl.dart';
+import 'package:todolist/model/location.dart';
+
+enum RepeatDays {
+  never,
+  daily,
+  custom,
+}
+
 enum Priority {
   none,
   low,
   medium,
-  high
+  high,
 }
 
 class Task {
@@ -10,8 +19,8 @@ class Task {
   String? description;
   bool? isCompleted;
   DateTime? dueDate;
-  int? repeatDays;
-  Priority? priority;
+  RepeatDays repeatDays;
+  Priority priority;
   Location? location;
 
   Task({
@@ -19,24 +28,52 @@ class Task {
     this.description,
     this.isCompleted,
     this.dueDate,
-    this.repeatDays,
-    this.priority,
+    this.repeatDays = RepeatDays.never,
+    this.priority = Priority.none,
     this.location,
   });
 
+  String getDueDate() {
+    if (dueDate == null) {
+      return 'No due date';
+    }
+    final DateFormat formatter = DateFormat('HH:mm:ss dd/MM/yyyy');
+    return formatter.format(dueDate!);
+  }
+
+  String getRepeatDays() {
+    switch (repeatDays) {
+      case RepeatDays.never:
+        return 'Không lặp lại';
+      case RepeatDays.daily:
+        return 'Hằng ngày';
+      case RepeatDays.custom:
+        return 'Tùy chọn';
+    }
+  }
+
+  String getPriority() {
+    switch (priority) {
+      case Priority.none:
+        return 'None';
+      case Priority.low:
+        return 'Low';
+      case Priority.medium:
+        return 'Medium';
+      case Priority.high:
+        return 'High';
+    }
+  }
+
   factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
-      title: map['title'],
-      description: map['description'],
-      isCompleted: map['isCompleted'],
-      dueDate: map['dueDate'] != null ? DateTime.parse(map['dueDate']) : null,
-      repeatDays: map['repeatDays'],
-      priority: Priority.values.firstWhere(
-            (repeatDays) => repeatDays.toString() == map['priority'],
-      ),
-      location: map['location'] != null
-          ? Location.fromMap(map['location'])
-          : null,
+      title: map['title'] as String,
+      description: map['description'] as String?,
+      isCompleted: map['isCompleted'] as bool?,
+      dueDate: map['dueDate'] != null ? DateTime.tryParse(map['dueDate'] as String): null,
+      repeatDays: RepeatDays.values.firstWhere((repeatDays) => repeatDays.toString() == map['repeatDays'], orElse: () => RepeatDays.never,),
+      priority: Priority.values.firstWhere((priority) => priority.toString() == map['priority'], orElse: () => Priority.none),
+      location: map['location'] != null ? Location.fromMap(map['location'] as Map<String, dynamic>) : null,
     );
   }
 
@@ -45,55 +82,10 @@ class Task {
       'title': title,
       'description': description,
       'isCompleted': isCompleted,
-      'dueDate': dueDate?.toString(),
-      'repeatDays': repeatDays,
+      'dueDate': dueDate?.toIso8601String(),
+      'repeatDays': repeatDays.toString(),
       'priority': priority.toString(),
       'location': location?.toMap(),
     };
   }
 }
-
-
-enum LocationType {
-  currentLocation,
-  departurePoint,
-  destinationPoint,
-  location,
-}
-
-class Location {
-  final String address;
-  final LocationType type;
-
-  Location({
-    required this.address,
-    required this.type,
-  });
-
-  factory Location.fromMap(Map<String, dynamic> map) {
-    return Location(
-      address: map['address'],
-      type: LocationType.values.firstWhere(
-            (type) => type.toString().split(',').last == map['type'],
-      ),
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'address': address,
-      'type': type.toString().split(',').last,
-    };
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
