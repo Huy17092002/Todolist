@@ -4,6 +4,8 @@ import 'package:todolist/items/task_group_item.dart';
 class ListNameBottomsheet extends StatelessWidget {
   const ListNameBottomsheet({super.key});
 
+  get item => null;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -72,7 +74,7 @@ class ListNameBottomsheet extends StatelessWidget {
               return TaskGroupItem(
                 onTap: () {
                   Navigator.pop(context);
-                },
+                }, model: item,
               );
             },
           ),

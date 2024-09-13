@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 67,
         title: const HomeSearchBar(),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 5,
             ),
-            ListsWidget(),
+         ListsWidget(),
           ],
         ),
       ),

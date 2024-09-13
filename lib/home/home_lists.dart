@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/items/task_group_item.dart';
+
 import 'package:todolist/routes.dart';
 
+
+import '../model/tasklist_collection.dart';
+
 class ListsWidget extends StatelessWidget {
-  const ListsWidget({super.key});
+   ListsWidget({super.key});
+
+  final List<TaskListCollection> data = [
+    TaskListCollection(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasklists: []),
+    TaskListCollection(title: 'tiktok', icon: Icons.tiktok, color: Colors.black, tasklists: []),
+    TaskListCollection(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasklists: []),
+    TaskListCollection(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasklists: []),
+    TaskListCollection(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasklists: []),
+    TaskListCollection(title: 'BONG', tasklists: []),
+    TaskListCollection(title: 'danh sach', tasklists: []),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +31,15 @@ class ListsWidget extends StatelessWidget {
         child: ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 7,
+          itemCount: data.length,
           itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                TaskGroupItem(
-                  onTap: () {
-                    print('view $index');
-                    Navigator.pushNamed(context, Routes.addTask);
-                  },
-                ),
-              ],
+            final item = data[index];
+            return TaskGroupItem(
+              onTap: () {
+                print('${item.title}  $index');
+                Navigator.pushNamed(context, Routes.addTask);
+              },
+              model: item,
             );
           },
         ),
@@ -35,7 +47,3 @@ class ListsWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
