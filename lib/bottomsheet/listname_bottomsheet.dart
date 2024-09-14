@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/items/task_group_item.dart';
+import 'package:todolist/items/taskitem_listname.dart';
+
+
+import '../model/tasklist_collection.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
-  const ListNameBottomsheet({super.key});
+  ListNameBottomsheet({super.key});
+  final List<TaskListCollection> data = [
+    TaskListCollection(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasklists: []),
+    TaskListCollection(title: 'tiktok', icon: Icons.tiktok, color: Colors.black, tasklists: []),
+    TaskListCollection(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasklists: []),
+    TaskListCollection(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasklists: []),
+    TaskListCollection(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasklists: []),
+    TaskListCollection(title: 'BONG', tasklists: []),
+    TaskListCollection(title: 'danh sach', tasklists: []),
+  ];
 
   get item => null;
 
@@ -67,14 +79,18 @@ class ListNameBottomsheet extends StatelessWidget {
               ],
             ),
           ),
-          body: ListView.builder(
-            padding: const EdgeInsets.only(top: 1),
-            itemCount: 10,
+          body:  ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
-              return TaskGroupItem(
+              final item = data[index];
+              return TaskItemListName(
                 onTap: () {
+                  print('${item.title}  $index');
                   Navigator.pop(context);
-                }, model: item,
+                },
+                model: item,
               );
             },
           ),

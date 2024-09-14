@@ -241,28 +241,37 @@ class TaskListPage extends StatefulWidget {
 class TaskListPageState extends State<TaskListPage> {
   final List<Task> _tasks = [
     Task(
-      title: 'Task 1',
-      description: 'Description 1',
+      title:'Newreminder',
+      description: 'vang',
       isCompleted: false,
-      deadline: '2024-09-30',
-      repeat: 'daily',
+      deadline: '10/09/2024'',15:00',
+      repeat: 'Daily',
       priority: Priority.medium,
     ),
     Task(
-      title: 'Task 2',
-      description: 'Description 2',
-      isCompleted: true,
-      deadline: '2024-10-05',
+      title: 'gao',
+      description: 'bac',
+      isCompleted: false,
+      deadline: '17/09/2024',
       repeat: '',
-      priority: Priority.high, location: null,
+      priority: Priority.high,
+      location: null,
     ),
     Task(
-      title: 'Task 3',
-      description: 'edg' ,
+      title: 'trung',
+      description: 'egg' ,
       isCompleted: true,
+      deadline: '20/01/2024'
     ),
-  ];
+    Task(
+        title: 'ga',
+        description: 'trong' ,
+        isCompleted: true,
+        deadline: '20/10/2024',
+        priority: Priority.low
+    ),
 
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -375,7 +384,7 @@ class TaskListPageState extends State<TaskListPage> {
                 final task = _tasks[index];
                 return TaskItem(
                   task: task,
-                  onTaskUpdated: (updatedTask) {},
+
                 );
               },
             ),

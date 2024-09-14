@@ -16,7 +16,7 @@ class ListsWidget extends StatelessWidget {
     TaskListCollection(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasklists: []),
     TaskListCollection(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasklists: []),
     TaskListCollection(title: 'BONG', tasklists: []),
-    TaskListCollection(title: 'danh sach', tasklists: []),
+    TaskListCollection(title: 'danh sach',color: Colors.red, tasklists: []),
   ];
 
   @override
