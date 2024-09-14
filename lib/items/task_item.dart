@@ -1,222 +1,299 @@
-// // import 'package:flutter/material.dart';
-// //
-// //
-// // import '../bottomsheet/details_tasklistpage.dart';
-// //
-// // class TaskItems extends StatefulWidget {
-// //   const TaskItems({super.key});
-// //
-// //   @override
-// //   State<TaskItems> createState() => _TaskItemsState();
-// // }
-// //
-// // class _TaskItemsState extends State<TaskItems> {
-// //   bool isChecked = false;
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-//     // return Padding(
-//     //   padding: const EdgeInsets.only(left: 15, top: 5),
-//     //   child: Row(
-//     //     children: [
-//     //       Padding(
-//     //         padding: const EdgeInsets.only(right: 12),
-//     //         child: GestureDetector(
-//     //           onTap: () {
-//     //             setState(() {
-//     //               isChecked = !isChecked;
-//     //             });
-//     //           },
-//     //           child: (() {
-//     //             if (isChecked) {
-//     //               return const Icon(
-//     //                 Icons.radio_button_checked,
-//     //                 size: 27,
-//     //                 color: Colors.blueAccent,
-//     //               );
-//     //             } else {
-//     //               return const Icon(
-//     //                 Icons.radio_button_unchecked,
-//     //                 size: 27,
-//     //                 color: Colors.grey,
-//     //               );
-//     //             }
-//     //           })(),
-//     //         ),
-//     //       ),
-//     //       Expanded(
-//     //         child: TextFormField(
-//     //           decoration: InputDecoration(
-//     //             hintText: 'Add note',
-//     //             suffixIcon: GestureDetector(
-//     //               onTap: () {
-//     //                 showModalBottomSheet(
-//     //                   context: context,
-//     //                   isScrollControlled: true,
-//     //                   builder: (BuildContext context) {
-//     //                     return const DetailsTaskListPageBottomsheet();
-//     //                   },
-//     //                 );
-//     //               },
-//     //               child: const Icon(Icons.info_outline),
-//     //             ),
-//     //           ),
-//     //         ),
-//     //       ),
-//     //     ],
-//     //   ),
-//     // );
-// //   }
-// // }
-//
-// //
-// // // import 'package:flutter/material.dart';
-// // //
-// // // import '../bottomsheet/details_tasklistpage.dart';
-// // //
-// // // class TaskItems extends StatefulWidget {
-// // //   const TaskItems({super.key});
-// // //
-// // //   @override
-// // //   State<TaskItems> createState() => _TaskItemsState();
-// // // }
-// // //
-// // // class _TaskItemsState extends State<TaskItems> {
-// // //   bool isChecked = false;
-// // //
-// // //   @override
-// // //   Widget build(BuildContext context) {
-// // //     return Padding(
-// // //       padding: const EdgeInsets.only(left: 15, top: 5),
-// // //       child: Row(
-// // //         children: [
-// // //           Padding(
-// // //             padding: const EdgeInsets.only(right: 12),
-// // //             child: GestureDetector(
-// // //               onTap: () {
-// // //                 setState(() {
-// // //                   isChecked = !isChecked;
-// // //                 });
-// // //               },
-// // //               child: (() {
-// // //                 if (isChecked) {
-// // //                   return const Icon(
-// // //                     Icons.radio_button_checked,
-// // //                     size: 27,
-// // //                     color: Colors.blueAccent,
-// // //                   );
-// // //                 } else {
-// // //                   return const Icon(
-// // //                     Icons.radio_button_unchecked,
-// // //                     size: 27,
-// // //                     color: Colors.grey,
-// // //                   );
-// // //                 }
-// // //               })(),
-// // //             ),
-// // //           ),
-// // //           Expanded(
-// // //             child: Column(
-// // //               crossAxisAlignment: CrossAxisAlignment.start,
-// // //               children: [
-// // //                 Padding(
-// // //                   padding: const EdgeInsets.only(left: 0),
-// // //                   child: TextField(
-// // //                     decoration: InputDecoration(
-// // //                       hintText: '',
-// // //                       border: InputBorder.none,
-// // //                     ),
-// // //                   ),
-// // //                 ),
-// // //                 TextField(
-// // //                   decoration: InputDecoration(
-// // //                     border: UnderlineInputBorder(),
-// // //                   ),
-// // //                 ),
-// // //               ],
-// // //             ),
-// // //           ),
-// // //         ],
-// // //       ),
-// // //     );
-// // //   }
-// // // }
-//
 // import 'package:flutter/material.dart';
+// import 'package:todolist/model/task.dart';
 //
-// import '../model/task.dart';
+// import '../bottomsheet/details_tasklistpage.dart';
 //
-// class TaskItem extends StatelessWidget {
+// class TaskItem extends StatefulWidget {
 //   final Task task;
-//   final Function(Task) onTaskUpdated;
 //
 //   const TaskItem({
-//     Key? key,
+//     super.key,
 //     required this.task,
-//     required this.onTaskUpdated,
-//   }) : super(key: key);
+//   });
+//
+//   @override
+//   State<TaskItem> createState() => _TaskItemState();
+// }
+//
+// class _TaskItemState extends State<TaskItem> {
+//   late TextEditingController _titleController;
+//   late TextEditingController _descriptionController;
+//   bool isChecked = false;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _titleController = TextEditingController(text: widget.task.title);
+//     _descriptionController = TextEditingController(text: widget.task.description);
+//     isChecked = widget.task.isCompleted;
+//   }
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         ListTile(
-//           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-//           leading: IconButton(
-//             icon: Icon(
-//               task.isCompleted ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-//               color: task.isCompleted ? Colors.blue : Colors.grey,size: 30,
+//     return Padding(
+//       padding: const EdgeInsets.only(left: 15, top: 05),
+//       child: Row(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.only(right: 12,bottom: 68),
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   isChecked = !isChecked;
+//                 });
+//               },
+//               child: Icon(
+//                 isChecked ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+//                 size: 26,
+//                 color: isChecked ? Colors.blueAccent : Colors.grey[350],
+//               ),
 //             ),
-//             onPressed: () {
-//               final updatedTask = Task(
-//                 title: task.title,
-//                 description: task.description,
-//                 isCompleted: !task.isCompleted,
-//               );
-//               onTaskUpdated(updatedTask);
-//             },
 //           ),
-//           title: Text(task.title,style: TextStyle(fontSize: 18),),
-//           subtitle: Text(task.description,style: TextStyle(fontSize: 18),),
-//         ),
-//         const Divider(height: 1.0, color: Colors.grey, indent: 65),
-//       ],
+//           Expanded(
+//             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+//              Text('!!!'),
+//               SizedBox(width: 20,),
+//               SizedBox(
+//                 height: 15,
+//                 child: TextField(
+//                   controller: _titleController,
+//                   decoration: InputDecoration(
+//                     hintText: '',
+//                     border: InputBorder.none,
+//                     hintStyle:  TextStyle(  color: Colors.grey[600]),
+//                     suffixIcon: GestureDetector(
+//                        onTap: (){
+//                          showModalBottomSheet(
+//                              context: context,
+//                            isScrollControlled: true,
+//                            builder: (BuildContext context) {
+//                              return const DetailsTaskListPageBottomsheet();
+//                            },
+//                          );
+//                        },
+//                         child:const Icon(Icons.info_outline),
+//                     ),
+//                   ),
+//                   style: TextStyle(
+//                     fontSize: 18,
+//                     fontWeight: FontWeight.w400,
+//                     color: isChecked ? Colors.grey : Colors.black,
+//                   ),
+//                   onChanged: (value) {},
+//                 ),
+//               ),
+//               SizedBox(
+//                 height: 20,
+//                 child: TextField(
+//                   controller: _descriptionController,
+//                   cursorHeight: 17,
+//                   decoration: InputDecoration(
+//                     hintText: 'Add note',
+//                     border: InputBorder.none,
+//                     hintStyle: TextStyle(color: Colors.grey[600]),
+//                   ),
+//                   style: TextStyle(
+//                     color: isChecked ? Colors.grey : Colors.grey,
+//                   ),
+//                   onChanged: (value) {},
+//                 ),
+//               ),
+//               SizedBox(
+//                 height: 19,
+//                 child: Text(
+//                   '${widget.task.deadline}' "," '${widget.task.repeat}',
+//                   style: const TextStyle(
+//                     fontSize: 17,
+//                     color: Colors.grey,
+//                   ),
+//                 ),
+//               ),
+//               const SizedBox(
+//                 height: 7,
+//               ),
+//               const Divider(height: 2, color: Colors.grey),
+//             ]),
+//           ),
+//         ],
+//       ),
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
+import 'package:todolist/model/task.dart';
+import '../bottomsheet/details_tasklistpage.dart';
 
-import '../model/task.dart';
-
-class TaskItem extends StatelessWidget {
+class TaskItem extends StatefulWidget {
   final Task task;
-  final Function(Task) onTaskUpdated;
 
   const TaskItem({
-    Key? key,
+    super.key,
     required this.task,
-    required this.onTaskUpdated,
-  }) : super(key: key);
+  });
+
+  @override
+  State<TaskItem> createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
+  late TextEditingController _titleController;
+  late TextEditingController _descriptionController;
+  bool isChecked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.task.title);
+    _descriptionController = TextEditingController(text: widget.task.description);
+    isChecked = widget.task.isCompleted;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          leading: IconButton(
-            icon: Icon(
-              task.isCompleted ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-              color: task.isCompleted ? Colors.blue : Colors.grey,size: 30,
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isChecked = !isChecked;
+                });
+              },
+              child: Icon(
+                isChecked ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                size: 26,
+                color: isChecked ? Colors.blueAccent : Colors.grey[350],
+              ),
             ),
-            onPressed: () {},
           ),
-          title: Text(task.title),
-          subtitle: Text('${task.description}\n${task.deadline ?? "No deadline"}\nRepeat: ${task.repeat}\nPriority: ${task.priority.toString().split('.').last}'),
-          isThreeLine: true,
-        ),
-        const Divider(height: 1.0, color: Colors.grey,indent: 65),
-      ],
+          const SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 3),
+                      child: Text(
+                        widget.task.priorityName,
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.red),
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Expanded(
+                      child: TextField(
+                        controller: _titleController,
+                        cursorHeight: 24,
+                        decoration: InputDecoration(
+                          hintText: '',
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(color: Colors.grey[600]),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (BuildContext context) {
+                                  return const DetailsTaskListPageBottomsheet();
+                                },
+                              );
+                            },
+                            child: const Icon(Icons.info_outline),
+                          ),
+                        ),
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: isChecked ? Colors.grey : Colors.black,
+                        ),
+                        onChanged: (value) {},
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    controller: _descriptionController,
+                    cursorHeight: 17,
+                    decoration: InputDecoration(
+                      hintText: 'Add note',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(color: Colors.grey[600]),
+                    ),
+                    style: TextStyle(
+                      color: isChecked ? Colors.grey : Colors.grey,
+                    ),
+                    onChanged: (value) {},
+                  ),
+                ),
+                SizedBox(
+                  height: 21,
+                  child: Text(
+                    '${widget.task.deadline}, ${widget.task.repeat}',
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 180,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey[300],
+                  ),
+                  child: Row(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(padding: EdgeInsets.only(left: 8),
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue[600],
+                              ),
+                              child: const Icon(
+                                Icons.directions_car,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 05,),
+                          const Text('Getting out of Car',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                const Divider(height: 2, color: Colors.grey),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

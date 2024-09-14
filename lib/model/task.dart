@@ -1,24 +1,27 @@
 import 'package:todolist/model/priority.dart';
 import 'location.dart';
 
-
 class Task {
   String title;
-  String description;
+  String? description;
   bool isCompleted;
   String? deadline;
   String repeat;
-  Priority priority ;
+  Priority priority;
   Location? location;
-Task({
-   required this.title,
-   required this.description,
-   required this.isCompleted,
-  this.priority = Priority.none,
-  this.location,
-  this.repeat = '',
-  this.deadline,
-   
-});
-}
 
+  Task({
+    required this.title,
+    this.description,
+    required this.isCompleted,
+    this.priority = Priority.none,
+    this.location,
+    this.repeat = '',
+    this.deadline,
+  });
+
+  String get priorityName {
+    return priority.name;
+  }
+
+}

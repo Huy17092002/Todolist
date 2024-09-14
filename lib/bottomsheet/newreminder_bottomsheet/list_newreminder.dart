@@ -15,7 +15,7 @@ class ListNewReminder extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
-            return const ListNameBottomsheet();
+            return  ListNameBottomsheet();
           },
         );
       },
