@@ -18,6 +18,3 @@ extension PriorityName on Priority {
   }
 }
 
-void main() {
-  print(Priority.low.name);
-}
