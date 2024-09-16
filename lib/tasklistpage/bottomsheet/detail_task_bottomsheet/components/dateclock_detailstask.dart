@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todolist/configs.dart';
+import 'package:todolist/configs.dart' ;
 
 class DateClock extends StatefulWidget {
   const DateClock({super.key});
