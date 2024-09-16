@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../components/dateclock_detailstask.dart';
-import '../components/location_detailstask.dart';
-import '../components/priority_detailstask.dart';
-import '../components/repeat_detailstask.dart';
-
+import 'package:todolist/tasklistpage/bottomsheet/detail_task/dateclock_detailstask.dart';
+import 'package:todolist/tasklistpage/bottomsheet/detail_task/location_detailstask.dart';
+import 'package:todolist/tasklistpage/bottomsheet/detail_task/priority_detailstask.dart';
+import 'package:todolist/tasklistpage/bottomsheet/detail_task/repeat_time_task.dart';
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {
   const DetailsTaskListPageBottomsheet({super.key});
