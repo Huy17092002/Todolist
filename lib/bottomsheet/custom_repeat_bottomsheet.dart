@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
 
-import 'custom_repeat_bottomsheet.dart';
-
-class RepeatIntervallTime extends StatelessWidget {
-  const RepeatIntervallTime({super.key});
+class  CustomRepeatBottomsheet extends StatelessWidget {
+  const  CustomRepeatBottomsheet({super.key});
 
   void _onTap(BuildContext context) {
     Navigator.pop(context);
@@ -34,7 +32,7 @@ class RepeatIntervallTime extends StatelessWidget {
                     children: [
                       Icon(Icons.arrow_back_ios, color: Colors.blue),
                       Text(
-                        'Chi tiết',
+                        'Lặp lại',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.blue,
@@ -44,7 +42,7 @@ class RepeatIntervallTime extends StatelessWidget {
                         width: 70,
                       ),
                       Text(
-                        'Lặp lại',
+                        'Custom',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -69,72 +67,43 @@ class RepeatIntervallTime extends StatelessWidget {
                   ),
                   child: ListView(
                     padding: const EdgeInsets.only(top: 1),
-                    children: [
+                    children: const [
                       Column(
                         children: [
                           ListTile(
-                            title: const Text(
-                              'Không bao giờ',
+                            title: Text(
+                              'Tần suất',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            trailing: const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
+                            trailing: Text('Daily',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blue,
+                              ),
                             ),
-                            onTap: () => _onTap(context),
                           ),
                           dividerRepeatBottomSheet,
                           ListTile(
-                            title: const Text(
-                              'Hàng ngày',
+                            title: Text(
+                              'Mỗi',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            onTap: () => _onTap(context),
+                            trailing: Text('Day',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blue,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20,),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (BuildContext context) {
-                      return const CustomRepeatBottomsheet();
-                    },
-                  );
-                },
-                child: Container(
-                  height: 55,
-                  width: 360,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey[300],
-                  ),
-                  child: const ListTile(
-                    title: Text(
-                      'Custom',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                      size: 17,
-                    ),
                   ),
                 ),
               ),
