@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../tasklistpage/bottomsheet/detail_task_bottomsheet/detailstask_bottomsheet.dart';
+import '../task/bottomsheet/detailstask_bottomsheet.dart';
+
 
 class DetailsNewReminder extends StatelessWidget {
   const DetailsNewReminder({super.key,});
