@@ -12,7 +12,7 @@ class ListNameBottomsheet extends StatelessWidget {
     TaskListCollection(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasklists: []),
     TaskListCollection(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasklists: []),
     TaskListCollection(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasklists: []),
-    TaskListCollection(title: 'BONG', tasklists: []),
+    TaskListCollection(title: 'Bong', tasklists: []),
     TaskListCollection(title: 'danh sach', tasklists: []),
   ];
 
