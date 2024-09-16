@@ -4,7 +4,7 @@ import 'package:todolist/items/task_group_item.dart';
 import 'package:todolist/routes.dart';
 
 
-import '../model/tasklist_collection.dart';
+import '../../model/tasklist_collection.dart';
 
 class ListsWidget extends StatelessWidget {
    ListsWidget({super.key});
