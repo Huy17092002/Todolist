@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/home/home_page.dart';
-import 'package:todolist/task/tasklist_page.dart';
+import 'package:todolist/tasklistpage/tasklist_page.dart';
+
+import 'homepage/home/home_page.dart';
 
 
 class Routes {
