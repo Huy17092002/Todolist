@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist/items/taskitem_listname.dart';
 
 
-import '../model/tasklist_collection.dart';
+import '../../model/tasklist_collection.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
   ListNameBottomsheet({super.key});
