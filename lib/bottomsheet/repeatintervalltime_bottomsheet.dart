@@ -122,15 +122,15 @@ class RepeatIntervallTime extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.grey[300],
                   ),
-                  child: ListTile(
-                    title: const Text(
+                  child: const ListTile(
+                    title: Text(
                       'Custom',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    trailing: const Icon(
+                    trailing: Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.grey,
                       size: 17,
