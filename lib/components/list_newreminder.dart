@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:todolist/homepage/bottomsheet/listname_bottomsheet.dart';
+
+import '../home/bottomsheet/listname_bottomsheet.dart';
+
 
 class ListNewReminder extends StatelessWidget {
   const ListNewReminder({
