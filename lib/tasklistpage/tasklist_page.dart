@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/bottomsheet/list_info_bottomsheet.dart';
+import 'package:todolist/homepage/bottomsheet/list_info_bottomsheet.dart';
 import 'package:todolist/items/task_item.dart';
 
 import '../model/priority.dart';
