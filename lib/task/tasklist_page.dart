@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/homepage/bottomsheet/list_info_bottomsheet.dart';
 import 'package:todolist/items/task_item.dart';
-import 'package:todolist/model/location_type.dart';
 
+
+import '../home/bottomsheet/list_info_bottomsheet.dart';
 import '../model/priority.dart';
 import '../model/task.dart';
 
