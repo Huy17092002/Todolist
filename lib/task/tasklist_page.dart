@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/homepage/bottomsheet/list_info_bottomsheet.dart';
 import 'package:todolist/items/task_item.dart';
+import 'package:todolist/model/location_type.dart';
 
 import '../model/priority.dart';
 import '../model/task.dart';
@@ -30,12 +31,15 @@ class TaskListPageState extends State<TaskListPage> {
       repeat: '',
       priority: Priority.high,
       location: null,
+
+
     ),
     Task(
       title: 'trung',
       description: 'egg' ,
       isCompleted: true,
-      deadline: '20/01/2024'
+      deadline: '20/01/2024',
+
     ),
     Task(
         title: 'ga',
