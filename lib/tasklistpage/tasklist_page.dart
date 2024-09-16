@@ -41,7 +41,7 @@ class TaskListPageState extends State<TaskListPage> {
         title: 'ga',
         description: 'trong' ,
         isCompleted: true,
-        deadline: '20/10/2024',
+        deadline: '20/11/2024',
         priority: Priority.low
     ),
 
