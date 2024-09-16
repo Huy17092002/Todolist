@@ -23,7 +23,7 @@ class NewReminderBottomsheet extends StatelessWidget {
               children: [
                 TextButton(
                   child: const Text(
-                    'Hủy ',
+                    'Hủy',
                     style: TextStyle(
                       fontSize: 17,
                       color: Colors.blue,
