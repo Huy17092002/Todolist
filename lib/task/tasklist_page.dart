@@ -17,7 +17,7 @@ class TaskListPageState extends State<TaskListPage> {
   final List<Task> _tasks = [
     Task(
       title:'Newreminder',
-      description: 'vang',
+      description: 'vung',
       isCompleted: false,
       deadline: '10/09/2024'',15:00',
       repeat: 'Daily',
