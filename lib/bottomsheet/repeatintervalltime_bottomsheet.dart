@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
 
+import 'custom_repeat_bottomsheet.dart';
+
 class RepeatIntervallTime extends StatelessWidget {
   const RepeatIntervallTime({super.key});
 
@@ -57,9 +59,9 @@ class RepeatIntervallTime extends StatelessWidget {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
                 child: Container(
-                  height: 555,
+                  height: 110,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -72,10 +74,10 @@ class RepeatIntervallTime extends StatelessWidget {
                         children: [
                           ListTile(
                             title: const Text(
-                              'Không',
+                              'Không bao giờ',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
                             trailing: const Icon(
@@ -88,98 +90,10 @@ class RepeatIntervallTime extends StatelessWidget {
                           dividerRepeatBottomSheet,
                           ListTile(
                             title: const Text(
-                              'Hàng giờ',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
                               'Hàng ngày',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Ngày thường',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Cuối tuần',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Hàng tuần',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Hai tuần 1 lần',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Hàng tháng',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Mỗi 3 tháng',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            onTap: () => _onTap(context),
-                          ),
-                          dividerRepeatBottomSheet,
-                          ListTile(
-                            title: const Text(
-                              'Hàng năm',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
                             onTap: () => _onTap(context),
@@ -187,6 +101,40 @@ class RepeatIntervallTime extends StatelessWidget {
                         ],
                       ),
                     ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return const CustomRepeatBottomsheet();
+                    },
+                  );
+                },
+                child: Container(
+                  height: 55,
+                  width: 360,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey[300],
+                  ),
+                  child: ListTile(
+                    title: const Text(
+                      'Custom',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 17,
+                    ),
                   ),
                 ),
               ),
