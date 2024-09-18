@@ -20,11 +20,11 @@ class _HomePageState extends State<HomePage> {
         title: const HomeSearchBar(),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 5, top: 15),
               child: Text(
                 'Danh sách của tôi',
@@ -35,10 +35,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-         ListsWidget(),
+            const SizedBox(height: 5),
+            ListsWidget(),
           ],
         ),
       ),
@@ -46,7 +44,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-
