@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../components/details_newreminder.dart';
-import '../../components/list_newreminder.dart';
+import '../../widget/details_newreminder.dart';
+import '../../widget/list_newreminder.dart';
 
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
