@@ -1,128 +1,7 @@
-// import 'package:flutter/material.dart';
-// import 'package:todolist/model/task.dart';
-//
-// import '../bottomsheet/details_tasklistpage.dart';
-//
-// class TaskItem extends StatefulWidget {
-//   final Task task;
-//
-//   const TaskItem({
-//     super.key,
-//     required this.task,
-//   });
-//
-//   @override
-//   State<TaskItem> createState() => _TaskItemState();
-// }
-//
-// class _TaskItemState extends State<TaskItem> {
-//   late TextEditingController _titleController;
-//   late TextEditingController _descriptionController;
-//   bool isChecked = false;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _titleController = TextEditingController(text: widget.task.title);
-//     _descriptionController = TextEditingController(text: widget.task.description);
-//     isChecked = widget.task.isCompleted;
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.only(left: 15, top: 05),
-//       child: Row(
-//         children: [
-//           Padding(
-//             padding: const EdgeInsets.only(right: 12,bottom: 68),
-//             child: GestureDetector(
-//               onTap: () {
-//                 setState(() {
-//                   isChecked = !isChecked;
-//                 });
-//               },
-//               child: Icon(
-//                 isChecked ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-//                 size: 26,
-//                 color: isChecked ? Colors.blueAccent : Colors.grey[350],
-//               ),
-//             ),
-//           ),
-//           Expanded(
-//             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//              Text('!!!'),
-//               SizedBox(width: 20,),
-//               SizedBox(
-//                 height: 15,
-//                 child: TextField(
-//                   controller: _titleController,
-//                   decoration: InputDecoration(
-//                     hintText: '',
-//                     border: InputBorder.none,
-//                     hintStyle:  TextStyle(  color: Colors.grey[600]),
-//                     suffixIcon: GestureDetector(
-//                        onTap: (){
-//                          showModalBottomSheet(
-//                              context: context,
-//                            isScrollControlled: true,
-//                            builder: (BuildContext context) {
-//                              return const DetailsTaskListPageBottomsheet();
-//                            },
-//                          );
-//                        },
-//                         child:const Icon(Icons.info_outline),
-//                     ),
-//                   ),
-//                   style: TextStyle(
-//                     fontSize: 18,
-//                     fontWeight: FontWeight.w400,
-//                     color: isChecked ? Colors.grey : Colors.black,
-//                   ),
-//                   onChanged: (value) {},
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: 20,
-//                 child: TextField(
-//                   controller: _descriptionController,
-//                   cursorHeight: 17,
-//                   decoration: InputDecoration(
-//                     hintText: 'Add note',
-//                     border: InputBorder.none,
-//                     hintStyle: TextStyle(color: Colors.grey[600]),
-//                   ),
-//                   style: TextStyle(
-//                     color: isChecked ? Colors.grey : Colors.grey,
-//                   ),
-//                   onChanged: (value) {},
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: 19,
-//                 child: Text(
-//                   '${widget.task.deadline}' "," '${widget.task.repeat}',
-//                   style: const TextStyle(
-//                     fontSize: 17,
-//                     color: Colors.grey,
-//                   ),
-//                 ),
-//               ),
-//               const SizedBox(
-//                 height: 7,
-//               ),
-//               const Divider(height: 2, color: Colors.grey),
-//             ]),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:todolist/model/task.dart';
-import '../bottomsheet/details_tasklistpage.dart';
+
+import '../task/bottomsheet/custom_task_bottomsheet.dart';
 
 class TaskItem extends StatefulWidget {
   final Task task;
@@ -186,7 +65,7 @@ class _TaskItemState extends State<TaskItem> {
                         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.red),
                       ),
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 2),
                     Expanded(
                       child: TextField(
                         controller: _titleController,
@@ -244,7 +123,7 @@ class _TaskItemState extends State<TaskItem> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Container(
@@ -259,7 +138,7 @@ class _TaskItemState extends State<TaskItem> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(padding: EdgeInsets.only(left: 8),
+                          Padding(padding: const EdgeInsets.only(left: 8),
                             child: Container(
                               width: 20,
                               height: 20,
@@ -274,11 +153,10 @@ class _TaskItemState extends State<TaskItem> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 05,),
-                          const Text('Getting out of Car',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
+                          const SizedBox(width: 5,),
+                          const Text(
+                           'Getting out of the Car',
+                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.black),
                           ),
                         ],
                       ),
@@ -288,7 +166,7 @@ class _TaskItemState extends State<TaskItem> {
                 const SizedBox(
                   height: 7,
                 ),
-                const Divider(height: 2, color: Colors.grey),
+                const Divider(height: 0.3, color: Colors.grey),
               ],
             ),
           ),
