@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../components/dateclock_detailstask.dart';
-import '../../components/location_detailstask.dart';
-import '../../components/priority_detailstask.dart';
-import '../../components/repeat_time_task.dart' ;
+
+import '../../widget/dateclock_detailstask.dart';
+import '../../widget/location_detailstask.dart';
+import '../../widget/priority_detailstask.dart';
+import '../../widget/repeat_time_task.dart';
+
+
 
 class DetailsTaskBottomsheet extends StatefulWidget {
   const DetailsTaskBottomsheet({super.key});
