@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/model/tasklist.dart';
 
-import '../model/tasklist.dart';
-
-class TaskItemListName extends StatelessWidget {
-  final TaskList model;
+class TaskGroupItem extends StatelessWidget {
   final VoidCallback onTap;
+  final TaskList model;
 
-  const TaskItemListName({
+  const TaskGroupItem({
     super.key,
-    required this.model,
     required this.onTap,
+    required this.model,
   });
 
   @override
@@ -39,10 +38,9 @@ class TaskItemListName extends StatelessWidget {
           ),
           onTap: onTap,
           trailing: const Icon(
-            Icons.check_rounded,
-            color: Colors.blueAccent,
-            size: 24,
-            weight: 400,
+            Icons.arrow_forward_ios,
+            color: Colors.grey,
+            size: 17,
           ),
         ),
         Divider(
