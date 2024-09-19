@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:todolist/items/taskitem_listname.dart';
 
 
-import '../../model/tasklist_collection.dart';
+import '../../model/tasklist.dart';
+
 
 class ListNameBottomsheet extends StatelessWidget {
   ListNameBottomsheet({super.key});
-  final List<TaskListCollection> data = [
-    TaskListCollection(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasklists: []),
-    TaskListCollection(title: 'tiktok', icon: Icons.tiktok, color: Colors.black, tasklists: []),
-    TaskListCollection(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasklists: []),
-    TaskListCollection(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasklists: []),
-    TaskListCollection(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasklists: []),
-    TaskListCollection(title: 'Bong', tasklists: []),
-    TaskListCollection(title: 'danh sach', tasklists: []),
+  final List<TaskList> data = [
+    TaskList(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasks: []),
+    TaskList(title: 'tiktok', icon: Icons.tiktok, color: Colors.black, tasks: []),
+    TaskList(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasks: []),
+    TaskList(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasks: []),
+    TaskList(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasks: []),
+    TaskList(title: 'gfu', tasks: []),
   ];
-
-  get item => null;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,7 @@ class ListNameBottomsheet extends StatelessWidget {
               ],
             ),
           ),
-          body:  ListView.builder(
+          body: ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: data.length,
@@ -94,6 +92,7 @@ class ListNameBottomsheet extends StatelessWidget {
               );
             },
           ),
+
         ),
       ),
     );
