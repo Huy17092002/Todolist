@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container for title with a background color
             Padding(
               padding: const EdgeInsets.only(left: 5, top: 15),
               child: Text(
