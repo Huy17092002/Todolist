@@ -6,8 +6,8 @@ import 'package:todolist/routes.dart';
 
 import '../../model/tasklist_collection.dart';
 
-class ListsWidget extends StatelessWidget {
-   ListsWidget({super.key});
+class HomeList extends StatelessWidget {
+   HomeList({super.key});
 
   final List<TaskListCollection> data = [
     TaskListCollection(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasklists: []),
