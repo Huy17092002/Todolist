@@ -16,12 +16,11 @@ class Task {
     required this.isCompleted,
     this.priority = Priority.none,
     this.location,
-    this.repeat = '',
     this.deadline,
+    this.repeat = '',
   });
 
   String get priorityName {
     return priority.name;
   }
-
 }
