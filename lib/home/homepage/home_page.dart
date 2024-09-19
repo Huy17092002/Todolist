@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_bottom_navigation_bar.dart';
-import 'home_lists.dart';
+import 'home_list.dart';
 import 'home_searchbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 5),
-            ListsWidget(),
+            HomeList(),
           ],
         ),
       ),
