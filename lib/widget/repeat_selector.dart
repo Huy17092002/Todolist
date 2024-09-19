@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/bottomsheet/repeatintervalltime_bottomsheet.dart';
+
+import '../view/component/bottomsheet/repeatintervalltime_bottomsheet.dart';
 
 
 class RepeatSelector extends StatelessWidget {
