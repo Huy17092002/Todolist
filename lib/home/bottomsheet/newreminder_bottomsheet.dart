@@ -61,7 +61,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                           title: const Text('Xong'),
                           actions: [
                             ElevatedButton(
-                              child: const Text('OK'),
+                              child: const Text('Ok'),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
