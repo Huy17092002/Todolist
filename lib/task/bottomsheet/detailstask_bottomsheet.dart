@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-import '../../widget/dateclock_detailstask.dart';
-import '../../widget/location_detailstask.dart';
-import '../../widget/priority_detailstask.dart';
-import '../../widget/repeat_time_task.dart';
+import '../../widget/datetime_picker.dart';
+import '../../widget/location_selector.dart';
+import '../../widget/priority_selector.dart';
+import '../../widget/repeat_selector.dart';
 
 
 
@@ -95,15 +95,15 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
               padding: const EdgeInsets.only(top: 10),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 21),
-                child: const Column(
+                child:  Column(
                   children: [
-                    DateClock(),
+                    DateTimePicker(),
                     SizedBox(height: 20),
-                    RepeatTimeTask(),
+                    RepeatSelector(),
                     SizedBox(height: 20),
-                    Location(),
+                    LocationEnable(),
                     SizedBox(height: 20),
-                    Priority(),
+                    PrioritySelector(),
                   ],
                 ),
               ),
