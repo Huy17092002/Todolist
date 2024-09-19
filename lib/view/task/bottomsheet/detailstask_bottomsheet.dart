@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../widget/datetime_picker.dart';
-import '../../widget/location_selector.dart';
-import '../../widget/priority_selector.dart';
-import '../../widget/repeat_selector.dart';
+import '../../../widget/datetime_picker.dart';
+import '../../../widget/location_selector.dart';
+import '../../../widget/priority_selector.dart';
+import '../../../widget/repeat_selector.dart';
 
-class DetailsTaskListPageBottomsheet extends StatefulWidget {
-  const DetailsTaskListPageBottomsheet({super.key});
+
+
+class DetailsTaskBottomsheet extends StatefulWidget {
+  const DetailsTaskBottomsheet({super.key});
 
   @override
-  State<DetailsTaskListPageBottomsheet> createState() => _DetailsTaskListPageBottomsheetState();
+  State<DetailsTaskBottomsheet> createState() => _DetailsTaskBottomsheetState();
 }
 
-class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBottomsheet> {
+class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -29,17 +31,21 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
             leadingWidth: 400,
             leading: Row(
               children: [
-                const Padding(padding: EdgeInsets.only(left: 20)),
+                const Padding(padding: EdgeInsets.only(left: 10)),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
                   },
                   child: const Row(
                     children: [
+                      Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.blue,
+                      ),
                       Text(
-                        'Hủy',
+                        'Lời nhắc mới',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 17,
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
                         ),
@@ -47,7 +53,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                     ],
                   ),
                 ),
-                const SizedBox(width: 100),
+                const SizedBox(width: 30),
                 const Text(
                   'Chi Tiết',
                   style: TextStyle(
@@ -55,7 +61,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 90),
+                const SizedBox(width: 70),
                 TextButton(
                   child: const Text(
                     'Thêm',
@@ -88,47 +94,15 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
               padding: const EdgeInsets.only(top: 10),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 21),
-                child: Column(
+                child:  Column(
                   children: [
-                    Container(
-                      width: 350,
-                      height: 112,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[300],
-                      ),
-                      child: const Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Tiêu đề',
-                                border: UnderlineInputBorder(
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Ghi chú',
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
                     const DateTimePicker(),
                     const SizedBox(height: 20),
                     const RepeatSelector(),
                     const SizedBox(height: 20),
                     const LocationEnable(),
                     const SizedBox(height: 20),
-                     PrioritySelector(),
+                    PrioritySelector(),
                   ],
                 ),
               ),
@@ -139,3 +113,4 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
     );
   }
 }
+
