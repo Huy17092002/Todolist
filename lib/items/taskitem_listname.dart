@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/model/tasklist_collection.dart';
+
+import '../model/tasklist.dart';
 
 class TaskItemListName extends StatelessWidget {
+  final TaskList model;
   final VoidCallback onTap;
-  final TaskListCollection model;
 
   const TaskItemListName({
     super.key,
-    required this.onTap,
     required this.model,
+    required this.onTap,
   });
 
   @override
