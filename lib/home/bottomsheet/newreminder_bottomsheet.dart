@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../widget/details_newreminder.dart';
-import '../../widget/list_newreminder.dart';
+import '../../task/bottomsheet/detailstask_bottomsheet.dart';
+import 'listname_bottomsheet.dart';
 
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
@@ -92,15 +92,14 @@ class NewReminderBottomsheet extends StatelessWidget {
                       ),
                       child: const Padding(
                         padding: EdgeInsets.only(left: 20),
-                        child:   Column(
+                        child: Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: TextField(
                                 decoration: InputDecoration(
-                                  hintText: 'Tieu de',
-                                  border: UnderlineInputBorder(
-                                  ),
+                                  hintText: 'Tiêu đề',
+                                  border: UnderlineInputBorder(),
                                 ),
                               ),
                             ),
@@ -108,7 +107,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
                               child: TextField(
                                 decoration: InputDecoration(
-                                  hintText: 'Ghi chu',
+                                  hintText: 'Ghi chú',
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -119,10 +118,109 @@ class NewReminderBottomsheet extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const DetailsNewReminder(),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (BuildContext context) {
+                              return const DetailsTaskBottomsheet();
+                            },
+                          );
+                        },
+                        child: Container(
+                          height: 45,
+                          width: 352,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[300],
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 2, left: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Chi tiết',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(width: 238),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 19,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 20),
-                  const ListNewReminder(),
-
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return ListNameBottomsheet();
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 350,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 2, left: 15),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.playlist_add_circle,
+                              color: Colors.green,
+                              size: 36,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Danh sách',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 121,
+                            ),
+                            Text(
+                              'View',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey,
+                              size: 18,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
