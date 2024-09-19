@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/items/task_item.dart';
+import 'package:todolist/model/location_type.dart';
 
 
 import '../home/bottomsheet/list_info_bottomsheet.dart';
@@ -49,6 +50,14 @@ class TaskListPageState extends State<TaskListPage> {
         priority: Priority.low
     ),
 
+    Task(
+      title:'NewReminDer',
+      description: 'party',
+      isCompleted: false,
+      deadline: '10/09/2024'',15:00',
+      repeat: 'Daily',
+      priority: Priority.high,
+    ),
   ];
 
   @override
@@ -107,7 +116,51 @@ class TaskListPageState extends State<TaskListPage> {
                         );
                       },
                     ),
-                    // Other PopupMenuItems
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.check_circle_outline, size: 30),
+                        title: Text(
+                          'Chọn lời nhắc',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.import_export, size: 30),
+                        title: Text(
+                          'Sắp xếp theo',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.remove_red_eye_outlined, size: 30),
+                        title: Text(
+                          'Lời nhắc đã hoàn tất',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.print, size: 30),
+                        title: Text(
+                          'In',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.delete_rounded, color: Colors.red, size: 30),
+                        title: Text(
+                          'Xóa danh sách',
+                          style: TextStyle(fontSize: 18, color: Colors.red),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               },
