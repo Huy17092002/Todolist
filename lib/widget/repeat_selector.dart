@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todolist/bottomsheet/repeatintervalltime_bottomsheet.dart';
 
 
-class RepeatTimeTask extends StatelessWidget {
-  const RepeatTimeTask({super.key});
+class RepeatSelector extends StatelessWidget {
+  const RepeatSelector({super.key});
 
   @override
   Widget build(BuildContext context) {

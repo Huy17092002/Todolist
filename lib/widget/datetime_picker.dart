@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:todolist/configs.dart' ;
 
-class DateClock extends StatefulWidget {
-  const DateClock({super.key});
+class DateTimePicker extends StatefulWidget {
+  const DateTimePicker({super.key});
 
   @override
-  State<DateClock> createState() => _DateClockState();
+  State<DateTimePicker> createState() => _DateTimePickerState();
 }
 
-class _DateClockState extends State<DateClock> {
+class _DateTimePickerState extends State<DateTimePicker> {
   bool showDate = false;
   bool showClock = false;
 
@@ -37,7 +37,7 @@ class _DateClockState extends State<DateClock> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
+        padding: const EdgeInsets.only(top: 14, left: 15, right: 15),
         child: Column(
           children: [
             Row(

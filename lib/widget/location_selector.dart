@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:todolist/configs.dart' ;
 
-class Location extends StatefulWidget {
-  const Location({super.key});
+class LocationEnable  extends StatefulWidget {
+  const LocationEnable({super.key});
 
   @override
-  State<Location> createState() => _LocationState();
+  State<LocationEnable> createState() => _LocationEnableState();
 }
 
-class _LocationState extends State<Location> {
+class _LocationEnableState extends State<LocationEnable> {
   bool switchValue = false;
   bool showText = false;
 
