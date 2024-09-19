@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../widget/dateclock_detailstask.dart';
-import '../../widget/location_detailstask.dart';
-import '../../widget/priority_detailstask.dart';
-import '../../widget/repeat_time_task.dart';
-
-
+import '../../widget/datetime_picker.dart';
+import '../../widget/location_selector.dart';
+import '../../widget/priority_selector.dart';
+import '../../widget/repeat_selector.dart';
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {
   const DetailsTaskListPageBottomsheet({super.key});
@@ -94,7 +92,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                   children: [
                     Container(
                       width: 350,
-                      height: 112, // Adjusted height to accommodate spacing
+                      height: 112,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[300],
@@ -105,7 +103,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                             padding: EdgeInsets.all(8.0),
                             child: TextField(
                               decoration: InputDecoration(
-                                hintText: 'Tieu de',
+                                hintText: 'Tiêu đề',
                                 border: UnderlineInputBorder(
                                 ),
                               ),
@@ -115,7 +113,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                             padding: EdgeInsets.symmetric(horizontal: 8.0),
                             child: TextField(
                               decoration: InputDecoration(
-                                hintText: 'Ghi chu',
+                                hintText: 'Ghi chú',
                                 border: InputBorder.none,
                               ),
                             ),
@@ -124,13 +122,13 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const DateClock(),
+                    const DateTimePicker(),
                     const SizedBox(height: 20),
-                    const RepeatTimeTask(),
+                    const RepeatSelector(),
                     const SizedBox(height: 20),
-                    const Location(),
+                    const LocationEnable(),
                     const SizedBox(height: 20),
-                    const Priority(),
+                     PrioritySelector(),
                   ],
                 ),
               ),
