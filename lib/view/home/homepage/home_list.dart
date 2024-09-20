@@ -34,7 +34,7 @@ class HomeList extends StatelessWidget {
             final item = data[index];
             return TaskGroupItem(
               onTap: () {
-                print('${item.title}  $index');
+                print('${item.title} $index');
                 Navigator.pushNamed(context, Routes.addTask);
               },
               model: item,
