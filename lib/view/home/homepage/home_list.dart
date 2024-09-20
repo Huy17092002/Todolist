@@ -14,7 +14,7 @@ class HomeList extends StatelessWidget {
     TaskList(title: 'Camera',icon: Icons.camera_alt, color: Colors.grey, tasks: []),
     TaskList(title: 'Bong', tasks: []),
     TaskList(title: 'Danh Sach', color: Colors.yellowAccent, tasks: []),
-    TaskList(title: 'boi', tasks: []),
+    TaskList(title: 'Boi', tasks: []),
   ];
 
   @override
