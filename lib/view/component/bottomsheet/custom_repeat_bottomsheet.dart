@@ -4,10 +4,6 @@ import 'package:todolist/configs.dart';
 class  CustomRepeatBottomsheet extends StatelessWidget {
   const  CustomRepeatBottomsheet({super.key});
 
-  void _onTap(BuildContext context) {
-    Navigator.pop(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

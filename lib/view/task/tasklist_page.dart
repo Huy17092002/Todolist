@@ -1,65 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/model/task.dart';
-
-import '../../model/priority.dart';
+import '../../model/tasklist.dart';
 import '../component/items/task_item.dart';
 import '../home/bottomsheet/list_info_bottomsheet.dart';
 
 
-
 class TaskListPage extends StatefulWidget {
-  const TaskListPage({super.key});
+  final TaskList taskList;
+
+  const TaskListPage({super.key, required this.taskList});
 
   @override
   State<TaskListPage> createState() => TaskListPageState();
 }
 
 class TaskListPageState extends State<TaskListPage> {
-  final List<Task> _tasks = [
-    Task(
-      title:'Newreminder',
-      description: 'vung',
-      isCompleted: false,
-      deadline: '10/09/2024'',15:00',
-      repeat: 'Daily',
-      priority: Priority.medium,
-    ),
-    Task(
-      title: 'gao',
-      description: 'bac',
-      isCompleted: false,
-      deadline: '17/09/2024',
-      repeat: '',
-      priority: Priority.high,
-      location: null,
-
-
-    ),
-    Task(
-      title: 'trung',
-      description: 'egg' ,
-      isCompleted: true,
-      deadline: '20/01/2024',
-
-    ),
-    Task(
-        title: 'ga',
-        description: 'trong' ,
-        isCompleted: true,
-        deadline: '20/11/2024',
-        priority: Priority.low
-    ),
-
-    Task(
-      title:'NewReminDer',
-      description: 'party',
-      isCompleted: false,
-      deadline: '10/09/2024'',15:00',
-      repeat: 'Daily',
-      priority: Priority.high,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,14 +39,9 @@ class TaskListPageState extends State<TaskListPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              width: 155,
-            ),
+            const SizedBox(width: 155),
             IconButton(
-              icon: const Icon(
-                Icons.pending_outlined,
-                color: Colors.blue,
-              ),
+              icon: const Icon(Icons.pending_outlined, color: Colors.blue),
               onPressed: () {
                 showMenu(
                   context: context,
@@ -198,35 +147,30 @@ class TaskListPageState extends State<TaskListPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 20,),
             child: Text(
-              'View',
+              widget.taskList.title,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
+                color: widget.taskList.color,
               ),
             ),
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: _tasks.length,
+              itemCount: widget.taskList.tasks.length,
               itemBuilder: (context, index) {
-                final task = _tasks[index];
-                return TaskItem(
-                  task: task,
-
-                );
+                final task = widget.taskList.tasks[index];
+                return TaskItem(task: task);
               },
             ),
           ),
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 33,
-          right: 210,
-        ),
+        padding: const EdgeInsets.only(bottom: 33, right: 210),
         child: SingleChildScrollView(
           child: TextButton.icon(
             icon: const Icon(

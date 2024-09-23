@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
             title: 'Newreminder',
             description: 'vung',
             isCompleted: false,
-            deadline: '10/09/2024' ',15:00',
+            deadline: '10/09/2024'',15:00',
             repeat: 'Daily',
             priority: Priority.medium,
           ),
