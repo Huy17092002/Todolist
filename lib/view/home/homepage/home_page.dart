@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../../model/priority.dart';
+import '../../../model/task.dart';
 import '../../../model/tasklist.dart';
 import '../../../model/tasklist_collection.dart';
-import '../../../routes.dart';
 import '../../component/items/task_group_item.dart';
+import '../../task/tasklist_page.dart';
 import 'home_bottom_navigationbar.dart';
 import 'home_searchbar.dart';
 
@@ -12,14 +14,93 @@ class HomePage extends StatefulWidget {
   final TaskListCollection data = TaskListCollection(
     title: 'Danh sách của tôi',
     tasklists: [
-      TaskList(title: 'Facebook', icon: Icons.facebook, color: Colors.blue, tasks: []),
-      TaskList(title: 'TikTok',icon: Icons.tiktok, color: Colors.black, tasks: []),
-      TaskList(title: 'Telegram',icon: Icons.telegram, color: Colors.blue.shade400, tasks: []),
-      TaskList(title: 'Dien Thoai',icon: Icons.phone_iphone, color: Colors.red, tasks: []),
-      TaskList(title: 'Camera',icon: Icons.camera_alt, color: Colors.grey, tasks: []),
-      TaskList(title: 'Bong', tasks: []),
-      TaskList(title: 'Danh Sach', color: Colors.yellowAccent, tasks: []),
-      TaskList(title: 'Boi', tasks: []),
+      TaskList(
+        title: 'Facebook',
+        icon: Icons.facebook,
+        color: Colors.blue,
+        tasks: [
+          Task(
+            title: 'Newreminder',
+            description: 'vung',
+            isCompleted: false,
+            deadline: '10/09/2024' ',15:00',
+            repeat: 'Daily',
+            priority: Priority.medium,
+          ),
+        ],
+      ),
+      TaskList(
+        title: 'TikTok',
+        icon: Icons.tiktok,
+        color: Colors.black,
+        tasks: [
+          Task(
+            title: 'gao',
+            description: 'bac',
+            isCompleted: false,
+            deadline: '17/09/2024',
+            repeat: '',
+            priority: Priority.high,
+            location: null,
+          ),
+        ],
+      ),
+      TaskList(
+        title: 'Telegram',
+        icon: Icons.telegram,
+        color: Colors.blue.shade400,
+        tasks: [
+          Task(
+            title: 'trung',
+            description: 'egg',
+            isCompleted: true,
+            deadline: '20/01/2024',
+          ),
+          Task(
+              title: 'ga',
+              description: 'trong',
+              isCompleted: true,
+              deadline: '20/11/2024',
+              priority: Priority.low),
+        ],
+      ),
+      TaskList(
+        title: 'Dien Thoai',
+        icon: Icons.phone_iphone,
+        color: Colors.red,
+        tasks: [
+          Task(
+            title: 'NewReminDer',
+            description: 'party',
+            isCompleted: false,
+            deadline: '10/09/2024' ',15:00',
+            repeat: 'Daily',
+            priority: Priority.high,
+          ),
+        ],
+      ),
+      TaskList(
+        title: 'Camera',
+        icon: Icons.camera_alt,
+        color: Colors.grey,
+        tasks: [
+          Task(
+            title: 'Da bong',
+            description: 'Ronaldo',
+            isCompleted: false,
+            deadline: '17/09/2024',
+            repeat: '',
+            priority: Priority.high,
+            location: null,
+          ),
+          Task(
+            title: 'Ca',
+            description: 'fish',
+            isCompleted: true,
+            deadline: '20/01/2024',
+          ),
+        ],
+      ),
     ],
   );
 
@@ -69,7 +150,12 @@ class _HomePageState extends State<HomePage> {
                   return TaskGroupItem(
                     onTap: () {
                       print('${item.title} $index');
-                      Navigator.pushNamed(context, Routes.addTask);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TaskListPage(taskList: item),
+                        ),
+                      );
                     },
                     model: item,
                   );
@@ -82,7 +168,4 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: const HomeBottomNavigationBar(),
     );
   }
-
 }
-
-
