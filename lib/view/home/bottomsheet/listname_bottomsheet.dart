@@ -113,21 +113,6 @@ class ListNameBottomsheet extends StatelessWidget {
       ],
     ),
     TaskList(
-      title: 'Dien Thoai',
-      icon: Icons.phone_iphone,
-      color: Colors.red,
-      tasks: [
-        Task(
-          title: 'NewReminDer',
-          description: 'party',
-          isCompleted: false,
-          deadline: '10/09/2024' ',15:00',
-          repeat: 'Daily',
-          priority: Priority.high,
-        ),
-      ],
-    ),
-    TaskList(
       title: 'Camera',
       icon: Icons.camera_alt,
       color: Colors.grey,

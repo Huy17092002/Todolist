@@ -90,7 +90,7 @@ class HomePage extends StatefulWidget {
             isCompleted: false,
             deadline: '10/09/2024' ',15:00',
             repeat: 'Daily',
-            priority: Priority.high,
+            priority: Priority.low,
           ),
         ],
       ),
