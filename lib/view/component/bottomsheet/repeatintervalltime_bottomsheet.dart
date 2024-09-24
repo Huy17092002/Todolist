@@ -124,7 +124,7 @@ class RepeatIntervallTime extends StatelessWidget {
                   ),
                   child: const ListTile(
                     title: Text(
-                      'Custom',
+                      'Tùy chỉnh',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
