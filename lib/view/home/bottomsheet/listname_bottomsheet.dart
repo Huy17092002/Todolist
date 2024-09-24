@@ -220,7 +220,7 @@ class ListNameBottomsheet extends StatelessWidget {
               final item = data[index];
               return TaskItemListName(
                 onTap: () {
-                  // ignore: avoid_print
+
                   print('${item.title}  $index');
                   Navigator.pop(context);
                 },
