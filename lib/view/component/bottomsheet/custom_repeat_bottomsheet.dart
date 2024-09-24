@@ -10,11 +10,11 @@ class CustomRepeatBottomsheet extends StatefulWidget {
 
 class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
   bool _isExpanded = false;
-  int _selectedValue = 0 ;
+  int _selectedValue = 0;
 
   get index => null;
 
-  void _toggleExpand() {
+  void _toggleExpansion() {
     setState(() {
       _isExpanded = !_isExpanded;
     });
@@ -52,7 +52,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                       ),
                       SizedBox(width: 70),
                       Text(
-                        'Tùy chỉnh',
+                        'Custom',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                 padding: const EdgeInsets.only(top: 25,left: 16,right: 16),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  height: _isExpanded ? 300 : 128,
+                  height: _isExpanded ? 300 : 130,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -94,9 +94,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                           ),
                         ),
                       ),
-                      const Divider(
-                        indent: 17,
-                      ),
+                      const Divider(  indent: 17,),
                       ListTile(
                         title: const Text(
                           'Mỗi',
@@ -106,13 +104,13 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                           ),
                         ),
                         trailing: Text(
-                          '$_selectedValue Ngày',
+                          '$_selectedValue ngày',
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.blue,
                           ),
                         ),
-                        onTap: _toggleExpand,
+                        onTap: _toggleExpansion,
                       ),
                       if (_isExpanded)
                         Expanded(
@@ -152,7 +150,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 24,bottom: 180),
+                padding: const EdgeInsets.only(left: 24, top: 5),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
