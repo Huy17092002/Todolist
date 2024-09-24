@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todolist/configs.dart' ;
 
 class LocationEnable  extends StatefulWidget {
   const LocationEnable({super.key});
@@ -25,7 +24,7 @@ class _LocationEnableState extends State<LocationEnable> {
     return AnimatedContainer(
       height: switchValue ? 120 : 45,
       width: 350,
-      duration: kDuration,
+      duration:  const Duration(milliseconds: 400),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(10),
