@@ -148,7 +148,7 @@ class TaskListPageState extends State<TaskListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20,),
+            padding: const EdgeInsets.only(left: 13,),
             child: Text(
               widget.taskList.title,
               style: TextStyle(
