@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todolist/configs.dart' ;
 
 class DateTimePicker extends StatefulWidget {
   const DateTimePicker({super.key});
@@ -31,7 +30,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       width: 350,
-      duration: kDuration,
+      duration:  const Duration(milliseconds: 400),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(10),
@@ -76,7 +75,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
             ),
             AnimatedContainer(
               height: showDate ? 320 : 0,
-              duration: kDuration,
+              duration:  const Duration(milliseconds: 400),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
@@ -124,7 +123,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
             ),
             AnimatedContainer(
               height: showClock ? 210 : 0,
-              duration: kDuration,
+              duration:  const Duration(milliseconds: 400),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
