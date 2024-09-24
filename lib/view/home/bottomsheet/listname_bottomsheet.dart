@@ -1,19 +1,154 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/priority.dart';
+import '../../../model/task.dart';
 import '../../../model/tasklist.dart';
 import '../../component/items/taskitem_listname.dart';
-
 
 
 class ListNameBottomsheet extends StatelessWidget {
   ListNameBottomsheet({super.key});
   final List<TaskList> data = [
-    TaskList(title: 'facebook', icon: Icons.facebook_outlined, color: Colors.blue, tasks: []),
-    TaskList(title: 'tiktok', icon: Icons.tiktok, color: Colors.black, tasks: []),
-    TaskList(title: 'telegram', icon: Icons.telegram, color: Colors.blue.shade400, tasks: []),
-    TaskList(title: 'dien thoai', icon: Icons.phone_iphone, color: Colors.red, tasks: []),
-    TaskList(title: 'camera', icon: Icons.camera_alt, color: Colors.grey, tasks: []),
-    TaskList(title: 'gfu', tasks: []),
+    TaskList(
+      title: 'Dien Thoai',
+      icon: Icons.phone_iphone,
+      color: Colors.red,
+      tasks: [
+        Task(
+          title: 'NewReminDer',
+          description: 'party',
+          isCompleted: false,
+          deadline: '10/09/2024' ',15:00',
+          repeat: 'Daily',
+          priority: Priority.high,
+        ),
+      ],
+    ),
+    TaskList(
+      title: 'Camera',
+      icon: Icons.camera_alt,
+      color: Colors.grey,
+      tasks: [
+        Task(
+          title: 'Da bong',
+          description: 'Ronaldo',
+          isCompleted: false,
+          deadline: '17/09/2024',
+          repeat: '',
+          priority: Priority.high,
+          location: null,
+        ),
+        Task(
+          title: 'Ca',
+          description: 'fish',
+          isCompleted: true,
+          deadline: '20/01/2024',
+        ),
+      ],
+    ),
+    TaskList(
+      title: 'Facebook',
+      icon: Icons.facebook,
+      color: Colors.blue,
+      tasks: [
+
+        Task(
+          title: 'Newreminder',
+          description: 'vung',
+          isCompleted: false,
+          deadline: '10/09/2024'',15:00',
+          repeat: 'Daily',
+          priority: Priority.medium,
+        ),
+        Task(
+          title: 'cat',
+          description: 'meo',
+          isCompleted: false,
+          deadline: '10/09/2024'',09:00',
+          repeat: 'Daily',
+          priority: Priority.high,
+        ),Task(
+          title: 'birth',
+          description: 'chim',
+          isCompleted: false,
+          deadline: '10/09/2024'',15:00',
+          repeat: 'Daily',
+          priority: Priority.low,
+        ),
+      ],
+    ),
+    TaskList(
+      title: 'TikTok',
+      icon: Icons.tiktok,
+      color: Colors.black,
+      tasks: [
+        Task(
+          title: 'gao',
+          description: 'bac',
+          isCompleted: false,
+          deadline: '17/09/2024',
+          repeat: '',
+          priority: Priority.high,
+          location: null,
+        ),
+      ],
+    ),
+    TaskList(
+      title: 'Telegram',
+      icon: Icons.telegram,
+      color: Colors.blue.shade400,
+      tasks: [
+        Task(
+          title: 'trung',
+          description: 'egg',
+          isCompleted: true,
+          deadline: '20/01/2024',
+        ),
+        Task(
+            title: 'ga',
+            description: 'trong',
+            isCompleted: true,
+            deadline: '20/11/2024',
+            priority: Priority.low),
+      ],
+    ),
+    TaskList(
+      title: 'Dien Thoai',
+      icon: Icons.phone_iphone,
+      color: Colors.red,
+      tasks: [
+        Task(
+          title: 'NewReminDer',
+          description: 'party',
+          isCompleted: false,
+          deadline: '10/09/2024' ',15:00',
+          repeat: 'Daily',
+          priority: Priority.high,
+        ),
+      ],
+    ),
+    TaskList(
+      title: 'Camera',
+      icon: Icons.camera_alt,
+      color: Colors.grey,
+      tasks: [
+        Task(
+          title: 'Da bong',
+          description: 'Ronaldo',
+          isCompleted: false,
+          deadline: '17/09/2024',
+          repeat: '',
+          priority: Priority.high,
+          location: null,
+        ),
+        Task(
+          title: 'Ca',
+          description: 'fish',
+          isCompleted: true,
+          deadline: '20/01/2024',
+        ),
+      ],
+    ),
   ];
 
   @override
@@ -85,6 +220,7 @@ class ListNameBottomsheet extends StatelessWidget {
               final item = data[index];
               return TaskItemListName(
                 onTap: () {
+                  // ignore: avoid_print
                   print('${item.title}  $index');
                   Navigator.pop(context);
                 },
