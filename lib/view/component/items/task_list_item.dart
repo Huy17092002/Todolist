@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist/model/tasklist.dart';
 
 class TaskGroupItem extends StatelessWidget {
-  final VoidCallback onTap;
+   final VoidCallback onTap;
   final TaskList model;
 
   const TaskGroupItem({
@@ -10,6 +10,7 @@ class TaskGroupItem extends StatelessWidget {
     required this.onTap,
     required this.model,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,3 +53,4 @@ class TaskGroupItem extends StatelessWidget {
     );
   }
 }
+
