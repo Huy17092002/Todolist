@@ -11,7 +11,6 @@ class TaskGroupItem extends StatelessWidget {
     required this.model,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
