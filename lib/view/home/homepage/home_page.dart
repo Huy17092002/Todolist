@@ -3,7 +3,7 @@ import '../../../model/priority.dart';
 import '../../../model/task.dart';
 import '../../../model/tasklist.dart';
 import '../../../model/tasklist_collection.dart';
-import '../../component/items/task_group_item.dart';
+import '../../component/items/task_list_item.dart';
 import '../../task/tasklist_page.dart';
 import 'home_bottom_navigationbar.dart';
 import 'home_searchbar.dart';
@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
             title: 'Newreminder',
             description: 'vung',
             isCompleted: false,
-            deadline: '10/09/2024'',15:00',
+            deadline: '10/09/2024' ',15:00',
             repeat: 'Daily',
             priority: Priority.medium,
           ),
@@ -31,14 +31,15 @@ class HomePage extends StatefulWidget {
             title: 'cat',
             description: 'meo',
             isCompleted: false,
-            deadline: '10/09/2024'',09:00',
+            deadline: '10/09/2024' ',09:00',
             repeat: 'Daily',
             priority: Priority.high,
-          ),Task(
+          ),
+          Task(
             title: 'birth',
             description: 'chim',
             isCompleted: false,
-            deadline: '10/09/2024'',15:00',
+            deadline: '10/09/2024' ',15:00',
             repeat: 'Daily',
             priority: Priority.low,
           ),
@@ -71,12 +72,6 @@ class HomePage extends StatefulWidget {
             isCompleted: true,
             deadline: '20/01/2024',
           ),
-          Task(
-              title: 'ga',
-              description: 'trong',
-              isCompleted: true,
-              deadline: '20/11/2024',
-              priority: Priority.low),
         ],
       ),
       TaskList(
@@ -124,7 +119,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -164,16 +159,16 @@ class _HomePageState extends State<HomePage> {
                   final item = widget.data.tasklists[index];
                   return TaskGroupItem(
                     onTap: () {
-                      // ignore: avoid_print
                       print('${item.title} $index');
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => TaskListPage(taskList: item),
                         ),
                       );
-                    }, model: item,
-                 
+                    },
+                    model: item,
                   );
                 },
               ),

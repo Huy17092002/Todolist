@@ -90,7 +90,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                           'Hàng ngày ',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.blue,
+                            color: Colors.grey,
                           ),
                         ),
                       ),

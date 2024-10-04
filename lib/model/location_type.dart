@@ -1,7 +1,7 @@
 enum LocationType { current, departure, destination, place }
 //
 // extension LocationTypeName on LocationType {
-//   String get name {
+//   String get name2 {
 //     switch (this) {
 //       case LocationType.current:
 //         return '';

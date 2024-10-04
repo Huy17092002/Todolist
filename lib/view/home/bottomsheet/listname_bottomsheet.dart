@@ -24,6 +24,7 @@ class ListNameBottomsheet extends StatelessWidget {
         ),
       ],
     ),
+
     TaskList(
       title: 'Camera',
       icon: Icons.camera_alt,
@@ -51,7 +52,6 @@ class ListNameBottomsheet extends StatelessWidget {
       icon: Icons.facebook,
       color: Colors.blue,
       tasks: [
-
         Task(
           title: 'Newreminder',
           description: 'vung',
@@ -205,7 +205,6 @@ class ListNameBottomsheet extends StatelessWidget {
               final item = data[index];
               return TaskItemListName(
                 onTap: () {
-
                   print('${item.title}  $index');
                   Navigator.pop(context);
                 },
