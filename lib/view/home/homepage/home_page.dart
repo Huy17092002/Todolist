@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 import '../../../model/priority.dart';
 import '../../../model/task.dart';
 import '../../../model/tasklist.dart';
@@ -127,56 +129,143 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 67,
         title: const HomeSearchBar(),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 5, top: 15),
-              child: Text(
-                widget.data.title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  height: 1.5,
-                  color: widget.data.color,
+      body: Consumer<TaskListCollectionViewModel>(
+        builder: (BuildContext context, taskListViewModel,  child) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 5, top: 15),
+                  child: Text(
+                    'Danh sach cua toi',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                      color: Colors.blue,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black26, width: 0.24),
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: widget.data.tasklists.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final item = widget.data.tasklists[index];
-                  return TaskGroupItem(
-                    onTap: () {
-                      print('${item.title} $index');
+                const SizedBox(height: 5),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black26, width: 0.24),
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: taskListViewModel.taskLists.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final item = taskListViewModel.taskLists[index];
+                      return TaskListItem(
+                        onTap: () {
+                          print('${item.title} $index');
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TaskListPage(taskList: item),
-                        ),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TaskListPage(taskList: item),
+                            ),
+                          );
+                        },
+                        model: item,
                       );
                     },
-                    model: item,
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
       bottomNavigationBar: const HomeBottomNavigationBar(),
     );
   }
 }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import '../../../viewmodel/tasklistcollection_viewmodel.dart';
+// import '../../component/items/task_list_item.dart';
+// import '../../task/tasklist_page.dart';
+//
+// import 'home_bottom_navigationbar.dart';
+// import 'home_searchbar.dart';
+//
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
+//
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+//
+// class _HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Colors.white,
+//         toolbarHeight: 67,
+//         title: const HomeSearchBar(),
+//       ),
+//       body: Consumer<TaskListViewModel>(
+//         builder: (context, taskListViewModel, child) {
+//           return SingleChildScrollView(
+//             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 const Padding(
+//                   padding: EdgeInsets.only(left: 5, top: 15),
+//                   child: Text(
+//                     'Danh sách của tôi',
+//                     style: TextStyle(
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.bold,
+//                       height: 1.5,
+//                       color: Colors.black,
+//                     ),
+//                   ),
+//                 ),
+//                 const SizedBox(height: 5),
+//                 Container(
+//                   decoration: BoxDecoration(
+//                     border: Border.all(color: Colors.black26, width: 0.24),
+//                     color: Colors.grey[200],
+//                     borderRadius: BorderRadius.circular(8),
+//                   ),
+//                   child: ListView.builder(
+//                     shrinkWrap: true,
+//                     physics: const NeverScrollableScrollPhysics(),
+//                     itemCount: taskListViewModel.taskLists.length,
+//                     itemBuilder: (BuildContext context, int index) {
+//                       final item = taskListViewModel.taskLists[index];
+//                       return TaskListItem(
+//                         onTap: () {
+//                           print('${item.title} $index');
+//                           Navigator.push(
+//                             context,
+//                             MaterialPageRoute(
+//                               builder: (context) => TaskListPage(taskList: item),
+//                             ),
+//                           );
+//                         },
+//                         model: item,
+//                       );
+//                     },
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           );
+//         },
+//       ),
+//       bottomNavigationBar: const HomeBottomNavigationBar(),
+//     );
+//   }
+// }

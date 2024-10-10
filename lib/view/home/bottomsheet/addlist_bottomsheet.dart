@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 class AddListBottomsheet extends StatefulWidget {
   const AddListBottomsheet({super.key});
@@ -9,6 +12,7 @@ class AddListBottomsheet extends StatefulWidget {
 
 class _AddListBottomsheetState extends State<AddListBottomsheet> {
   Color? selectedColor;
+  final TextEditingController _nameController = TextEditingController();
 
   Widget buildColorContainer(Color color) {
     return GestureDetector(
@@ -23,9 +27,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
-          border: selectedColor == color
-              ? Border.all(color: Colors.grey, width: 4)
-              : null,
+          border: selectedColor == color ? Border.all(color: Colors.grey, width: 4) : null,
         ),
       ),
     );
@@ -59,9 +61,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     Navigator.pop(context);
                   },
                 ),
-                const SizedBox(
-                  width: 60,
-                ),
+                const SizedBox(width: 60),
                 const Text(
                   'Danh sách mới',
                   style: TextStyle(
@@ -79,22 +79,15 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thank you'),
-                          actions: [
-                            ElevatedButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    String title = _nameController.text;
+                    final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
+                    Color colorDefault = selectedColor ?? Colors.blue;
+                    taskListCollectionViewModel.addTaskList(TaskList(
+                      color: colorDefault,
+                      title: title,
+                      tasks: [],
+                    ));
+                    Navigator.pop(context);
                   },
                 ),
               ],
@@ -136,6 +129,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                           width: 320,
                           height: 53,
                           child: TextField(
+                            controller: _nameController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -152,9 +146,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 Container(
                   height: 65,
                   width: 350,
@@ -170,25 +162,15 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                         child: Row(
                           children: [
                             buildColorContainer(Colors.red),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.orange),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.yellow),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.green),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.blue),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.purple),
                           ],
                         ),

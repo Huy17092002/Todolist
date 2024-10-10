@@ -13,7 +13,7 @@ class Routes {
       case home:
         return MaterialPageRoute(builder: (_) => HomePage());
       case addTask:
-        return MaterialPageRoute(builder: (_) =>  TaskListPage(taskList: TaskList(title: 'Default', tasks:[])));
+        return MaterialPageRoute(builder: (_) =>  TaskListPage(taskList: TaskList(title: 'Default', tasks:[],)));
       case taskList:
         final TaskList taskList = settings.arguments as TaskList;
         return MaterialPageRoute(

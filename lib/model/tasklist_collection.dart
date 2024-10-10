@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/model/priority.dart';
+import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 
 
@@ -13,3 +15,5 @@ class TaskListCollection {
     required this.tasklists,
   });
 }
+
+
