@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/provider%20/tasklist_provider.dart';
+import 'package:todolist/model/tasklist_collection.dart';
 import 'package:todolist/routes.dart';
-import 'package:todolist/themes.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 void main() {
@@ -14,12 +13,12 @@ class TodoListApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ChangeNotifierProvider(
-      create: (_) => TaskListCollectionViewModel(),
-     child: const MaterialApp(
-      onGenerateRoute: Routes.generateRoute,
-      initialRoute: Routes.home,
-    ),
+    return ChangeNotifierProvider(
+      create: (_) => TaskListCollectionViewModel(TaskListCollection(title: 'Danh sach cua toi', tasklists: [])),
+      child: const MaterialApp(
+        onGenerateRoute: Routes.generateRoute,
+        initialRoute: Routes.home,
+      ),
     );
   }
 }

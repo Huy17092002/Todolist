@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:todolist/view/component/items/taskitem_listname.dart';
-import '../../model/tasklist.dart';
-import '../component/items/task_item.dart';
-import '../home/bottomsheet/list_info_bottomsheet.dart';
-
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/view/component/items/task_item.dart';
+import 'package:todolist/view/home/bottomsheet/list_info_bottomsheet.dart';
 
 class TaskListPage extends StatefulWidget {
   final TaskList taskList;
@@ -62,7 +59,9 @@ class TaskListPageState extends State<TaskListPage> {
                           context: context,
                           isScrollControlled: true,
                           builder: (BuildContext context) {
-                            return const ListInfoBottomsheet();
+                            return ListInfoBottomsheet(
+                              tasklist: TaskList(title: '', tasks: []),
+                            );
                           },
                         );
                       },
@@ -150,7 +149,9 @@ class TaskListPageState extends State<TaskListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 13,),
+            padding: const EdgeInsets.only(
+              left: 13,
+            ),
             child: Text(
               widget.taskList.title,
               style: TextStyle(
@@ -188,9 +189,7 @@ class TaskListPageState extends State<TaskListPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: (){
-
-            },
+            onPressed: () {},
           ),
         ),
       ),

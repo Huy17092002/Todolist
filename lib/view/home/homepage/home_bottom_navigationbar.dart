@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-
-import '../bottomsheet/addlist_bottomsheet.dart';
-import '../bottomsheet/newreminder_bottomsheet.dart';
+import 'package:todolist/view/home/bottomsheet/addlist_bottomsheet.dart';
+import 'package:todolist/view/home/bottomsheet/newreminder_bottomsheet.dart';
 
 class HomeBottomNavigationBar extends StatelessWidget {
   const HomeBottomNavigationBar({super.key});

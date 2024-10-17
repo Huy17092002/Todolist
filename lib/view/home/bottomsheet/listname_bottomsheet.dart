@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../../model/priority.dart';
-import '../../../model/task.dart';
-import '../../../model/tasklist.dart';
-import '../../component/items/taskitem_listname.dart';
-
+import 'package:todolist/model/priority.dart';
+import 'package:todolist/model/task.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/view/component/items/taskitem_listname.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
   ListNameBottomsheet({super.key});
@@ -24,7 +22,6 @@ class ListNameBottomsheet extends StatelessWidget {
         ),
       ],
     ),
-
     TaskList(
       title: 'Camera',
       icon: Icons.camera_alt,

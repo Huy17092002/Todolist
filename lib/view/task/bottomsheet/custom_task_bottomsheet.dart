@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/view/component/bottomsheet/repeatintervalltime_bottomsheet.dart';
+import 'package:todolist/widget/datetime_picker.dart';
+import 'package:todolist/widget/location_selector.dart';
+import 'package:todolist/widget/priority_selector.dart';
 
-import '../../../widget/datetime_picker.dart';
-import '../../../widget/location_selector.dart';
-import '../../../widget/priority_selector.dart';
-import '../../component/bottomsheet/repeatintervalltime_bottomsheet.dart';
+
 
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {

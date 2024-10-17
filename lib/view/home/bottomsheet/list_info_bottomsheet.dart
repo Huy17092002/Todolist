@@ -1,8 +1,17 @@
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
+
+
 
 class ListInfoBottomsheet extends StatefulWidget {
-  const ListInfoBottomsheet({super.key});
+  final TaskList tasklist;
+
+  const ListInfoBottomsheet({
+    super.key,
+    required this.tasklist,
+  });
 
   @override
   State<ListInfoBottomsheet> createState() => _ListInfoBottomsheetState();
@@ -10,6 +19,20 @@ class ListInfoBottomsheet extends StatefulWidget {
 
 class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
   Color? selectedColor;
+  late TextEditingController _nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.tasklist.title);
+    selectedColor = widget.tasklist.color;
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   Widget buildColorContainer(Color color) {
     return GestureDetector(
@@ -34,6 +57,8 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
 
   @override
   Widget build(BuildContext context) {
+    final taskListCollectionProvider = Provider.of<TaskListCollectionViewModel>(context);
+
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -51,51 +76,30 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                 TextButton(
                   child: const Text(
                     'Hủy',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.blue,
-                    ),
+                    style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
-                const SizedBox(
-                  width: 40,
-                ),
+                const SizedBox(width: 30),
                 const Text(
-                  'Thông tin danh sách',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  'Danh sách thông tin',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(width: 35),
+                const SizedBox(width: 45),
                 TextButton(
                   child: const Text(
                     'Xong',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.blue,
-                    ),
+                    style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thank you'),
-                          actions: [
-                            ElevatedButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
+                    taskListCollectionProvider.updateTaskList(
+                      widget.tasklist,
+                      _nameController.text,
+                      selectedColor ?? widget.tasklist.color,
                     );
+                    Navigator.of(context).pop();
                   },
                 ),
               ],
@@ -121,9 +125,9 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                           child: Container(
                             width: 90,
                             height: 90,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.blue,
+                              color: selectedColor ?? Colors.blue,
                             ),
                             child: const Icon(
                               Icons.format_list_bulleted_rounded,
@@ -137,6 +141,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                           width: 320,
                           height: 53,
                           child: TextField(
+                            controller: _nameController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -146,6 +151,23 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
+                              suffixIcon: _nameController.text.isNotEmpty
+                                  ? GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _nameController.clear();
+                                  });
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Icon(
+                                    Icons.cancel,
+                                    color: Colors.grey,
+                                    size: 25,
+                                  ),
+                                ),
+                              )
+                                  : null,
                             ),
                           ),
                         ),
@@ -153,9 +175,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 Container(
                   height: 65,
                   width: 350,
@@ -171,25 +191,15 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                         child: Row(
                           children: [
                             buildColorContainer(Colors.red),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.orange),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.yellow),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.green),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.blue),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            const SizedBox(width: 10),
                             buildColorContainer(Colors.purple),
                           ],
                         ),
@@ -205,3 +215,4 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
     );
   }
 }
+
