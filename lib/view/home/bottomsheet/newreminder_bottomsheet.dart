@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
-import 'listname_bottomsheet.dart';
+
 
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
