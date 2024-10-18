@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
-
-
 class ListInfoBottomsheet extends StatefulWidget {
   final TaskList tasklist;
 
@@ -24,7 +22,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.tasklist.title);
+    _nameController = TextEditingController(text: widget.tasklist.name);
     selectedColor = widget.tasklist.color;
   }
 
@@ -58,7 +56,6 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
   @override
   Widget build(BuildContext context) {
     final taskListCollectionProvider = Provider.of<TaskListCollectionViewModel>(context);
-
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -94,7 +91,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                     style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                   onPressed: () {
-                    taskListCollectionProvider.updateTaskList(
+                    taskListCollectionProvider.editTaskList(
                       widget.tasklist,
                       _nameController.text,
                       selectedColor ?? widget.tasklist.color,

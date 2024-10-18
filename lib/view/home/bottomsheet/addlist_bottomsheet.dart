@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/task/tasklist_page.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
@@ -25,12 +24,6 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
         showClearIcon = _nameController.text.isNotEmpty;
       });
     });
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
   }
 
   Widget buildColorContainer(Color color) {
@@ -98,26 +91,25 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    String title = _nameController.text;
+                    String name = _nameController.text;
                     Color colorDefault = selectedColor ?? Colors.blue;
-                    final taskListCollectionViewModel =
-                    Provider.of<TaskListCollectionViewModel>(context, listen: false);
+                    final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
                     taskListCollectionViewModel.addTaskList(
                       TaskList(
                         color: colorDefault,
-                        title: title,
+                        title: name,
                         tasks: [],
                       ),
                     );
                     Navigator.pop(context);
                     Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>  TaskListPage(taskList:TaskList(
-                            color: colorDefault,
-                            title: title,
-                            tasks: [],
-                          ),),
-                        ),
+                      MaterialPageRoute(
+                        builder: (context) => TaskListPage(taskList: TaskList(
+                          color: colorDefault,
+                          title: name,
+                          tasks: [],
+                        )),
+                      ),
                     );
                   },
                 ),
@@ -144,9 +136,9 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                           child: Container(
                             width: 90,
                             height: 90,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.blue,
+                              color: selectedColor ?? Colors.blue, // Sử dụng selectedColor
                             ),
                             child: const Icon(
                               Icons.format_list_bulleted_rounded,
