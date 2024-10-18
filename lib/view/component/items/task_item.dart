@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/view/task/bottomsheet/custom_task_bottomsheet.dart';
 
-
-
-
 class TaskItem extends StatefulWidget {
   final Task task;
 

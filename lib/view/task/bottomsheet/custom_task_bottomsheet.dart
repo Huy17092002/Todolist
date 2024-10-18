@@ -4,9 +4,6 @@ import 'package:todolist/widget/datetime_picker.dart';
 import 'package:todolist/widget/location_selector.dart';
 import 'package:todolist/widget/priority_selector.dart';
 
-
-
-
 class DetailsTaskListPageBottomsheet extends StatefulWidget {
   const DetailsTaskListPageBottomsheet({super.key});
 

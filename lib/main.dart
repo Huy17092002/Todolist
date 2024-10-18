@@ -14,7 +14,7 @@ class TodoListApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TaskListCollectionViewModel(TaskListCollection(title: 'Danh sach cua toi', tasklists: [])),
+      create: (_) => TaskListCollectionViewModel(data),
       child: const MaterialApp(
         onGenerateRoute: Routes.generateRoute,
         initialRoute: Routes.home,

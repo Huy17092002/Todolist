@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
-
-
 import 'listname_bottomsheet.dart';
 
 class NewReminderBottomsheet extends StatelessWidget {
@@ -34,9 +32,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                const SizedBox(
-                  width: 60,
-                ),
+                const SizedBox(width: 60),
                 const Text(
                   'Lời nhắc mới',
                   style: TextStyle(
@@ -119,50 +115,48 @@ class NewReminderBottomsheet extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext context) {
-                              return const DetailsTaskBottomsheet();
-                            },
-                          );
+                  // Chi tiết Container
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return const DetailsTaskBottomsheet();
                         },
-                        child: Container(
-                          height: 45,
-                          width: 352,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[300],
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 2, left: 20),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Chi tiết',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                SizedBox(width: 238),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 19,
-                                  color: Colors.grey,
-                                ),
-                              ],
+                      );
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 350,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 2, left: 20),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Chi tiết',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
+                            SizedBox(width: 238),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 19,
+                              color: Colors.grey,
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                   const SizedBox(height: 20),
+                  // Danh sách Container
                   GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
@@ -174,7 +168,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      height: 45,
+                      height: 45, // Ensure this height matches
                       width: 350,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -189,9 +183,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                               color: Colors.green,
                               size: 36,
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
+                            SizedBox(width: 10),
                             Text(
                               'Danh sách',
                               style: TextStyle(
@@ -199,9 +191,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
-                              width: 121,
-                            ),
+                            SizedBox(width: 121),
                             Text(
                               'View',
                               style: TextStyle(
@@ -209,9 +199,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
+                            SizedBox(width: 10),
                             Icon(
                               Icons.arrow_forward_ios,
                               color: Colors.grey,
