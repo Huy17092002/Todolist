@@ -3,35 +3,32 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/model/tasklist_collection.dart';
 
 class TaskListCollectionViewModel extends ChangeNotifier {
-  final TaskListCollection _taskListCollection;
+  TaskListCollection taskListCollection;
 
-  TaskListCollectionViewModel(this._taskListCollection);
+  TaskListCollectionViewModel(this.taskListCollection);
 
-  List<TaskList> get taskLists => _taskListCollection.tasklists;
+  List<TaskList> get taskLists => taskListCollection.tasklists;
 
-  String get title => _taskListCollection.title;
+  String get title => taskListCollection.title;
 
   void updateTitle(String newTitle) {
-    _taskListCollection.title = newTitle;
+    taskListCollection.title = newTitle;
     notifyListeners();
   }
 
   void addTaskList(TaskList newTaskList) {
-    _taskListCollection.tasklists.add(newTaskList);
+    taskListCollection.tasklists.add(newTaskList);
     notifyListeners();
   }
 
   void deleteTaskList(TaskList taskList) {
-    _taskListCollection.tasklists.remove(taskList);
+    taskListCollection.tasklists.remove(taskList);
     notifyListeners();
   }
 
-  void updateTaskList(TaskList taskList, String newTitle, Color newColor) {
-    taskList.title = newTitle;
+  void editTaskList(TaskList taskList, String newName, Color newColor) {
+    taskList.name = newName;
     taskList.color = newColor;
     notifyListeners();
   }
 }
-
-
-
