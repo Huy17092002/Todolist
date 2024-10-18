@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.only(left: 5, top: 15),
               child: Text(
-              Provider.of<TaskListCollectionViewModel>(context,listen: false).title,
+                Provider.of<TaskListCollectionViewModel>(context, listen: false).title,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
