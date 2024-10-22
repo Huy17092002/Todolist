@@ -17,18 +17,18 @@ class ListInfoBottomsheet extends StatefulWidget {
 
 class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
   Color? selectedColor;
-  late TextEditingController _nameController;
+  late TextEditingController nameController;
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.tasklist.name);
+    nameController = TextEditingController(text: widget.tasklist.name);
     selectedColor = widget.tasklist.color;
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -55,7 +55,6 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
 
   @override
   Widget build(BuildContext context) {
-    final taskListCollectionProvider = Provider.of<TaskListCollectionViewModel>(context);
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -91,10 +90,10 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                     style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                   onPressed: () {
-                    taskListCollectionProvider.editTaskList(
-                      widget.tasklist,
-                      _nameController.text,
-                      selectedColor ?? widget.tasklist.color,
+                    String newName = nameController.text;
+                    var newColor  = selectedColor ?? widget.tasklist.color;
+                    Provider.of<TaskListCollectionViewModel>(context, listen: false).editTaskList(
+                      widget.tasklist, newName, newColor,
                     );
                     Navigator.of(context).pop();
                   },
@@ -138,7 +137,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                           width: 320,
                           height: 53,
                           child: TextField(
-                            controller: _nameController,
+                            controller: nameController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -148,11 +147,11 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              suffixIcon: _nameController.text.isNotEmpty
+                              suffixIcon: nameController.text.isNotEmpty
                                   ? GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _nameController.clear();
+                                    nameController.clear();
                                   });
                                 },
                                 child: const Padding(
@@ -212,4 +211,3 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
     );
   }
 }
-
