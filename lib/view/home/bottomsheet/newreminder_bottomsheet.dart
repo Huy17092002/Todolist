@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
 
-
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
 
@@ -169,7 +168,7 @@ class NewReminderBottomsheet extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      height: 45, // Ensure this height matches
+                      height: 45,
                       width: 350,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
