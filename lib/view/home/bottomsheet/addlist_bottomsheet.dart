@@ -13,15 +13,15 @@ class AddListBottomsheet extends StatefulWidget {
 
 class _AddListBottomsheetState extends State<AddListBottomsheet> {
   Color? selectedColor;
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   bool showClearIcon = false;
 
   @override
   void initState() {
     super.initState();
-    _nameController.addListener(() {
+    nameController.addListener(() {
       setState(() {
-        showClearIcon = _nameController.text.isNotEmpty;
+        showClearIcon = nameController.text.isNotEmpty;
       });
     });
   }
@@ -91,10 +91,9 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     ),
                   ),
                   onPressed: () {
-                    String name = _nameController.text;
+                    String name = nameController.text;
                     Color colorDefault = selectedColor ?? Colors.blue;
-                    final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
-                    taskListCollectionViewModel.addTaskList(
+                    Provider.of<TaskListCollectionViewModel>(context, listen: false).addTaskList(
                       TaskList(
                         color: colorDefault,
                         title: name,
@@ -138,7 +137,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                             height: 90,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: selectedColor ?? Colors.blue, // Sử dụng selectedColor
+                              color: selectedColor ?? Colors.blue,
                             ),
                             child: const Icon(
                               Icons.format_list_bulleted_rounded,
@@ -152,7 +151,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                           width: 320,
                           height: 53,
                           child: TextField(
-                            controller: _nameController,
+                            controller: nameController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -166,7 +165,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                                   ? GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _nameController.clear();
+                                    nameController.clear();
                                     showClearIcon = false;
                                   });
                                 },
@@ -212,7 +211,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                             const SizedBox(width: 10),
                             buildColorContainer(Colors.blue),
                             const SizedBox(width: 10),
-                            buildColorContainer(Colors.purple),
+                            buildColorContainer(Colors.purpleAccent),
                           ],
                         ),
                       ),

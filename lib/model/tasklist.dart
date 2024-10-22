@@ -14,9 +14,5 @@ class TaskList {
     required this.tasks,
   });
 
-  String get name => title;
-
-  set name(String name) {
-    title = name;
-  }
+  get name => null;
 }
