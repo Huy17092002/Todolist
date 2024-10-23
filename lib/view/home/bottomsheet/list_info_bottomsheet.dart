@@ -22,7 +22,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController(text: widget.tasklist.name);
+    nameController = TextEditingController(text: widget.tasklist.title);
     selectedColor = widget.tasklist.color;
   }
 
@@ -90,10 +90,10 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                     style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                   onPressed: () {
-                    String newName = nameController.text;
+                    String newTitle = nameController.text;
                     var newColor  = selectedColor ?? widget.tasklist.color;
                     Provider.of<TaskListCollectionViewModel>(context, listen: false).editTaskList(
-                      widget.tasklist, newName, newColor,
+                      widget.tasklist, newTitle, newColor,
                     );
                     Navigator.of(context).pop();
                   },

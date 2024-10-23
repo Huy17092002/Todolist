@@ -116,11 +116,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void editTaskList(TaskList taskList, String newName, Color newColor) {
-    taskList.title = newName;
+  void editTaskList(TaskList taskList, String newTitle, Color newColor) {
+    taskList.title = newTitle;
     taskList.color = newColor;
     notifyListeners();
   }
 }
-
 

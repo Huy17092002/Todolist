@@ -115,7 +115,7 @@ class _TaskItemState extends State<TaskItem> {
                 SizedBox(
                   height: 21,
                   child: Text(
-                    '${widget.task.deadline}, ${widget.task.repeat}',
+                    '${widget.task.deadline} ${widget.task.repeat}',
                     style: const TextStyle(
                       fontSize: 17,
                       color: Colors.grey,
