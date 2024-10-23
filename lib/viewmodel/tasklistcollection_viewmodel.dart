@@ -106,11 +106,6 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     ],
   );
 
-  void updateTitle(String newTitle) {
-    taskListCollection.title = newTitle;
-    notifyListeners();
-  }
-
   void addTaskList(TaskList newTaskList) {
     taskListCollection.tasklists.add(newTaskList);
     notifyListeners();
@@ -127,3 +122,5 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+
