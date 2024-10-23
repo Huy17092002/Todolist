@@ -37,6 +37,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
             repeat: 'Daily',
             priority: Priority.low,
           ),
+          Task(title: 'egj', isCompleted: true,description: 'hsedjkfh')
         ],
       ),
       TaskList(
