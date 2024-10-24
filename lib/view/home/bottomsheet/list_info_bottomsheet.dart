@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/viewmodel/tasklist_viewmodel.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
+
 
 class ListInfoBottomsheet extends StatefulWidget {
   final TaskList tasklist;
@@ -91,10 +93,9 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                   ),
                   onPressed: () {
                     String newTitle = nameController.text;
-                    var newColor  = selectedColor ?? widget.tasklist.color;
-                    Provider.of<TaskListCollectionViewModel>(context, listen: false).editTaskList(
-                      widget.tasklist, newTitle, newColor,
-                    );
+                    Color newColor = selectedColor ?? widget.tasklist.color;
+                    Provider.of<TaskListCollectionViewModel>(context, listen: false).updateTaskList(widget.tasklist, newTitle, newColor);
+
                     Navigator.of(context).pop();
                   },
                 ),
