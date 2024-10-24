@@ -37,7 +37,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
             repeat: 'Daily',
             priority: Priority.low,
           ),
-          Task(title: 'egj', isCompleted: true,description: 'hsedjkfh')
+          Task(title: 'egj', isCompleted: true, description: 'hsedjkfh')
         ],
       ),
       TaskList(
@@ -107,6 +107,11 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     ],
   );
 
+  TaskListCollection getTaskListCollection() {
+    notifyListeners();
+    return taskListCollection;
+  }
+
   void addTaskList(TaskList newTaskList) {
     taskListCollection.tasklists.add(newTaskList);
     notifyListeners();
@@ -117,10 +122,12 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void editTaskList(TaskList taskList, String newTitle, Color newColor) {
-    taskList.title = newTitle;
-    taskList.color = newColor;
-    notifyListeners();
+  void updateTaskList(TaskList taskList, String newTitle, Color newColor) {
+    int index = taskListCollection.tasklists.indexOf(taskList);
+    if (index != -1) {
+      taskListCollection.tasklists[index].title = newTitle;
+      taskListCollection.tasklists[index].color = newColor;
+      notifyListeners();
+    }
   }
 }
-
