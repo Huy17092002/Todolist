@@ -122,11 +122,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTaskList(TaskList taskList, String newTitle, Color newColor) {
+  void updateTaskList(TaskList taskList) {
     int index = taskListCollection.tasklists.indexOf(taskList);
     if (index != -1) {
-      taskListCollection.tasklists[index].title = newTitle;
-      taskListCollection.tasklists[index].color = newColor;
+      taskListCollection.tasklists[index] = taskList;
       notifyListeners();
     }
   }
