@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:todolist/model/priority.dart';
 import 'package:todolist/model/task.dart';
@@ -8,11 +9,11 @@ class TaskListCollectionViewModel extends ChangeNotifier {
   late TaskListCollection taskListCollection;
 
   TaskListCollectionViewModel() {
-    getTaskListCollection();
+    taskListCollection = getTaskListCollection();
   }
 
-  void getTaskListCollection() {
-    taskListCollection = TaskListCollection(
+  TaskListCollection getTaskListCollection() {
+    return TaskListCollection(
       title: 'Danh sách của tôi',
       tasklists: [
         TaskList(
@@ -25,7 +26,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: "Vùng",
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Daily',
+              repeat: 'Hằng ngày',
               priority: Priority.medium,
             ),
             Task(
@@ -33,7 +34,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Mèo',
               isCompleted: false,
               deadline: '10/09/2024 09:00',
-              repeat: 'Daily',
+              repeat: 'Hằng ngày',
               priority: Priority.high,
             ),
             Task(
@@ -41,10 +42,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Chim',
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Daily',
+              repeat: 'Hằng ngày',
               priority: Priority.low,
             ),
-            Task(title: 'egj', isCompleted: true, description: 'hsedjkfh')
+            Task(title: 'egj', isCompleted: true, description: 'hsedjkfh'),
           ],
         ),
         TaskList(
@@ -85,7 +86,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Party',
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Daily',
+              repeat: 'Hằng ngày',
               priority: Priority.low,
             ),
           ],
@@ -113,7 +114,6 @@ class TaskListCollectionViewModel extends ChangeNotifier {
         ),
       ],
     );
-    notifyListeners();
   }
 
   void addTaskList(TaskList newTaskList) {
