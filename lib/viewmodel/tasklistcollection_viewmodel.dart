@@ -8,6 +8,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
   late TaskListCollection taskListCollection;
 
   TaskListCollectionViewModel() {
+    taskListCollection = TaskListCollection(
+      title: '',
+      tasklists: [],
+    );
     getTaskListCollection();
   }
 
