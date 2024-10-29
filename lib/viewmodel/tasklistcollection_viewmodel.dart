@@ -8,11 +8,15 @@ class TaskListCollectionViewModel extends ChangeNotifier {
   late TaskListCollection taskListCollection;
 
   TaskListCollectionViewModel() {
-    taskListCollection = getTaskListCollection();
+    taskListCollection = TaskListCollection(
+      title: '',
+      tasklists: [],
+    );
+    getTaskListCollection();
   }
 
-  TaskListCollection getTaskListCollection() {
-    return TaskListCollection(
+  void getTaskListCollection() {
+    taskListCollection = TaskListCollection(
       title: 'Danh sách của tôi',
       tasklists: [
         TaskList(
@@ -25,7 +29,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: "Vùng",
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Hằng ngày',
+              repeat: 'Daily',
               priority: Priority.medium,
             ),
             Task(
@@ -33,7 +37,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Mèo',
               isCompleted: false,
               deadline: '10/09/2024 09:00',
-              repeat: 'Hằng ngày',
+              repeat: 'Daily',
               priority: Priority.high,
             ),
             Task(
@@ -41,10 +45,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Chim',
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Hằng ngày',
+              repeat: 'Daily',
               priority: Priority.low,
             ),
-            Task(title: 'egj', isCompleted: true, description: 'hsedjkfh'),
+            Task(title: 'egj', isCompleted: true, description: 'hsedjkfh')
           ],
         ),
         TaskList(
@@ -85,7 +89,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               description: 'Party',
               isCompleted: false,
               deadline: '10/09/2024 15:00',
-              repeat: 'Hằng ngày',
+              repeat: 'Daily',
               priority: Priority.low,
             ),
           ],
@@ -113,6 +117,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
         ),
       ],
     );
+    notifyListeners();
   }
 
   void addTaskList(TaskList newTaskList) {
@@ -133,6 +138,3 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     }
   }
 }
-
-
-
