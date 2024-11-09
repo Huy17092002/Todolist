@@ -15,8 +15,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<TaskListCollectionViewModel>(context, listen: false)
+        .getTaskListCollection();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context);
+    final taskListCollectionViewModel =
+        Provider.of<TaskListCollectionViewModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -24,14 +33,14 @@ class _HomePageState extends State<HomePage> {
         title: const HomeSearchBar(),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 5, top: 15),
+              padding: const EdgeInsets.only(left: 17, top: 15),
               child: Text(
-                taskListCollectionViewModel.taskListCollection.title,
+                taskListCollectionViewModel.taskListCollection?.title ??
+                    'Danh sách của tôi',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -41,30 +50,36 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 5),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white70),
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: taskListCollectionViewModel.taskListCollection.tasklists.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final item = taskListCollectionViewModel.taskListCollection.tasklists[index];
-                  return TaskListItem(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TaskListPage(taskList: item),
-                        ),
-                      );
-                    },
-                    model: item,
-                  );
-                },
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white70),
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: taskListCollectionViewModel
+                          .taskListCollection?.tasklists.length ??
+                      0,
+                  itemBuilder: (BuildContext context, int index) {
+                    final item = taskListCollectionViewModel
+                        .taskListCollection!.tasklists[index];
+                    return TaskListItem(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TaskListPage(taskList: item),
+                          ),
+                        );
+                      },
+                      model: item,
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -74,4 +89,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

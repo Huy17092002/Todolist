@@ -5,13 +5,10 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/model/tasklist_collection.dart';
 
 class TaskListCollectionViewModel extends ChangeNotifier {
-  late TaskListCollection taskListCollection;
+  TaskListCollection? taskListCollection;
 
-  TaskListCollectionViewModel() {
-    getTaskListCollection();
-  }
-
-  void getTaskListCollection() {
+  Future<void> getTaskListCollection() async {
+    await Future.delayed(const Duration(milliseconds: 500));
     taskListCollection = TaskListCollection(
       title: 'Danh sách của tôi',
       tasklists: [
@@ -44,7 +41,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
               repeat: 'Daily',
               priority: Priority.low,
             ),
-            Task(title: 'egj', isCompleted: true, description: 'hsedjkfh')
+            Task(title: 'egj', isCompleted: true, description: 'heperlink'),
           ],
         ),
         TaskList(
@@ -117,19 +114,19 @@ class TaskListCollectionViewModel extends ChangeNotifier {
   }
 
   void addTaskList(TaskList newTaskList) {
-    taskListCollection.tasklists.add(newTaskList);
+    taskListCollection?.tasklists.add(newTaskList);
     notifyListeners();
   }
 
   void deleteTaskList(TaskList taskList) {
-    taskListCollection.tasklists.remove(taskList);
+    taskListCollection?.tasklists.remove(taskList);
     notifyListeners();
   }
 
   void updateTaskList(TaskList taskList) {
-    int index = taskListCollection.tasklists.indexOf(taskList);
+    int index = taskListCollection?.tasklists.indexOf(taskList) ?? -1;
     if (index != -1) {
-      taskListCollection.tasklists[index] = taskList;
+      taskListCollection?.tasklists[index] = taskList;
       notifyListeners();
     }
   }
