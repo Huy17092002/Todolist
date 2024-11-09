@@ -17,15 +17,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<TaskListCollectionViewModel>(context, listen: false)
-        .getTaskListCollection();
+    Provider.of<TaskListCollectionViewModel>(context, listen: false).getTaskListCollection();
   }
 
   @override
   Widget build(BuildContext context) {
     final taskListCollectionViewModel =
         Provider.of<TaskListCollectionViewModel>(context);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -61,12 +59,9 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: taskListCollectionViewModel
-                          .taskListCollection?.tasklists.length ??
-                      0,
+                  itemCount: taskListCollectionViewModel.taskListCollection?.tasklists.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
-                    final item = taskListCollectionViewModel
-                        .taskListCollection!.tasklists[index];
+                    final item = taskListCollectionViewModel.taskListCollection!.tasklists[index];
                     return TaskListItem(
                       onTap: () {
                         Navigator.push(
