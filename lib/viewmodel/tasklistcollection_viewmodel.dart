@@ -115,14 +115,17 @@ class TaskListCollectionViewModel extends ChangeNotifier {
           ),
         ],
       );
-      if(taskListCollection?.tasklists.isEmpty == true){
-        throw Exception();
+
+      if (taskListCollection?.tasklists.isEmpty == true) {
+        throw "Danh sách tasklist trống!";
       }
-    }catch(errol) {
-      error = 'lỗi không tải được dữ liệu!';
+    } catch (e) {
+      error = e.toString();
+      print("Error: $error");
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
-    isLoading = false;
-    notifyListeners();
   }
 
   void addTaskList(TaskList newTaskList) {
@@ -143,3 +146,8 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     }
   }
 }
+
+
+
+
+
