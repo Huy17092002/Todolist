@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/model/tasklist.dart';
-import 'package:todolist/view/task/tasklist_page.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 class AddListBottomsheet extends StatefulWidget {
@@ -102,15 +101,15 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                       ),
                     );
                     Navigator.pop(context);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => TaskListPage(taskList: TaskList(
-                          color: colorDefault,
-                          title: name,
-                          tasks: [],
-                        )),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => TaskListPage(taskList: TaskList(
+                    //       color: colorDefault,
+                    //       title: name,
+                    //       tasks: [],
+                    //     )),
+                    //   ),
+                    // ); 
                   },
                 ),
               ],

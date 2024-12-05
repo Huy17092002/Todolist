@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/model/task.dart';
+import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/task/bottomsheet/details_tasklistpage_bottomsheet.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
 
 class TaskItem extends StatefulWidget {
   final Task task;
+  final TaskList taskList;
 
-  const TaskItem({
-    super.key,
-    required this.task,
-  });
+  const TaskItem({super.key, required this.task, required this.taskList});
 
   @override
   State<TaskItem> createState() => _TaskItemState();
@@ -24,7 +25,8 @@ class _TaskItemState extends State<TaskItem> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.task.title);
-    _descriptionController = TextEditingController(text: widget.task.description);
+    _descriptionController =
+        TextEditingController(text: widget.task.description);
     isChecked = widget.task.isCompleted;
   }
 
@@ -49,7 +51,9 @@ class _TaskItemState extends State<TaskItem> {
             label: 'Details',
           ),
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              Provider.of<TaskViewModel>(context, listen: false).deleteTask(widget.taskList, widget.task);
+            },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             label: 'Delete',
@@ -67,10 +71,13 @@ class _TaskItemState extends State<TaskItem> {
                 onTap: () {
                   setState(() {
                     isChecked = !isChecked;
+                    Provider.of<TaskViewModel>(context, listen: false).toggleTaskCompletion(widget.taskList, widget.task);
                   });
                 },
                 child: Icon(
-                  isChecked ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                  isChecked
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
                   size: 26,
                   color: isChecked ? Colors.blueAccent : Colors.grey[350],
                 ),
@@ -88,7 +95,10 @@ class _TaskItemState extends State<TaskItem> {
                         padding: const EdgeInsets.only(top: 3),
                         child: Text(
                           widget.task.priorityName,
-                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.red),
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red),
                         ),
                       ),
                       const SizedBox(width: 2),
@@ -118,73 +128,37 @@ class _TaskItemState extends State<TaskItem> {
                             fontWeight: FontWeight.w400,
                             color: isChecked ? Colors.grey : Colors.black,
                           ),
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            // Update task title
+                            Provider.of<TaskViewModel>(context, listen: false).updateTaskTitle(widget.taskList, widget.task, value);
+                          },
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 5),
                   SizedBox(
                     height: 20,
                     child: TextField(
                       controller: _descriptionController,
                       cursorHeight: 17,
                       decoration: InputDecoration(
-                        hintText: 'Add note',
+                        hintText: 'Ghi chú',
                         border: InputBorder.none,
                         hintStyle: TextStyle(color: Colors.grey[600]),
                       ),
                       style: TextStyle(
                         color: isChecked ? Colors.grey : Colors.black,
                       ),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        // Update task description
+                        Provider.of<TaskViewModel>(context, listen: false).updateTaskDescription(widget.taskList, widget.task, value);
+                      },
                     ),
                   ),
-                  SizedBox(
-                    height: 21,
-                    child: Text(
-                      '${widget.task.deadline} ${widget.task.repeat}',
-                      style: const TextStyle(
-                        fontSize: 17,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Container(
-                    width: 180,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[300],
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.blue[600],
-                            ),
-                            child: const Icon(
-                              Icons.directions_car,
-                              color: Colors.white,
-                              size: 15,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Text(
-                          'Getting out of the Car',
-                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 7),
+                  const SizedBox(height: 3),
                   const Divider(height: 0.3, color: Colors.grey),
+                  const SizedBox(height: 7),
                 ],
               ),
             ),

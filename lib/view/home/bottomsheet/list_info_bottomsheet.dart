@@ -145,8 +145,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              suffixIcon: nameController.text.isNotEmpty
-                                  ? GestureDetector(
+                              suffixIcon: nameController.text.isNotEmpty ? GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     nameController.clear();
@@ -208,5 +207,4 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
       ),
     );
   }
-
 }

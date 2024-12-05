@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/task.dart';
+import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
 
 class NewReminderBottomsheet extends StatelessWidget {
   const NewReminderBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<TaskViewModel>(context, listen: false);
+
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -51,22 +57,13 @@ class NewReminderBottomsheet extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Xong'),
-                          actions: [
-                            ElevatedButton(
-                              child: const Text('Ok'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    // if (taskViewModel.taskLists.isEmpty) {
+                    //   taskViewModel.taskLists.add(TaskList(title: 'New TaskList', tasks: []));
+                    // }
+                    // final taskList = taskViewModel.taskLists[0];
+                    // final newTask = Task(title: '', isCompleted: false);
+                    // taskViewModel.addTask(taskList, newTask);
+                    Navigator.pop(context);
                   },
                 ),
               ],
@@ -219,3 +216,5 @@ class NewReminderBottomsheet extends StatelessWidget {
     );
   }
 }
+
+
