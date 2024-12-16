@@ -69,52 +69,6 @@ class TaskListPageState extends State<TaskListPage> {
                         );
                       },
                     ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.check_circle_outline, size: 30),
-                        title: Text(
-                          'Chọn lời nhắc',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.import_export, size: 30),
-                        title: Text(
-                          'Sắp xếp theo',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.remove_red_eye_outlined, size: 30),
-                        title: Text(
-                          'Lời nhắc đã hoàn tất',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.print, size: 30),
-                        title: Text(
-                          'In',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.delete_rounded,
-                            color: Colors.red, size: 30),
-                        title: Text(
-                          'Xóa danh sách',
-                          style: TextStyle(fontSize: 18, color: Colors.red),
-                        ),
-                      ),
-                    ),
                   ],
                 );
               },
@@ -159,7 +113,8 @@ class TaskListPageState extends State<TaskListPage> {
                     itemBuilder: (context, index) {
                       final task = widget.taskList.tasks[index];
                       return TaskItem(
-                        task: task, taskList: widget.taskList,
+                        task: task,
+                        taskList: widget.taskList,
                       );
                     },
                   );
@@ -201,3 +156,112 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
+
+
+
+// import 'dart:async'; // Thêm import này để sử dụng Timer
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:todolist/model/task.dart';
+// import 'package:todolist/model/tasklist.dart';
+// import 'package:todolist/view/component/items/task_item.dart';
+// import 'package:todolist/view/home/bottomsheet/list_info_bottomsheet.dart';
+// import 'package:todolist/viewmodel/task_viewmodel.dart';
+//
+// class TaskListPage extends StatefulWidget {
+//   final TaskList taskList;
+//
+//   const TaskListPage({super.key, required this.taskList});
+//
+//   @override
+//   State<TaskListPage> createState() => TaskListPageState();
+// }
+//
+// class TaskListPageState extends State<TaskListPage> {
+//   DateTime? reminderTime; // Lưu trữ thời gian hẹn giờ
+//   Timer? reminderTimer;  // Lưu trữ Timer
+//
+//   @override
+//   void dispose() {
+//     reminderTimer?.cancel(); // Hủy Timer khi rời khỏi trang
+//     super.dispose();
+//   }
+//
+//   // Hàm này được gọi để kích hoạt khi người dùng chọn thời gian
+//   void _setReminder(DateTime dateTime) {
+//     setState(() {
+//       reminderTime = dateTime; // Cập nhật thời gian hẹn giờ
+//     });
+//
+//     // Hủy timer cũ nếu có
+//     reminderTimer?.cancel();
+//
+//     // Tính toán khoảng thời gian cho Timer
+//     final difference = reminderTime!.difference(DateTime.now());
+//     if (difference.isNegative) {
+//       // Nếu thời gian đã qua, không hẹn giờ nữa
+//       return;
+//     }
+//
+//     // Thiết lập timer để thông báo sau khi thời gian hẹn giờ đã đến
+//     reminderTimer = Timer(difference, _showReminderNotification);
+//   }
+//
+//   // Hàm hiển thị thông báo khi hẹn giờ đến
+//   void _showReminderNotification() {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: const Text("Đã đến giờ!"),
+//           content: const Text("Đây là thời gian hẹn giờ của bạn."),
+//           actions: <Widget>[
+//             TextButton(
+//               child: const Text("Đóng"),
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Task List'),
+//       ),
+//       body: Column(
+//         children: [
+//           ElevatedButton(
+//             onPressed: () async {
+//               // Mở màn hình chọn thời gian hẹn giờ
+//               final pickedTime = await showDatePicker(
+//                 context: context,
+//                 initialDate: DateTime.now(),
+//                 firstDate: DateTime(2000),
+//                 lastDate: DateTime(2101),
+//               );
+//               if (pickedTime != null) {
+//                 final pickedTimeWithTime = DateTime(
+//                   pickedTime.year,
+//                   pickedTime.month,
+//                   pickedTime.day,
+//                   11,
+//                   32,
+//                 );
+//                 _setReminder(pickedTimeWithTime);
+//               }
+//             },
+//             child: const Text("Chọn thời gian hẹn giờ"),
+//           ),
+//           if (reminderTime != null)
+//             Text("Hẹn giờ: ${reminderTime!.toLocal()}"),
+//         ],
+//       ),
+//     );
+//   }
+// }

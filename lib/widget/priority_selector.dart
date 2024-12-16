@@ -21,7 +21,7 @@ class _PrioritySelectorState extends State<PrioritySelector> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
+      height: 55,
       width: 350,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -35,15 +35,15 @@ class _PrioritySelectorState extends State<PrioritySelector> {
             child: Row(
               children: [
                 Container(
-                  width: 30,
-                  height: 30,
+                  width: 40,
+                  height: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: const Icon(Icons.priority_high,
-                      color: Colors.white, size: 20),
+                      color: Colors.white, size: 29),
                 ),
                 const SizedBox(width: 10),
                 const Text(

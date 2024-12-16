@@ -80,6 +80,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                 ),
                 const SizedBox(width: 30),
                 const Text(
+                  //
                   'Danh sách thông tin',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),

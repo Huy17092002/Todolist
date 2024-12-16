@@ -22,7 +22,7 @@ class _LocationEnableState extends State<LocationEnable> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: switchValue ? 120 : 45,
+      height: switchValue ? 120 : 55,
       width: 350,
       duration:  const Duration(milliseconds: 400),
       decoration: BoxDecoration(
@@ -42,8 +42,8 @@ class _LocationEnableState extends State<LocationEnable> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           color: Colors.blue[600],
@@ -52,7 +52,7 @@ class _LocationEnableState extends State<LocationEnable> {
                         child: const Icon(
                           Icons.near_me,
                           color: Colors.white,
-                          size: 21,
+                          size: 28,
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -142,8 +142,8 @@ class _LocationEnableState extends State<LocationEnable> {
             ),
           ),
           Positioned(
-            right: 14,
-            top: 3,
+            right: 17,
+            top: 5,
             child: CupertinoSwitch(
               value: switchValue,
               onChanged: onToggle,

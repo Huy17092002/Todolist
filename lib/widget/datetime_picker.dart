@@ -11,6 +11,7 @@ class DateTimePicker extends StatefulWidget {
 class _DateTimePickerState extends State<DateTimePicker> {
   bool showDate = false;
   bool showClock = false;
+  DateTime selectedDate = DateTime.now();
 
   void _toggleDate(bool value) {
     setState(() {
@@ -28,62 +29,111 @@ class _DateTimePickerState extends State<DateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> weekDays = [
+      'CN',
+      'Thứ 2',
+      'Thứ 3',
+      'Thứ 4',
+      'Thứ 5',
+      'Thứ 6',
+      'Thứ 7'
+    ];
+    String weekDay = weekDays[selectedDate.weekday % 7];
+    String day = selectedDate.day.toString();
+    String month = selectedDate.month.toString();
+    String year = selectedDate.year.toString();
+
+    String hour = selectedDate.hour.toString();
+    String minute = selectedDate.minute.toString();
+
     return AnimatedContainer(
       width: 350,
-      duration:  const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 14, left: 15, right: 15),
+        padding: const EdgeInsets.only(top: 1, left: 15, right: 15),
         child: Column(
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Icon(
-                    Icons.calendar_month,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 10), 
-                const Text(
-                  'Ngày',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
+                Padding(
+                  padding: const EdgeInsets.only(top: 9),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Icon(
+                      size: 37,
+                      Icons.calendar_month,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  width: 173,
+                const SizedBox(width: 5),
+                Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 100, top: 5),
+                      child: Text(
+                        'Ngày',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    if (showDate)
+                      Text(
+                        '$weekDay, $day/$month/$year',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                  ],
                 ),
-                CupertinoSwitch(
-                  value: showDate,
-                  onChanged: _toggleDate,
+                const SizedBox(width: 70),
+                Padding(
+                  padding: const EdgeInsets.only(top: 11),
+                  child: CupertinoSwitch(
+                    value: showDate,
+                    onChanged: _toggleDate,
+                  ),
                 ),
               ],
             ),
             AnimatedContainer(
-              height: showDate ? 320 : 0,
-              duration:  const Duration(milliseconds: 400),
+              height: showDate ? 290 : 0,
+              duration: const Duration(milliseconds: 400),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
-                  child: CalendarDatePicker(
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                    onDateChanged: (DateTime value) {},
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 290,
+                        width: 370,
+                        child: CalendarDatePicker(
+                          initialDate: selectedDate,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2100),
+                          onDateChanged: (DateTime value) {
+                            setState(() {
+                              selectedDate = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -92,40 +142,65 @@ class _DateTimePickerState extends State<DateTimePicker> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.blue[600],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Icon(
-                    Icons.access_time_filled,
-                    color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.blue[600],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Icon(
+                      size: 37,
+                      Icons.access_time_filled,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Text(
-                  'Thời gian',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
-                  ),
+                Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 110, top: 2),
+                      child: Text(
+                        'Thời gian',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    if (showClock)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 142),
+                        child: Text(
+                          '$hour:$minute',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
-                const SizedBox(width: 138),
-                CupertinoSwitch(
-                  value: showClock,
-                  onChanged: _toggleClock,
+                const SizedBox(width: 24),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: CupertinoSwitch(
+                    value: showClock,
+                    onChanged: _toggleClock,
+                  ),
                 ),
               ],
             ),
             AnimatedContainer(
-              height: showClock ? 210 : 0,
-              duration:  const Duration(milliseconds: 400),
+              height: showClock ? 200 : 10,
+              duration: const Duration(milliseconds: 400),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 2),
                 child: SingleChildScrollView(
                   child: SizedBox(
                     width: 200,
@@ -133,7 +208,12 @@ class _DateTimePickerState extends State<DateTimePicker> {
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.time,
                       use24hFormat: true,
-                      onDateTimeChanged: (value) {},
+                      initialDateTime: selectedDate,
+                      onDateTimeChanged: (DateTime value) {
+                        setState(() {
+                          selectedDate = value;
+                        });
+                      },
                     ),
                   ),
                 ),
