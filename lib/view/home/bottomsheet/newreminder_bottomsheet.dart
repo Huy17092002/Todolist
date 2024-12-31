@@ -147,7 +147,6 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Danh sách Container
                   GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
