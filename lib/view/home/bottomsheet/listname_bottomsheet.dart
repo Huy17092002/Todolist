@@ -41,7 +41,6 @@ class ListNameBottomsheet extends StatelessWidget {
         ),
       ],
     ),
-    // Add more task lists here
   ];
 
   @override
@@ -113,7 +112,7 @@ class ListNameBottomsheet extends StatelessWidget {
               final item = data[index];
               return ListTile(
                 onTap: () {
-                  onSelect(item);  // Gọi callback khi chọn TaskList
+                  onSelect(item);
                 },
                 title: Text(item.title),
                 leading: Icon(item.icon, color: item.color),
