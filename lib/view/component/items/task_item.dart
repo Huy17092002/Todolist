@@ -139,7 +139,6 @@ class _TaskItemState extends State<TaskItem> {
                             color: isChecked ? Colors.grey : Colors.black,
                           ),
                           onChanged: (value) {
-                            // Update task title
                             taskViewModel.updateTaskTitle(
                               widget.taskList,
                               widget.task,
@@ -164,7 +163,6 @@ class _TaskItemState extends State<TaskItem> {
                         color: isChecked ? Colors.grey : Colors.black,
                       ),
                       onChanged: (value) {
-                        // Update task description
                         taskViewModel.updateTaskDescription(
                           widget.taskList,
                           widget.task,

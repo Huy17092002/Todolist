@@ -156,11 +156,10 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         builder: (BuildContext context) {
                           return ListNameBottomsheet(
                             onSelect: (selectedTaskList) {
-                              // Update the selected task list title
                               setState(() {
                                 selectedTaskListTitle = selectedTaskList.title;
                               });
-                              Navigator.pop(context);  // Close the bottom sheet
+                              Navigator.pop(context);
                             },
                             taskList: TaskList(title: '', tasks: []),
                           );
