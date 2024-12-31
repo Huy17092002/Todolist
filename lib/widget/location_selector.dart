@@ -57,12 +57,12 @@ class _LocationEnableState extends State<LocationEnable> {
                       ),
                       const SizedBox(width: 10),
                       const Padding(
-                        padding: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.only(top: 6),
                         child: Text(
                           'Vị trí',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

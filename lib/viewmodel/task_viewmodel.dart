@@ -29,5 +29,4 @@ class TaskViewModel extends ChangeNotifier {
     task.description = newDescription;
     notifyListeners();
   }
-
 }

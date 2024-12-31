@@ -12,39 +12,53 @@ class _DateTimePickerState extends State<DateTimePicker> {
   bool showDate = false;
   bool showClock = false;
   DateTime selectedDate = DateTime.now();
+  DateTime selectedTime = DateTime.now();
 
   void _toggleDate(bool value) {
     setState(() {
       showDate = value;
-      showClock = false;
     });
   }
 
   void _toggleClock(bool value) {
     setState(() {
       showClock = value;
-      showDate = false;
+      if (value) {
+        showDate = true;
+      }
+    });
+  }
+
+  void _updateSelectedDate(DateTime newDate) {
+    setState(() {
+      selectedDate = newDate;
+    });
+  }
+
+  void _updateSelectedTime(DateTime newTime) {
+    setState(() {
+      selectedTime = DateTime(
+        selectedDate.year,
+        selectedDate.month,
+        selectedDate.day,
+        newTime.hour,
+        newTime.minute,
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     List<String> weekDays = [
-      'CN',
-      'Thứ 2',
-      'Thứ 3',
-      'Thứ 4',
-      'Thứ 5',
-      'Thứ 6',
-      'Thứ 7'
+      'CN', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'
     ];
     String weekDay = weekDays[selectedDate.weekday % 7];
     String day = selectedDate.day.toString();
     String month = selectedDate.month.toString();
     String year = selectedDate.year.toString();
 
-    String hour = selectedDate.hour.toString();
-    String minute = selectedDate.minute.toString();
+    String hour = selectedTime.hour.toString();
+    String minute = selectedTime.minute.toString();
 
     return AnimatedContainer(
       width: 350,
@@ -112,8 +126,9 @@ class _DateTimePickerState extends State<DateTimePicker> {
               ],
             ),
             AnimatedContainer(
-              height: showDate ? 290 : 0,
+              height: showDate && !showClock ? 290 : 0,
               duration: const Duration(milliseconds: 400),
+              curve: Curves.easeInOut,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
@@ -126,11 +141,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                           initialDate: selectedDate,
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2100),
-                          onDateChanged: (DateTime value) {
-                            setState(() {
-                              selectedDate = value;
-                            });
-                          },
+                          onDateChanged: _updateSelectedDate,
                         ),
                       ),
                     ],
@@ -208,12 +219,8 @@ class _DateTimePickerState extends State<DateTimePicker> {
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.time,
                       use24hFormat: true,
-                      initialDateTime: selectedDate,
-                      onDateTimeChanged: (DateTime value) {
-                        setState(() {
-                          selectedDate = value;
-                        });
-                      },
+                      initialDateTime: selectedTime,
+                      onDateTimeChanged: _updateSelectedTime,
                     ),
                   ),
                 ),

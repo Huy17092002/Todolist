@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/widget/datetime_picker.dart';
 import 'package:todolist/widget/location_selector.dart';
 import 'package:todolist/widget/priority_selector.dart';
-
-import '../../../viewmodel/task_viewmodel.dart';
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {
   final Task task;
@@ -78,7 +77,7 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 90),
+                  const SizedBox(width: 100),
                   TextButton(
                     child: const Text(
                       'Lưu',
@@ -88,11 +87,9 @@ class _DetailsTaskListPageBottomsheetState extends State<DetailsTaskListPageBott
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      // Cập nhật task
                       widget.task.title = titleController.text;
                       widget.task.description = descriptionController.text;
 
-                      // Cập nhật vào ViewModel
                       Provider.of<TaskViewModel>(context, listen: false)
                           .updateTaskTitle(
                               widget.taskList, widget.task, titleController.text);

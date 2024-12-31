@@ -18,6 +18,7 @@ class Task {
     this.location,
     this.deadline='',
     this.repeat = '',
+    DateTime? dateTime,
   });
 
   String get priorityName {
