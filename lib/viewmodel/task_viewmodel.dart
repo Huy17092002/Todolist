@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/services/notification_service.dart';
 
 class TaskViewModel extends ChangeNotifier {
   List<TaskList> taskLists = [];
 
-  void addTaskToTaskList(TaskList taskList, Task task) {
-    taskList.tasks.add(task);
+  void addTaskToTaskList(TaskList taskList, Task newTask) {
+    taskList.tasks.add(newTask);
     notifyListeners();
   }
 

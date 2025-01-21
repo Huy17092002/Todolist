@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class DateTimePicker extends StatefulWidget {
-  const DateTimePicker({super.key});
+  final Function(DateTime?) onDateTimeChanged;
+
+  const DateTimePicker({super.key, required this.onDateTimeChanged});
 
   @override
   State<DateTimePicker> createState() => _DateTimePickerState();
@@ -13,6 +15,16 @@ class _DateTimePickerState extends State<DateTimePicker> {
   bool showClock = false;
   DateTime selectedDate = DateTime.now();
   DateTime selectedTime = DateTime.now();
+
+
+  @override
+  void initState() {
+    super.initState();
+    DateTime initial = DateTime.now();
+    selectedTime =
+        DateTime(initial.year, initial.month, initial.day, initial.hour,);
+  }
+
 
   void _toggleDate(bool value) {
     setState(() {
@@ -33,9 +45,17 @@ class _DateTimePickerState extends State<DateTimePicker> {
     setState(() {
       selectedDate = newDate;
     });
+    widget.onDateTimeChanged(DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      selectedTime.hour,
+      selectedTime.minute,
+    ));
   }
 
   void _updateSelectedTime(DateTime newTime) {
+
     setState(() {
       selectedTime = DateTime(
         selectedDate.year,
@@ -45,6 +65,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         newTime.minute,
       );
     });
+    widget.onDateTimeChanged(selectedTime);
   }
 
   @override
@@ -219,6 +240,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.time,
                       use24hFormat: true,
+                      minuteInterval: 5,
                       initialDateTime: selectedTime,
                       onDateTimeChanged: _updateSelectedTime,
                     ),

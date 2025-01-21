@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
@@ -160,7 +162,10 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                               });
                               Navigator.pop(context);
                             },
-                            taskList: TaskList(title: '', tasks: []),
+                            taskList: TaskList(
+                                title: '',
+                                tasks: []
+                            ),
                           );
                         },
                       );
@@ -208,6 +213,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                       ),
                     ),
                   ),
+
                 ],
               ),
             ),

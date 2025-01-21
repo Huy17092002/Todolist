@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                         itemCount: taskListCollectionViewModel.taskListCollection?.tasklists.length ?? 0,
                         itemBuilder: (BuildContext context, int index) {
                           final item = taskListCollectionViewModel.taskListCollection?.tasklists[index] ??
-                              TaskList(title: '', tasks: []);
+                              TaskList( title: '', tasks: []);
                           return TaskListItem(
                             onTap: () {
                               Navigator.push(

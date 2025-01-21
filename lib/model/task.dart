@@ -2,6 +2,7 @@ import 'package:todolist/model/priority.dart';
 import 'location.dart';
 
 class Task {
+  int id;
   String title;
   String? description;
   bool isCompleted;
@@ -9,8 +10,10 @@ class Task {
   String repeat;
   Priority priority;
   Location? location;
+  DateTime? reminderTime;
 
   Task({
+    required this.id,
     required this.title,
     this.description,
     required this.isCompleted,
@@ -18,13 +21,12 @@ class Task {
     this.location,
     this.deadline='',
     this.repeat = '',
-    DateTime? dateTime,
+    this.reminderTime,
   });
 
   String get priorityName {
     return priority.name;
   }
-
 }
 
 

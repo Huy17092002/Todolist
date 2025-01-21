@@ -95,9 +95,9 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
                     taskListCollectionViewModel.addTaskList(
                       TaskList(
-                        color: colorDefault,
                         title: name,
                         tasks: [],
+                        color: colorDefault,
                       ),
                     );
                     Navigator.pop(context);
@@ -109,8 +109,9 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                     //       tasks: [],
                     //     )),
                     //   ),
-                    // ); 
+                    // );
                   },
+
                 ),
               ],
             ),

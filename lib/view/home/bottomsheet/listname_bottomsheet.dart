@@ -16,6 +16,7 @@ class ListNameBottomsheet extends StatelessWidget {
       color: Colors.red,
       tasks: [
         Task(
+          id: 1,
           title: 'NewReminder',
           description: 'party',
           isCompleted: false,
@@ -31,6 +32,7 @@ class ListNameBottomsheet extends StatelessWidget {
       color: Colors.grey,
       tasks: [
         Task(
+          id: 2,
           title: 'Da bong',
           description: 'Ronaldo',
           isCompleted: false,

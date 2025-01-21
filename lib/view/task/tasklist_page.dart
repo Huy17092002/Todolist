@@ -13,6 +13,7 @@ class TaskListPage extends StatefulWidget {
 
   @override
   State<TaskListPage> createState() => TaskListPageState();
+
 }
 
 class TaskListPageState extends State<TaskListPage> {
@@ -143,6 +144,7 @@ class TaskListPageState extends State<TaskListPage> {
             ),
             onPressed: () {
               final newTask = Task(
+                id:0,
                 title: "",
                 description: "",
                 isCompleted: false,
@@ -156,9 +158,3 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
-
-
-
-
-
-
