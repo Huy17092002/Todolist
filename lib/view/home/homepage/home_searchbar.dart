@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
+import '../../../model/tasklist.dart';
+import 'search_task.dart';
+
 
 class HomeSearchBar extends StatefulWidget {
-  const HomeSearchBar({super.key});
+  const HomeSearchBar({super.key, this.taskList});
+  final TaskList? taskList;
 
   @override
   State<HomeSearchBar> createState() => _HomeSearchBarState();
@@ -47,6 +51,16 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
     });
   }
 
+  void onSearchChanged(String query) {
+    if (query.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => SearchResultsScreen(taskList: TaskList(title: '', tasks: []) ,),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,7 +80,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                 duration: kDuration,
                 curve: Curves.easeOutCirc,
                 child: TextButton(
-                  child:const Text(
+                  child: const Text(
                     'Sửa',
                     style: TextStyle(
                       fontSize: 16,
@@ -123,6 +137,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                           contentPadding: EdgeInsets.only(bottom: 12.5),
                         ),
                         onTap: onTapSearch,
+                        onChanged: onSearchChanged,
                       ),
                     ),
                     if (isSearch)
@@ -168,3 +183,5 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
     );
   }
 }
+
+

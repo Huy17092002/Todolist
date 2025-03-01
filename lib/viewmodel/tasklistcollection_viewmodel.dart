@@ -139,7 +139,6 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Thêm TaskList
   void addTaskList(TaskList newTaskList) {
     taskListCollection?.tasklists.add(newTaskList);
     notifyListeners();
@@ -159,6 +158,27 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<Map<String, dynamic>> searchTasks(String query) {
+    if (query.isEmpty) return [];
+
+    final results = <Map<String, dynamic>>[];
+    final queryLower = query.toLowerCase();
+
+    for (var taskList in taskListCollection?.tasklists ?? []) {
+      for (var task in taskList.tasks) {
+        final titleLower = task.title.toLowerCase();
+        if (titleLower.startsWith(queryLower)) {
+          results.add({
+            'task': task,
+            'taskList': taskList.title,
+          });
+        }
+      }
+    }
+    return results;
+  }
+
 }
 
 

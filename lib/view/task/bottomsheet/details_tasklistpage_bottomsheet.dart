@@ -290,269 +290,33 @@
 //   }
 // }
 
-
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todolist/model/task.dart';
-import 'package:todolist/model/tasklist.dart';
-import 'package:todolist/view/component/bottomsheet/repeatintervalltime_bottomsheet.dart';
-import 'package:todolist/viewmodel/task_viewmodel.dart';
-import 'package:todolist/widget/datetime_picker.dart';
-import 'package:todolist/services/notification_service.dart';
-import 'package:todolist/widget/location_selector.dart';
-import 'package:todolist/widget/priority_selector.dart';
-
-class DetailsTaskListPageBottomsheet extends StatefulWidget {
-  final Task task;
-  final TaskList taskList;
-
-  const DetailsTaskListPageBottomsheet({
-    super.key,
-    required this.task,
-    required this.taskList,
-  });
-
-  @override
-  State<DetailsTaskListPageBottomsheet> createState() =>
-      _DetailsTaskListPageBottomsheetState();
-}
-
-class _DetailsTaskListPageBottomsheetState
-    extends State<DetailsTaskListPageBottomsheet> {
-  late TextEditingController titleController;
-  late TextEditingController descriptionController;
-  DateTime? reminderTime;
-
-  @override
-  void initState() {
-    super.initState();
-    titleController = TextEditingController(text: widget.task.title);
-    descriptionController =
-        TextEditingController(text: widget.task.description);
-
-    initializeNotifications();
-  }
-
-  void initializeNotifications() async {
-    await NotificationService.initNotification();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-        child: Container(
-          color: Colors.grey,
-          height: 780,
-          width: 500,
-          child: Scaffold(
-            appBar: AppBar(
-              leadingWidth: 400,
-              leading: Row(
-                children: [
-                  const Padding(padding: EdgeInsets.only(left: 20)),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Hủy',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 100),
-                  const Text(
-                    'Chi Tiết',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(width: 100),
-                  // TextButton(
-                  //   child: const Text(
-                  //     'Lưu',
-                  //     style: TextStyle(
-                  //       fontSize: 18,
-                  //       color: Colors.blue,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  //   onPressed: () async {
-                  //     widget.task.title = titleController.text;
-                  //     widget.task.description = descriptionController.text;
-                  //     widget.task.reminderTime = reminderTime;
-                  //
-                  //     Provider.of<TaskViewModel>(context, listen: false)
-                  //         .updateTaskTitle(widget.taskList, widget.task, titleController.text);
-                  //     Provider.of<TaskViewModel>(context, listen: false)
-                  //         .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
-                  //
-                  //     for (var task in widget.taskList.tasks) {
-                  //       await NotificationService.scheduleNotificationForTask(task, widget.taskList);
-                  //     }
-                  //     Navigator.pop(context);
-                  //   },
-                  // ),
-                  TextButton(
-                    child: const Text(
-                      'Lưu',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () async {
-                      widget.task.title = titleController.text;
-                      widget.task.description = descriptionController.text;
-                      widget.task.reminderTime = reminderTime;
-
-                      // Cập nhật Task trong TaskList
-                      Provider.of<TaskViewModel>(context, listen: false)
-                          .updateTaskTitle(widget.taskList, widget.task, titleController.text);
-                      Provider.of<TaskViewModel>(context, listen: false)
-                          .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
-
-                      // Lập lịch thông báo cho tất cả các task trong taskList
-                      for (var task in widget.taskList.tasks) {
-                        await NotificationService.scheduleNotificationForTask(task, widget.taskList);
-                      }
-
-                      Navigator.pop(context);
-                    },
-                  )
-
-                ],
-              ),
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 21),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 350,
-                        height: 112,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextField(
-                                controller: titleController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Tiêu đề',
-                                  border: UnderlineInputBorder(),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: TextField(
-                                controller: descriptionController,
-                                decoration: const InputDecoration(
-                                    hintText: 'Mô tả',
-                                    border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      DateTimePicker(
-                        onDateTimeChanged: (newDateTime) {
-                          setState(() {
-                            reminderTime = newDateTime;
-                          });
-                        },//
-                      ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext context) {
-                              return const RepeatIntervallTime();
-                            },
-                          );
-                        },
-                        child: Container(
-                          height: 55,
-                          width: 350,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[300],
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 0, left: 15),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.repeat_on,
-                                  color: Colors.grey,
-                                  size: 42,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  'Lặp lại',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                SizedBox(width: 150),
-                                Text(
-                                  'Không',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                SizedBox(width: 1),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.grey,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      const LocationEnable(),
-                      const SizedBox(height: 20),
-                      PrioritySelector(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-
+///xịn
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:todolist/model/task.dart';
+// import 'package:todolist/model/tasklist.dart';
+// import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
+// import 'package:todolist/viewmodel/task_viewmodel.dart';
+// import 'package:todolist/widget/datetime_picker.dart';
+// import 'package:todolist/services/notification_service.dart';
+// import 'package:todolist/widget/location_selector.dart';
+// import 'package:todolist/widget/priority_selector.dart';
+//
+// class DetailsTaskListPageBottomsheet extends StatefulWidget {
+//   final Task task;
+//   final TaskList taskList;
+//
+//   const DetailsTaskListPageBottomsheet({
+//     super.key,
+//     required this.task,
+//     required this.taskList,
+//   });
+//
+//   @override
+//   State<DetailsTaskListPageBottomsheet> createState() =>
+//       _DetailsTaskListPageBottomsheetState();
+// }
+//
 // class _DetailsTaskListPageBottomsheetState
 //     extends State<DetailsTaskListPageBottomsheet> {
 //   late TextEditingController titleController;
@@ -573,40 +337,309 @@ class _DetailsTaskListPageBottomsheetState
 //     await NotificationService.initNotification();
 //   }
 //
-//   Future<void> scheduleNotificationForTask(Task task) async {
-//     if (task.reminderTime != null) {
-//       tz.TZDateTime scheduledTime = tz.TZDateTime.from(task.reminderTime!, tz.local);
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: ClipRRect(
+//         borderRadius: const BorderRadius.only(
+//           topLeft: Radius.circular(10),
+//           topRight: Radius.circular(10),
+//         ),
+//         child: Container(
+//           color: Colors.grey,
+//           height: 780,
+//           width: 500,
+//           child: Scaffold(
+//             appBar: AppBar(
+//               leadingWidth: 400,
+//               leading: Row(
+//                 children: [
+//                   const Padding(padding: EdgeInsets.only(left: 20)),
+//                   GestureDetector(
+//                     onTap: () => Navigator.pop(context),
+//                     child: const Row(
+//                       children: [
+//                         Text(
+//                           'Hủy',
+//                           style: TextStyle(
+//                             fontSize: 18,
+//                             color: Colors.blue,
+//                             fontWeight: FontWeight.w500,
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   const SizedBox(width: 100),
+//                   const Text(
+//                     'Chi Tiết',
+//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                   ),
+//                   const SizedBox(width: 100),
+//                   // TextButton(
+//                   //   child: const Text(
+//                   //     'Lưu',
+//                   //     style: TextStyle(
+//                   //       fontSize: 18,
+//                   //       color: Colors.blue,
+//                   //       fontWeight: FontWeight.bold,
+//                   //     ),
+//                   //   ),
+//                   //   onPressed: () async {
+//                   //     widget.task.title = titleController.text;
+//                   //     widget.task.description = descriptionController.text;
+//                   //     widget.task.reminderTime = reminderTime;
+//                   //
+//                   //     Provider.of<TaskViewModel>(context, listen: false)
+//                   //         .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+//                   //     Provider.of<TaskViewModel>(context, listen: false)
+//                   //         .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
+//                   //
+//                   //     for (var task in widget.taskList.tasks) {
+//                   //       await NotificationService.scheduleNotificationForTask(task, widget.taskList);
+//                   //     }
+//                   //     Navigator.pop(context);
+//                   //   },
+//                   // ),
+//                   // TextButton(
+//                   //   child: const Text(
+//                   //     'Lưu',
+//                   //     style: TextStyle(
+//                   //       fontSize: 18,
+//                   //       color: Colors.blue,
+//                   //       fontWeight: FontWeight.bold,
+//                   //     ),
+//                   //   ),
+//                   //   onPressed: () async {
+//                   //     widget.task.title = titleController.text;
+//                   //     widget.task.description = descriptionController.text;
+//                   //     widget.task.reminderTime = reminderTime;
+//                   //
+//                   //     Provider.of<TaskViewModel>(context, listen: false)
+//                   //         .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+//                   //     Provider.of<TaskViewModel>(context, listen: false)
+//                   //         .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
+//                   //
+//                   //     for (var task in widget.taskList.tasks) {
+//                   //       await NotificationService.scheduleNotificationForTask(task, widget.taskList);
+//                   //     }
+//                   //
+//                   //     Navigator.pop(context);
+//                   //   },
+//                   // )
+//                   TextButton(
+//                     child: const Text(
+//                       'Lưu',
+//                       style: TextStyle(
+//                         fontSize: 18,
+//                         color: Colors.blue,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     onPressed: () async {
+//                       // Cập nhật tiêu đề và mô tả của task
+//                       widget.task.title = titleController.text;
+//                       widget.task.description = descriptionController.text;
+//                       widget.task.reminderTime = reminderTime;
 //
-//       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-//       AndroidNotificationDetails(
-//         'your_channel_id',
-//         'your_channel_name',
-//         channelDescription: 'your_channel_description',
-//         importance: Importance.max,
-//         priority: Priority.high,
-//         ticker: 'ticker',
-//       );
-//       const NotificationDetails platformChannelSpecifics =
-//       NotificationDetails(android: androidPlatformChannelSpecifics);
+//                       // Cập nhật task trong ViewModel
+//                       Provider.of<TaskViewModel>(context, listen: false)
+//                           .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+//                       Provider.of<TaskViewModel>(context, listen: false)
+//                           .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
 //
-//       int notificationId = task.hashCode;
+//                       if (widget.task.reminderTime != null) {
+//                         await NotificationService.setScheduleNotification(
+//                           scheduleDateTime: widget.task.reminderTime!,
+//                           title: widget.task.title,
+//                           body: widget.task.description??'',
+//                           id: widget.task.id,
+//                           isPlaySound: true,
+//                         );
+//                       }
 //
-//       await NotificationService.flutterLocalNotificationsPlugin.zonedSchedule(
-//         notificationId,
-//         task.title,
-//         task.description,
-//         scheduledTime,
-//         platformChannelSpecifics,
-//         uiLocalNotificationDateInterpretation:
-//         UILocalNotificationDateInterpretation.wallClockTime,
-//         matchDateTimeComponents: DateTimeComponents.time,
-//         androidScheduleMode: AndroidScheduleMode.alarmClock,
-//       );
-//     }
+//                       // Đóng bottom sheet
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//
+//
+//                 ],
+//               ),
+//             ),
+//             body: SingleChildScrollView(
+//               child: Padding(
+//                 padding: const EdgeInsets.only(top: 10),
+//                 child: Container(
+//                   padding: const EdgeInsets.symmetric(horizontal: 21),
+//                   child: Column(
+//                     children: [
+//                       Container(
+//                         width: 350,
+//                         height: 112,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(10),
+//                           color: Colors.grey[300],
+//                         ),
+//                         child: Column(
+//                           children: [
+//                             Padding(
+//                               padding: const EdgeInsets.all(8.0),
+//                               child: TextField(
+//                                 controller: titleController,
+//                                 decoration: const InputDecoration(
+//                                   hintText: 'Tiêu đề',
+//                                   border: UnderlineInputBorder(),
+//                                 ),
+//                               ),
+//                             ),
+//                             Padding(
+//                               padding:
+//                               const EdgeInsets.symmetric(horizontal: 8.0),
+//                               child: TextField(
+//                                 controller: descriptionController,
+//                                 decoration: const InputDecoration(
+//                                     hintText: 'Mô tả',
+//                                     border: InputBorder.none,
+//                                 ),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                       const SizedBox(height: 20),
+//                       DateTimePicker(
+//                         onDateTimeChanged: (newDateTime) {
+//                           setState(() {
+//                             reminderTime = newDateTime;
+//                           });
+//                         },//
+//                       ),
+//                       const SizedBox(height: 20),
+//                       GestureDetector(
+//                         onTap: () {
+//                           showModalBottomSheet(
+//                             context: context,
+//                             isScrollControlled: true,
+//                             builder: (BuildContext context) {
+//                               return const RepeatIntervallTime();
+//                             },
+//                           );
+//                         },
+//                         child: Container(
+//                           height: 55,
+//                           width: 350,
+//                           decoration: BoxDecoration(
+//                             borderRadius: BorderRadius.circular(10),
+//                             color: Colors.grey[300],
+//                           ),
+//                           child: const Padding(
+//                             padding: EdgeInsets.only(top: 0, left: 15),
+//                             child: Row(
+//                               children: [
+//                                 Icon(
+//                                   Icons.repeat_on,
+//                                   color: Colors.grey,
+//                                   size: 42,
+//                                 ),
+//                                 SizedBox(width: 10),
+//                                 Text(
+//                                   'Lặp lại',
+//                                   style: TextStyle(
+//                                     fontSize: 17,
+//                                     fontWeight: FontWeight.w500,
+//                                   ),
+//                                 ),
+//                                 SizedBox(width: 150),
+//                                 Text(
+//                                   'Không',
+//                                   style: TextStyle(
+//                                     fontSize: 17,
+//                                     color: Colors.grey,
+//                                   ),
+//                                 ),
+//                                 SizedBox(width: 1),
+//                                 Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   color: Colors.grey,
+//                                   size: 16,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 20),
+//                       const LocationEnable(),
+//                       const SizedBox(height: 20),
+//                       PrioritySelector(),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:todolist/model/task.dart';
+// import 'package:todolist/model/tasklist.dart';
+// import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
+// import 'package:todolist/viewmodel/task_viewmodel.dart';
+// import 'package:todolist/widget/datetime_picker.dart';
+// import 'package:todolist/services/notification_service.dart';
+// import 'package:todolist/widget/location_selector.dart';
+// import 'package:todolist/widget/priority_selector.dart';
+//
+// class DetailsTaskListPageBottomsheet extends StatefulWidget {
+//   final Task task;
+//   final TaskList taskList;
+//
+//   const DetailsTaskListPageBottomsheet({
+//     super.key,
+//     required this.task,
+//     required this.taskList,
+//   });
+//
+//   @override
+//   State<DetailsTaskListPageBottomsheet> createState() =>
+//       _DetailsTaskListPageBottomsheetState();
+// }
+//
+// class _DetailsTaskListPageBottomsheetState
+//     extends State<DetailsTaskListPageBottomsheet> {
+//   late TextEditingController titleController;
+//   late TextEditingController descriptionController;
+//   DateTime? reminderTime;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     titleController = TextEditingController(text: widget.task.title);
+//     descriptionController =
+//         TextEditingController(text: widget.task.description);
+//
+//     initializeNotifications();
+//   }
+//
+//   void initializeNotifications() async {
+//     await NotificationService.initNotification();
 //   }
 //
 //   @override
 //   Widget build(BuildContext context) {
+//     // Access repeatOption from the TaskViewModel using Provider
+//     final repeatOption = Provider.of<TaskViewModel>(context).repeatOption;
+//
 //     return SingleChildScrollView(
 //       child: ClipRRect(
 //         borderRadius: const BorderRadius.only(
@@ -654,18 +687,28 @@ class _DetailsTaskListPageBottomsheetState
 //                       ),
 //                     ),
 //                     onPressed: () async {
+//                       // Cập nhật tiêu đề và mô tả của task
 //                       widget.task.title = titleController.text;
 //                       widget.task.description = descriptionController.text;
 //                       widget.task.reminderTime = reminderTime;
 //
+//                       // Cập nhật task trong ViewModel
 //                       Provider.of<TaskViewModel>(context, listen: false)
 //                           .updateTaskTitle(widget.taskList, widget.task, titleController.text);
 //                       Provider.of<TaskViewModel>(context, listen: false)
 //                           .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
 //
-//                       for (var task in widget.taskList.tasks) {
-//                         await scheduleNotificationForTask(task);
+//                       if (widget.task.reminderTime != null) {
+//                         await NotificationService.setScheduleNotification(
+//                           scheduleDateTime: widget.task.reminderTime!,
+//                           title: widget.task.title,
+//                           body: widget.task.description ?? '',
+//                           id: widget.task.id,
+//                           isPlaySound: true,
+//                         );
 //                       }
+//
+//                       // Đóng bottom sheet
 //                       Navigator.pop(context);
 //                     },
 //                   ),
@@ -699,13 +742,13 @@ class _DetailsTaskListPageBottomsheetState
 //                               ),
 //                             ),
 //                             Padding(
-//                               padding:
-//                               const EdgeInsets.symmetric(horizontal: 8.0),
+//                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
 //                               child: TextField(
 //                                 controller: descriptionController,
 //                                 decoration: const InputDecoration(
-//                                     hintText: 'Mô tả',
-//                                     border: InputBorder.none),
+//                                   hintText: 'Mô tả',
+//                                   border: InputBorder.none,
+//                                 ),
 //                               ),
 //                             ),
 //                           ],
@@ -737,33 +780,33 @@ class _DetailsTaskListPageBottomsheetState
 //                             borderRadius: BorderRadius.circular(10),
 //                             color: Colors.grey[300],
 //                           ),
-//                           child: const Padding(
-//                             padding: EdgeInsets.only(top: 0, left: 15),
+//                           child: Padding(
+//                             padding: const EdgeInsets.only(top: 0, left: 15),
 //                             child: Row(
 //                               children: [
-//                                 Icon(
+//                                 const Icon(
 //                                   Icons.repeat_on,
 //                                   color: Colors.grey,
 //                                   size: 42,
 //                                 ),
-//                                 SizedBox(width: 10),
-//                                 Text(
+//                                 const SizedBox(width: 10),
+//                                 const Text(
 //                                   'Lặp lại',
 //                                   style: TextStyle(
 //                                     fontSize: 17,
 //                                     fontWeight: FontWeight.w500,
 //                                   ),
 //                                 ),
-//                                 SizedBox(width: 160),
+//                                 const SizedBox(width: 130),
 //                                 Text(
-//                                   'Không',
-//                                   style: TextStyle(
+//                                   repeatOption,
+//                                   style: const TextStyle(
 //                                     fontSize: 17,
 //                                     color: Colors.grey,
 //                                   ),
 //                                 ),
-//                                 SizedBox(width: 1),
-//                                 Icon(
+//                                 const SizedBox(width: 1),
+//                                 const Icon(
 //                                   Icons.arrow_forward_ios,
 //                                   color: Colors.grey,
 //                                   size: 16,
@@ -790,3 +833,470 @@ class _DetailsTaskListPageBottomsheetState
 // }
 
 
+
+////
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:todolist/model/task.dart';
+// import 'package:todolist/model/tasklist.dart';
+// import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
+// import 'package:todolist/viewmodel/task_viewmodel.dart';
+// import 'package:todolist/widget/datetime_picker.dart';
+// import 'package:todolist/services/notification_service.dart';
+// import 'package:todolist/widget/location_selector.dart';
+// import 'package:todolist/widget/priority_selector.dart';
+//
+// class DetailsTaskListPageBottomsheet extends StatefulWidget {
+//   final Task task;
+//   final TaskList taskList;
+//
+//   const DetailsTaskListPageBottomsheet({
+//     super.key,
+//     required this.task,
+//     required this.taskList,
+//   });
+//
+//   @override
+//   State<DetailsTaskListPageBottomsheet> createState() =>
+//       _DetailsTaskListPageBottomsheetState();
+// }
+//
+// class _DetailsTaskListPageBottomsheetState
+//     extends State<DetailsTaskListPageBottomsheet> {
+//   late TextEditingController titleController;
+//   late TextEditingController descriptionController;
+//   DateTime? reminderTime;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     titleController = TextEditingController(text: widget.task.title);
+//     descriptionController =
+//         TextEditingController(text: widget.task.description);
+//
+//     initializeNotifications();
+//   }
+//
+//   void initializeNotifications() async {
+//     await NotificationService.initNotification();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final repeatOption = Provider.of<TaskViewModel>(context).repeatOption;
+//
+//     return SingleChildScrollView(
+//       child: ClipRRect(
+//         borderRadius: const BorderRadius.only(
+//           topLeft: Radius.circular(10),
+//           topRight: Radius.circular(10),
+//         ),
+//         child: Container(
+//           color: Colors.grey,
+//           height: 780,
+//           width: 500,
+//           child: Scaffold(
+//             appBar: AppBar(
+//               leadingWidth: 400,
+//               leading: Row(
+//                 children: [
+//                   const Padding(padding: EdgeInsets.only(left: 20)),
+//                   GestureDetector(
+//                     onTap: () => Navigator.pop(context),
+//                     child: const Row(
+//                       children: [
+//                         Text(
+//                           'Hủy',
+//                           style: TextStyle(
+//                             fontSize: 18,
+//                             color: Colors.blue,
+//                             fontWeight: FontWeight.w500,
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   const SizedBox(width: 100),
+//                   const Text(
+//                     'Chi Tiết',
+//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                   ),
+//                   const SizedBox(width: 100),
+//                   TextButton(
+//                     child: const Text(
+//                       'Lưu',
+//                       style: TextStyle(
+//                         fontSize: 18,
+//                         color: Colors.blue,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     onPressed: () async {
+//                       // Cập nhật tiêu đề và mô tả của task
+//                       widget.task.title = titleController.text;
+//                       widget.task.description = descriptionController.text;
+//                       widget.task.reminderTime = reminderTime;
+//
+//                       // Cập nhật task trong ViewModel
+//                       Provider.of<TaskViewModel>(context, listen: false)
+//                           .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+//                       Provider.of<TaskViewModel>(context, listen: false)
+//                           .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
+//
+//                       if (widget.task.reminderTime != null) {
+//                         await NotificationService.setScheduleNotification(
+//                           scheduleDateTime: widget.task.reminderTime!,
+//                           title: widget.task.title,
+//                           body: widget.task.description ?? '',
+//                           id: widget.task.id,
+//                           isPlaySound: true,
+//                         );
+//                       }
+//
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             body: SingleChildScrollView(
+//               child: Padding(
+//                 padding: const EdgeInsets.only(top: 10),
+//                 child: Container(
+//                   padding: const EdgeInsets.symmetric(horizontal: 21),
+//                   child: Column(
+//                     children: [
+//                       Container(
+//                         width: 350,
+//                         height: 112,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(10),
+//                           color: Colors.grey[300],
+//                         ),
+//                         child: Column(
+//                           children: [
+//                             Padding(
+//                               padding: const EdgeInsets.all(8.0),
+//                               child: TextField(
+//                                 controller: titleController,
+//                                 decoration: const InputDecoration(
+//                                   hintText: 'Tiêu đề',
+//                                   border: UnderlineInputBorder(),
+//                                 ),
+//                               ),
+//                             ),
+//                             Padding(
+//                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//                               child: TextField(
+//                                 controller: descriptionController,
+//                                 decoration: const InputDecoration(
+//                                   hintText: 'Mô tả',
+//                                   border: InputBorder.none,
+//                                 ),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                       const SizedBox(height: 20),
+//                       DateTimePicker(
+//                         onDateTimeChanged: (newDateTime) {
+//                           setState(() {
+//                             reminderTime = newDateTime;
+//                           });
+//                         },
+//                       ),
+//                       const SizedBox(height: 20),
+//                       GestureDetector(
+//                         onTap: () {
+//                           showModalBottomSheet(
+//                             context: context,
+//                             isScrollControlled: true,
+//                             builder: (BuildContext context) {
+//                               return const RepeatIntervallTime();
+//                             },
+//                           );
+//                         },
+//                         child: Container(
+//                           height: 55,
+//                           width: 350,
+//                           decoration: BoxDecoration(
+//                             borderRadius: BorderRadius.circular(10),
+//                             color: Colors.grey[300],
+//                           ),
+//                           child: Padding(
+//                             padding: const EdgeInsets.only(top: 0, left: 10,right: 15),
+//                             child: Row(
+//                               children: [
+//                                 const Icon(
+//                                   Icons.repeat_on,
+//                                   color: Colors.grey,
+//                                   size: 42,
+//                                 ),
+//                                 const SizedBox(width: 10),
+//                                 const Text(
+//                                   'Lặp lại',
+//                                   style: TextStyle(
+//                                     fontSize: 17,
+//                                     fontWeight: FontWeight.w500,
+//                                   ),
+//                                 ),
+//                                 const Spacer(),
+//                                 Text(
+//                                   repeatOption,
+//                                   style: const TextStyle(
+//                                     fontSize: 17,
+//                                     color: Colors.grey,
+//                                   ),
+//                                 ),
+//                                 const SizedBox(width: 1),
+//                                 const Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   color: Colors.grey,
+//                                   size: 16,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 20),
+//                       const LocationEnable(),
+//                       const SizedBox(height: 20),
+//                       PrioritySelector(),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/task.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
+import 'package:todolist/widget/datetime_picker.dart';
+import 'package:todolist/widget/location_selector.dart';
+import 'package:todolist/widget/priority_selector.dart';
+
+class DetailsTaskListPageBottomsheet extends StatefulWidget {
+  final Task task;
+  final TaskList taskList;
+
+  const DetailsTaskListPageBottomsheet({
+    super.key,
+    required this.task,
+    required this.taskList,
+  });
+
+  @override
+  State<DetailsTaskListPageBottomsheet> createState() =>
+      _DetailsTaskListPageBottomsheetState();
+}
+
+class _DetailsTaskListPageBottomsheetState
+    extends State<DetailsTaskListPageBottomsheet> {
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
+  DateTime? reminderTime;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.task.title);
+    descriptionController =
+        TextEditingController(text: widget.task.description);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final repeatOption = Provider.of<TaskViewModel>(context).repeatOption;
+
+    return SingleChildScrollView(
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+        child: Container(
+          color: Colors.grey,
+          height: 780,
+          width: 500,
+          child: Scaffold(
+            appBar: AppBar(
+              leadingWidth: 400,
+              leading: Row(
+                children: [
+                  const Padding(padding: EdgeInsets.only(left: 20)),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Row(
+                      children: [
+                        Text(
+                          'Hủy',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 100),
+                  const Text(
+                    'Chi Tiết',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(width: 100),
+                  TextButton(
+                    child: const Text(
+                      'Lưu',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () async {
+                      // Cập nhật tiêu đề và mô tả của task
+                      widget.task.title = titleController.text;
+                      widget.task.description = descriptionController.text;
+                      widget.task.reminderTime = reminderTime;
+
+                      // Cập nhật task trong ViewModel
+                      Provider.of<TaskViewModel>(context, listen: false)
+                          .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+                      Provider.of<TaskViewModel>(context, listen: false)
+                          .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
+
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 21),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 350,
+                        height: 112,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[300],
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextField(
+                                controller: titleController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Tiêu đề',
+                                  border: UnderlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextField(
+                                controller: descriptionController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Mô tả',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      DateTimePicker(
+                        onDateTimeChanged: (newDateTime) {
+                          setState(() {
+                            reminderTime = newDateTime;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (BuildContext context) {
+                              return RepeatIntervallTime(task: widget.task, taskList: widget.taskList,);
+                            },
+                          );
+                        },
+                        child: Container(
+                          height: 55,
+                          width: 350,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[300],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 0, left: 10,right: 15),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.repeat_on,
+                                  color: Colors.grey,
+                                  size: 42,
+                                ),
+                                const SizedBox(width: 10),
+                                const Text(
+                                  'Lặp lại',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  repeatOption,
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(width: 1),
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.grey,
+                                  size: 16,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // const LocationEnable(),
+                      // const SizedBox(height: 20),
+                      PrioritySelector(task: widget.task,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

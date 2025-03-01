@@ -1,13 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/configs.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/model/task.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
+import 'package:todolist/services/notification_service.dart';
+import 'package:todolist/view/component/bottomsheet/custom_repeat_bottomsheet.dart';
 
-import 'custom_repeat_bottomsheet.dart';
+class RepeatIntervallTime extends StatefulWidget {
+  final TaskList taskList;
+  final Task task;
 
-class RepeatIntervallTime extends StatelessWidget {
-  const RepeatIntervallTime({super.key});
+  const RepeatIntervallTime({super.key, required this.task, required this.taskList});
 
-  void _onTap(BuildContext context) {
-    Navigator.pop(context);
+  @override
+  State<RepeatIntervallTime> createState() => _RepeatIntervallTimeState();
+}
+
+class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
+  late String repeatOption;
+
+  @override
+  void initState() {
+    super.initState();
+    repeatOption = Provider.of<TaskViewModel>(context,listen: false).repeatOption;
+  }
+
+  void _onTap(BuildContext context, String option) {
+    setState(() {
+      repeatOption = option;
+    });
+
+    Provider.of<TaskViewModel>(context, listen: false).updateRepeatOption(widget.task, option);
+
+    if (widget.task.reminderTime != null) {
+      _scheduleNotification(option);
+    }
+  }
+
+  void _scheduleNotification(String repeatOption) async {
+    if (widget.task.reminderTime != null) {
+      await NotificationService.setScheduleNotification(
+        scheduleDateTime: widget.task.reminderTime!,
+        title: widget.task.title,
+        body: widget.task.description ?? '',
+        id: widget.task.id,
+        isPlaySound: true,
+      );
+    }
   }
 
   @override
@@ -40,9 +79,7 @@ class RepeatIntervallTime extends StatelessWidget {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(
-                        width: 70,
-                      ),
+                      SizedBox(width: 70),
                       Text(
                         'Lặp lại',
                         style: TextStyle(
@@ -61,7 +98,7 @@ class RepeatIntervallTime extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
                 child: Container(
-                  height: 110,
+                  height: 95,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -74,20 +111,22 @@ class RepeatIntervallTime extends StatelessWidget {
                         children: [
                           ListTile(
                             title: const Text(
-                              'Không bao giờ',
+                              'Không',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            trailing: const Icon(
+                            trailing: repeatOption == 'Không'
+                                ? const Icon(
                               Icons.check_outlined,
                               color: Colors.blueAccent,
                               size: 25,
-                            ),
-                            onTap: () => _onTap(context),
+                            )
+                                : null,
+                            onTap: () => _onTap(context, 'Không'),
                           ),
-                          dividerRepeatBottomSheet,
+                          const Divider(height: 0, thickness: 0.7),
                           ListTile(
                             title: const Text(
                               'Hàng ngày',
@@ -96,7 +135,31 @@ class RepeatIntervallTime extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            onTap: () => _onTap(context),
+                            trailing: repeatOption == ',Hằng ngày'
+                                ? const Icon(
+                              Icons.check_outlined,
+                              color: Colors.blueAccent,
+                              size: 25,
+                            )
+                                : null,
+                            onTap: () => _onTap(context, ',Hằng ngày'),
+                          ),
+                          ListTile(
+                            title: Text(
+                              repeatOption != 'Không' ? repeatOption : 'Không',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            trailing: repeatOption != 'Không'
+                                ? const Icon(
+                              Icons.check_outlined,
+                              color: Colors.blueAccent,
+                              size: 25,
+                            )
+                                : null,
+                            onTap: () => _onTap(context, repeatOption),
                           ),
                         ],
                       ),
@@ -104,19 +167,26 @@ class RepeatIntervallTime extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 20),
               GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
+                onTap: () async {
+                  int? selectedDays = await showModalBottomSheet<int>(
                     context: context,
                     isScrollControlled: true,
                     builder: (BuildContext context) {
                       return const CustomRepeatBottomsheet();
                     },
                   );
+
+                  if (selectedDays != null) {
+                    setState(() {
+                      repeatOption = ',Mỗi $selectedDays ngày';
+                    });
+                    Provider.of<TaskViewModel>(context, listen: false).updateRepeatOption(widget.task, repeatOption);
+                  }
                 },
                 child: Container(
-                  height: 55,
+                  height: 50,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),

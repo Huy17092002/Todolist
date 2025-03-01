@@ -8,6 +8,8 @@ import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
 
+  get taskList => null;
+
   @override
   NewReminderBottomsheetState createState() => NewReminderBottomsheetState();
 }
@@ -115,7 +117,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         context: context,
                         isScrollControlled: true,
                         builder: (BuildContext context) {
-                          return const DetailsTaskBottomsheet();
+                          return  DetailsTaskBottomsheet(taskList:widget.taskList);
                         },
                       );
                     },

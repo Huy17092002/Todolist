@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/priority.dart';
+import '../model/task.dart';
+import '../viewmodel/task_viewmodel.dart';
 
 class PrioritySelector extends StatefulWidget {
-  PrioritySelector({super.key});
+  final Task task;
+
+  PrioritySelector({super.key, required this.task});
 
   final List<String> list = <String>['None', 'Low', 'Normal', 'High'];
 
@@ -15,7 +22,15 @@ class _PrioritySelectorState extends State<PrioritySelector> {
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.list.first;
+    if (widget.task.priority == Priority.none) {
+      dropdownValue = widget.list[0];
+    } else if (widget.task.priority == Priority.low) {
+      dropdownValue = widget.list[1];
+    } else if (widget.task.priority == Priority.medium) {
+      dropdownValue = widget.list[2];
+    } else if (widget.task.priority == Priority.high) {
+      dropdownValue = widget.list[3];
+    }
   }
 
   @override
@@ -27,12 +42,12 @@ class _PrioritySelectorState extends State<PrioritySelector> {
         borderRadius: BorderRadius.circular(10),
         color: Colors.grey[300],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15),
-            child: Row(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
               children: [
                 Container(
                   width: 40,
@@ -52,30 +67,45 @@ class _PrioritySelectorState extends State<PrioritySelector> {
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              DropdownButton<String>(
-                value: dropdownValue,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue!;
-                  });
-                },
-                items: widget.list.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value,style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black87),),
-                  );
-                }).toList(),
-                underline: Container(),
-                icon: const Icon(Icons.unfold_more, color: Colors.black45),
-              ),
-            ],
-          ),
-        ],
+            DropdownButton<String>(
+              value: dropdownValue,
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+
+                Priority updatedPriority;
+                if (newValue == 'None') {
+                  updatedPriority = Priority.none;
+                } else if (newValue == 'Low') {
+                  updatedPriority = Priority.low;
+                } else if (newValue == 'Normal') {
+                  updatedPriority = Priority.medium;
+                } else {
+                  updatedPriority = Priority.high;
+                }
+                widget.task.priority = updatedPriority;
+
+                Provider.of<TaskViewModel>(context, listen: false)
+                    .updatePriority(widget.task);
+              },
+              items: widget.list.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value,
+                      style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black87)),
+                );
+              }).toList(),
+              underline: Container(),
+              icon: const Icon(Icons.unfold_more, color: Colors.black45),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
+
 

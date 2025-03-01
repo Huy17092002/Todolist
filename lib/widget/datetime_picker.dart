@@ -16,15 +16,12 @@ class _DateTimePickerState extends State<DateTimePicker> {
   DateTime selectedDate = DateTime.now();
   DateTime selectedTime = DateTime.now();
 
-
   @override
   void initState() {
     super.initState();
     DateTime initial = DateTime.now();
-    selectedTime =
-        DateTime(initial.year, initial.month, initial.day, initial.hour,);
+    selectedTime = DateTime(initial.year, initial.month, initial.day, initial.hour);
   }
-
 
   void _toggleDate(bool value) {
     setState(() {
@@ -55,7 +52,6 @@ class _DateTimePickerState extends State<DateTimePicker> {
   }
 
   void _updateSelectedTime(DateTime newTime) {
-
     setState(() {
       selectedTime = DateTime(
         selectedDate.year,
@@ -155,16 +151,17 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 290,
-                        width: 370,
-                        child: CalendarDatePicker(
-                          initialDate: selectedDate,
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2100),
-                          onDateChanged: _updateSelectedDate,
+                      if (showDate)
+                        SizedBox(
+                          height: 290,
+                          width: 370,
+                          child: CalendarDatePicker(
+                            initialDate: selectedDate,
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2100),
+                            onDateChanged: _updateSelectedDate,
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),

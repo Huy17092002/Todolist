@@ -9,6 +9,7 @@ import 'package:todolist/viewmodel/task_viewmodel.dart';
 class TaskListPage extends StatefulWidget {
   final TaskList taskList;
 
+
   const TaskListPage({super.key, required this.taskList});
 
   @override
@@ -126,7 +127,7 @@ class TaskListPageState extends State<TaskListPage> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 33, right: 210),
+        padding: const EdgeInsets.only(bottom: 33, right: 290),
         child: SingleChildScrollView(
           child: TextButton.icon(
             icon: const Icon(

@@ -167,13 +167,17 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:todolist/view/component/bottomsheet/repeatintervalltime_bottomsheet.dart';
+import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
 import 'package:todolist/widget/datetime_picker.dart';
 import 'package:todolist/widget/location_selector.dart';
 import 'package:todolist/widget/priority_selector.dart';
 
 class DetailsTaskBottomsheet extends StatefulWidget {
-  const DetailsTaskBottomsheet({super.key});
+  const DetailsTaskBottomsheet({super.key, required this.taskList});
+  final TaskList taskList;
+
+  get task => null;
 
   @override
   State<DetailsTaskBottomsheet> createState() => _DetailsTaskBottomsheetState();
@@ -277,7 +281,7 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
                           context: context,
                           isScrollControlled: true,
                           builder: (BuildContext context) {
-                            return const RepeatIntervallTime();
+                            return  RepeatIntervallTime(task: widget.task, taskList: widget.taskList,);
                           },
                         );
                       },
@@ -325,9 +329,9 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const LocationEnable(),
+                    // const LocationEnable(),
                     const SizedBox(height: 20),
-                    PrioritySelector(),
+                    PrioritySelector(task: widget.task,),
                   ],
                 ),
               ),
