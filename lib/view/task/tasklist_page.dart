@@ -5,6 +5,9 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/component/items/task_item.dart';
 import 'package:todolist/view/home/bottomsheet/list_info_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
+
+import '../home/homepage/home_page.dart';
 
 class TaskListPage extends StatefulWidget {
   final TaskList taskList;
@@ -70,6 +73,52 @@ class TaskListPageState extends State<TaskListPage> {
                           },
                         );
                       },
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.check_circle_outline, size: 30),
+                        title: Text(
+                          'Chọn lời nhắc',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.import_export, size: 30),
+                        title: Text(
+                          'Sắp xếp theo độ ưu tiên',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.remove_red_eye_outlined, size: 30),
+                        title: Text(
+                          'Lời nhắc đã hoàn tất',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: ListTile(
+                        leading: const Icon(Icons.delete_rounded, color: Colors.red, size: 30),
+                        title: const Text(
+                          'Xóa danh sách',
+                          style: TextStyle(fontSize: 18, color: Colors.red),
+                        ),
+                        onTap: (){
+                          Provider.of<TaskListCollectionViewModel>(context, listen: false).deleteTaskList(widget.taskList);
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const HomePage(),
+                          //   ),
+                          // );
+                          Navigator.of(context).pop(HomePage());
+                        },
+                      ),
                     ),
                   ],
                 );

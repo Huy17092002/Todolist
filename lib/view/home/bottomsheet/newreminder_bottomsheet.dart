@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
@@ -8,7 +9,8 @@ import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
 
-  get taskList => null;
+  get taskList => TaskList(title: '', tasks: []);
+  get task => Task(id: 0, title: '', isCompleted: true, );
 
   @override
   NewReminderBottomsheetState createState() => NewReminderBottomsheetState();
@@ -117,7 +119,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         context: context,
                         isScrollControlled: true,
                         builder: (BuildContext context) {
-                          return  DetailsTaskBottomsheet(taskList:widget.taskList);
+                          return  DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task,);
                         },
                       );
                     },

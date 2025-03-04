@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 
+import '../model/priority.dart';
+
 
 class TaskViewModel extends ChangeNotifier {
   List<TaskList> taskLists = [];
@@ -50,6 +52,12 @@ class TaskViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updatePriority(Task task) {}
-  
+  void updatePriority(Task task,  newPriority) {
+    task.priority = newPriority;
+    notifyListeners();
+  }
+
+  void arrangePriority(TaskList taskList, Task task){
+
+  }
 }
