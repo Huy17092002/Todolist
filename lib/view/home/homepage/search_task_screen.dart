@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/model/tasklist.dart';
-import '../../../../../viewmodel/tasklistcollection_viewmodel.dart';
-import '../../component/items/task_item.dart';
+import 'package:todolist/view/component/items/task_item.dart';
+import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 class SearchTaskScreen extends StatefulWidget {
   const SearchTaskScreen({super.key, required this.taskList});
@@ -53,9 +53,10 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                             onChanged: _filterResults,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.search),
-                              hintText: 'Nhập để tìm kiếm...',
+                              hintText: 'Nhập để tìm kiếm',
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 16.0),
                             ),
                           ),
                         ),
@@ -64,7 +65,8 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                             onTap: _clearSearch,
                             child: const Padding(
                               padding: EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.cancel, color: Colors.grey, size: 20),
+                              child: Icon(Icons.cancel,
+                                  color: Colors.grey, size: 20),
                             ),
                           ),
                       ],
@@ -74,9 +76,12 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                 const SizedBox(width: 8),
                 GestureDetector(
                   onTap: Navigator.of(context).pop,
-                  child: const  Text(
+                  child: const Text(
                     'Hủy',
-                    style: TextStyle(fontSize: 18, color: Colors.blue, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ],
@@ -86,7 +91,8 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
               Expanded(
                 child: Consumer<TaskListCollectionViewModel>(
                   builder: (context, taskListCollectionViewModel, child) {
-                    final filteredTasks = taskListCollectionViewModel.searchTasks(searchQuery);
+                    final filteredTasks =
+                        taskListCollectionViewModel.searchTasks(searchQuery);
                     return ListView.builder(
                       itemCount: filteredTasks.length,
                       itemBuilder: (context, index) {
@@ -97,10 +103,14 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
                                 taskListTitle,
-                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
                               ),
                             ),
                             TaskItem(task: task, taskList: widget.taskList),
