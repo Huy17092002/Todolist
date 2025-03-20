@@ -7,7 +7,6 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/task/bottomsheet/details_tasklistpage_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 
-
 class TaskItem extends StatefulWidget {
   final Task task;
   final TaskList taskList;
@@ -19,10 +18,10 @@ class TaskItem extends StatefulWidget {
 }
 
 class _TaskItemState extends State<TaskItem> {
-  late TextEditingController _titleController;
-  late TextEditingController _descriptionController;
-  late bool isChecked;
-  late TaskViewModel taskViewModel;
+   TextEditingController _titleController = TextEditingController();
+   TextEditingController _descriptionController = TextEditingController();
+   bool isChecked = false;
+   TaskViewModel taskViewModel = TaskViewModel();
 
   @override
   void initState() {
@@ -33,15 +32,28 @@ class _TaskItemState extends State<TaskItem> {
   }
 
   @override
+  void didUpdateWidget( TaskItem oldTaskItem) {
+    super.didUpdateWidget(oldTaskItem);
+
+    if (widget.task.title != oldTaskItem.task.title) {
+      _titleController.text = widget.task.title;
+    }
+
+    if (widget.task.description != oldTaskItem.task.description) {
+      _descriptionController.text = widget.task.description ?? '';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     taskViewModel = Provider.of<TaskViewModel>(context, listen: false);
 
     String formattedReminderTime = '';
     if (widget.task.reminderTime != null) {
-      formattedReminderTime = DateFormat('HH:mm, dd/MM/yyyy').format(widget.task.reminderTime!);
+      formattedReminderTime =
+          DateFormat('HH:mm, dd/MM/yyyy').format(widget.task.reminderTime!);
     }
 
-    // Lấy tần suất lặp lại từ ViewModel
     String repeatOption = widget.task.repeatOption ?? '';
 
     return Slidable(
@@ -86,7 +98,8 @@ class _TaskItemState extends State<TaskItem> {
                 onTap: () {
                   setState(() {
                     isChecked = !isChecked;
-                    taskViewModel.toggleTaskCompletion(widget.taskList, widget.task);
+                    taskViewModel.toggleTaskCompletion(
+                        widget.taskList, widget.task);
                   });
                 },
                 child: Icon(
@@ -117,7 +130,7 @@ class _TaskItemState extends State<TaskItem> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 2),
+                      const SizedBox(width: 3),
                       Expanded(
                         child: TextField(
                           controller: _titleController,
@@ -140,7 +153,7 @@ class _TaskItemState extends State<TaskItem> {
                                 );
                               },
                               child: const Padding(
-                                padding: EdgeInsets.only(top: 8),
+                                padding: EdgeInsets.only(top: 1),
                                 child: Icon(Icons.info_outline),
                               ),
                             ),
@@ -162,7 +175,7 @@ class _TaskItemState extends State<TaskItem> {
                     ],
                   ),
                   SizedBox(
-                    height: 36,
+                    height: 33,
                     child: TextField(
                       controller: _descriptionController,
                       cursorHeight: 17,
@@ -220,12 +233,3 @@ class _TaskItemState extends State<TaskItem> {
     );
   }
 }
-
-
-
-
-
-
-
-
-

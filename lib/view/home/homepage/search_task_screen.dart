@@ -56,7 +56,9 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                               hintText: 'Nhập để tìm kiếm',
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 16.0),
+                                  vertical: 12.0,
+                                  horizontal: 16.0,
+                              ),
                             ),
                           ),
                         ),
@@ -89,10 +91,9 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
             const SizedBox(height: 10),
             if (isContainerVisible)
               Expanded(
-                child: Consumer<TaskListCollectionViewModel>(
+               child:  Consumer<TaskListCollectionViewModel>(
                   builder: (context, taskListCollectionViewModel, child) {
-                    final filteredTasks =
-                        taskListCollectionViewModel.searchTasks(searchQuery);
+                    final filteredTasks = taskListCollectionViewModel.searchTasks(searchQuery);
                     return ListView.builder(
                       itemCount: filteredTasks.length,
                       itemBuilder: (context, index) {
@@ -103,14 +104,14 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              padding: const EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
                                 taskListTitle,
                                 style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue,
+                                ),
                               ),
                             ),
                             TaskItem(task: task, taskList: widget.taskList),

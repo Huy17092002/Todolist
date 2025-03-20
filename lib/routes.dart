@@ -3,6 +3,8 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/home/homepage/home_page.dart';
 import 'package:todolist/view/task/tasklist_page.dart';
 
+import 'model/task.dart';
+
 class Routes {
   static const String home = '/';
   static const String addTask = '/addtask';
@@ -21,12 +23,12 @@ class Routes {
               title: 'Default',
               tasks: [],
             ),
-          ),
-        );
+
+        ));
       case taskList:
         final TaskList taskList = settings.arguments as TaskList;
         return MaterialPageRoute(
-          builder: (_) => TaskListPage(taskList: taskList),
+          builder: (_) => TaskListPage(taskList: taskList,),
         );
       default:
         return MaterialPageRoute(builder: (_) => const HomePage());

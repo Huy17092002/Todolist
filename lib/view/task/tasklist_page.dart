@@ -4,20 +4,17 @@ import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/component/items/task_item.dart';
 import 'package:todolist/view/home/bottomsheet/list_info_bottomsheet.dart';
+import 'package:todolist/view/home/homepage/home_page.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
-import '../home/homepage/home_page.dart';
-
 class TaskListPage extends StatefulWidget {
   final TaskList taskList;
-
 
   const TaskListPage({super.key, required this.taskList});
 
   @override
   State<TaskListPage> createState() => TaskListPageState();
-
 }
 
 class TaskListPageState extends State<TaskListPage> {
@@ -83,14 +80,18 @@ class TaskListPageState extends State<TaskListPage> {
                         ),
                       ),
                     ),
-                    const PopupMenuItem(
-                      child: ListTile(
+                    PopupMenuItem(
+                      child: const ListTile(
                         leading: Icon(Icons.import_export, size: 30),
                         title: Text(
                           'Sắp xếp theo độ ưu tiên',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
+                      onTap: () {
+                        Provider.of<TaskViewModel>(context, listen: false)
+                            .sortTasksByPriority(widget.taskList);
+                      },
                     ),
                     const PopupMenuItem(
                       child: ListTile(
@@ -103,20 +104,23 @@ class TaskListPageState extends State<TaskListPage> {
                     ),
                     PopupMenuItem(
                       child: ListTile(
-                        leading: const Icon(Icons.delete_rounded, color: Colors.red, size: 30),
+                        leading: const Icon(Icons.delete_rounded,
+                            color: Colors.red, size: 30),
                         title: const Text(
                           'Xóa danh sách',
                           style: TextStyle(fontSize: 18, color: Colors.red),
                         ),
-                        onTap: (){
-                          Provider.of<TaskListCollectionViewModel>(context, listen: false).deleteTaskList(widget.taskList);
+                        onTap: () {
+                          Provider.of<TaskListCollectionViewModel>(context,
+                                  listen: false)
+                              .deleteTaskList(widget.taskList);
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
                           //     builder: (context) => const HomePage(),
                           //   ),
                           // );
-                          Navigator.of(context).pop(HomePage());
+                          Navigator.of(context).pop(const HomePage());
                         },
                       ),
                     ),
@@ -194,7 +198,7 @@ class TaskListPageState extends State<TaskListPage> {
             ),
             onPressed: () {
               final newTask = Task(
-                id:0,
+                id: 0,
                 title: "",
                 description: "",
                 isCompleted: false,

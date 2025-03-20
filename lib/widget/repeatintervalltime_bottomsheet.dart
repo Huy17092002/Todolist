@@ -17,7 +17,7 @@ class RepeatIntervallTime extends StatefulWidget {
 }
 
 class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
-  late String repeatOption;
+   String repeatOption = 'Không' ;
 
   @override
   void initState() {

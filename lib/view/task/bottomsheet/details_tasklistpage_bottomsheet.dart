@@ -5,7 +5,6 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/widget/datetime_picker.dart';
-import 'package:todolist/widget/location_selector.dart';
 import 'package:todolist/widget/priority_selector.dart';
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {

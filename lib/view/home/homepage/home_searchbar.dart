@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
-import '../../../model/tasklist.dart';
-import 'search_task.dart';
+import 'package:todolist/model/tasklist.dart';
+
+import 'search_task_screen.dart';
 
 
 class HomeSearchBar extends StatefulWidget {
@@ -55,7 +56,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
     if (query.isNotEmpty) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => SearchResultsScreen(taskList: TaskList(title: '', tasks: []) ,),
+          builder: (context) => SearchTaskScreen(taskList: TaskList(title: '', tasks: []) ,),
         ),
       );
     }

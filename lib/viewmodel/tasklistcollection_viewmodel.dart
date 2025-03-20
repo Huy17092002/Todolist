@@ -9,15 +9,16 @@ class TaskListCollectionViewModel extends ChangeNotifier {
   bool isLoading = false;
   String? error;
 
+  TaskList get taskList => TaskList(title: '', tasks: []);
+
   // Hàm lấy danh sách TaskList
   Future<void> getTaskListCollection() async {
-    isLoading = true;// Thông báo đang tải
+    isLoading = true; // Thông báo đang tải
     error = null;
     try {
       await Future.delayed(const Duration(seconds: 3));
       taskListCollection = TaskListCollection(
         title: 'Danh sách của tôi',
-
         tasklists: [
           TaskList(
             title: 'Facebook',
@@ -52,7 +53,10 @@ class TaskListCollectionViewModel extends ChangeNotifier {
                 priority: Priority.low,
               ),
               Task(
-                  id: 4,title: 'egj', isCompleted: true, description: 'heperlink'),
+                  id: 4,
+                  title: 'egj',
+                  isCompleted: true,
+                  description: 'heperlink'),
             ],
           ),
           TaskList(
@@ -126,7 +130,7 @@ class TaskListCollectionViewModel extends ChangeNotifier {
           ),
         ],
       );
-      // Kiểm tra tasklist rỗng, ném ra lỗi
+     //Kiểm tra tasklist rỗng, ném ra lỗi
       if (taskListCollection?.tasklists.isEmpty == true) {
         throw ('Danh sách tasklists rỗng');
       }
@@ -178,8 +182,4 @@ class TaskListCollectionViewModel extends ChangeNotifier {
     }
     return results;
   }
-
 }
-
-
-

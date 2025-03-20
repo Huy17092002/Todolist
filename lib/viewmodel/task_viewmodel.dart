@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 
-import '../model/priority.dart';
-
-
 class TaskViewModel extends ChangeNotifier {
   List<TaskList> taskLists = [];
   String repeatOption = 'Không';
   List<Task> allTasks = [];
+  List<Task> tasks = [];
 
   List<Task> searchTasks(String query) {
     if (query.isEmpty) {
@@ -20,7 +18,6 @@ class TaskViewModel extends ChangeNotifier {
           task.description!.toLowerCase().contains(query.toLowerCase());
     }).toList();
   }
-
 
   void addTaskToTaskList(TaskList taskList, Task newTask) {
     taskList.tasks.add(newTask);
@@ -42,7 +39,8 @@ class TaskViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTaskDescription(TaskList taskList, Task task, String newDescription) {
+  void updateTaskDescription(
+      TaskList taskList, Task task, String newDescription) {
     task.description = newDescription;
     notifyListeners();
   }
@@ -52,12 +50,22 @@ class TaskViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updatePriority(Task task,  newPriority) {
+  void updatePriority(Task task, newPriority) {
     task.priority = newPriority;
     notifyListeners();
   }
 
-  void arrangePriority(TaskList taskList, Task task){
+  void sortTasksByPriority(TaskList taskList) {
+    taskList.tasks.sort((a, b) => b.priority.index - a.priority.index);
+    notifyListeners();
+  }
 
+  void updateTask(TaskList taskList, Task updatedTask) {
+    int taskIndex =
+        taskList.tasks.indexWhere((task) => task.id == updatedTask.id);
+    if (taskIndex != -1) {
+      taskList.tasks[taskIndex] = updatedTask;
+      notifyListeners();
+    }
   }
 }

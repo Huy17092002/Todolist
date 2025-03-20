@@ -53,11 +53,11 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 15, right: 15, top: 10),
                   child: HomeSearchBar(),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(left: 17, top: 10),
                   child: Text(
-                    taskListCollectionViewModel.taskListCollection?.title ?? 'Danh sách của tôi',
+                    taskListCollectionViewModel.taskListCollection?.title ??
+                        'Danh sách của tôi',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -78,15 +78,21 @@ class _HomePageState extends State<HomePage> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: taskListCollectionViewModel.taskListCollection?.tasklists.length ?? 0,
+                      itemCount: taskListCollectionViewModel
+                              .taskListCollection?.tasklists.length ??
+                          0,
                       itemBuilder: (BuildContext context, int index) {
-                        final item = taskListCollectionViewModel.taskListCollection?.tasklists[index] ?? TaskList(title: '', tasks: []);
+                        final item = taskListCollectionViewModel
+                                .taskListCollection?.tasklists[index] ??
+                            TaskList(title: '', tasks: []);
                         return TaskListItem(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => TaskListPage(taskList: item),
+                                builder: (context) => TaskListPage(
+                                  taskList: item,
+                                ),
                               ),
                             );
                           },
