@@ -78,8 +78,8 @@ class TaskListItem extends StatelessWidget {
         children: [
           ListTile(
             leading: Container(
-              width: 32,
-              height: 32,
+              width: 35,
+              height: 33,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: model.color,

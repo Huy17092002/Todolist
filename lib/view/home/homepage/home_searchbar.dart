@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
 import 'package:todolist/model/tasklist.dart';
-
 import 'search_task_screen.dart';
-
 
 class HomeSearchBar extends StatefulWidget {
   const HomeSearchBar({super.key, this.taskList});
@@ -14,12 +12,12 @@ class HomeSearchBar extends StatefulWidget {
 }
 
 class _HomeSearchBarState extends State<HomeSearchBar> {
-  late bool isSearch;
-  late bool isFix;
+   bool isSearch = false;
+   bool isFix = false;
   late double opacityFix;
   late double opacityCancel;
-  late TextEditingController myController;
-  late FocusNode focusNode;
+   TextEditingController myController = TextEditingController();
+   FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
@@ -56,7 +54,8 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
     if (query.isNotEmpty) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => SearchTaskScreen(taskList: TaskList(title: '', tasks: []) ,),
+          builder: (context) =>
+              SearchTaskScreen(taskList: TaskList(title: '', tasks: [])),
         ),
       );
     }
@@ -71,8 +70,8 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
           child: GestureDetector(
             onTap: onTapSearch,
             child: AnimatedContainer(
-              width: isFix ? 40 : 55,
-              height: isFix ? 0 : 33,
+              width: isFix ? 30 : 25,
+              height: isFix ? 0 : 20,
               duration: kDuration,
               curve: Curves.easeOutQuad,
               alignment: Alignment.center,
@@ -80,34 +79,6 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                 opacity: opacityFix,
                 duration: kDuration,
                 curve: Curves.easeOutCirc,
-                child: TextButton(
-                  child: const Text(
-                    'Sửa',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thank you very much'),
-                          actions: [
-                            ElevatedButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                ),
               ),
             ),
           ),
@@ -116,7 +87,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
           children: [
             GestureDetector(
               child: AnimatedContainer(
-                width: isFix ? 305 : 360,
+                width: isFix ? 305 : 321,
                 height: 35,
                 duration: kDuration,
                 curve: Curves.easeOutQuad,
@@ -161,28 +132,30 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                 ),
               ),
             ),
-            if (isSearch)
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: GestureDetector(
-                    onTap: cancel,
-                    child: const Text(
-                      'Hủy',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                      ),
+            AnimatedOpacity(
+              opacity: opacityCancel,
+              duration: kDuration,
+              child: GestureDetector(
+                onTap: cancel,
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: Text(
+                    'Huỷ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
               ),
+            )
           ],
-        )
+        ),
       ],
     );
   }
 }
+
 
 

@@ -146,7 +146,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         context: context,
                         isScrollControlled: true,
                         builder: (BuildContext context) {
-                          return  DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task,);
+                          return  DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task, );
                         },
                       );
                     },
@@ -239,5 +239,3 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     );
   }
 }
-
-

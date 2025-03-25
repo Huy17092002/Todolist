@@ -10,19 +10,21 @@ class RepeatIntervallTime extends StatefulWidget {
   final TaskList taskList;
   final Task task;
 
-  const RepeatIntervallTime({super.key, required this.task, required this.taskList});
+  const RepeatIntervallTime(
+      {super.key, required this.task, required this.taskList});
 
   @override
   State<RepeatIntervallTime> createState() => _RepeatIntervallTimeState();
 }
 
 class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
-   String repeatOption = 'Không' ;
+  String repeatOption = 'Không';
 
   @override
   void initState() {
     super.initState();
-    repeatOption = Provider.of<TaskViewModel>(context,listen: false).repeatOption;
+    repeatOption =
+        Provider.of<TaskViewModel>(context, listen: false).repeatOption;
   }
 
   void _onTap(BuildContext context, String option) {
@@ -30,7 +32,8 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
       repeatOption = option;
     });
 
-    Provider.of<TaskViewModel>(context, listen: false).updateRepeatOption(widget.task, option);
+    Provider.of<TaskViewModel>(context, listen: false)
+        .updateRepeatOption(widget.task, option);
 
     if (widget.task.reminderTime != null) {
       _scheduleNotification(option);
@@ -96,9 +99,10 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
                 child: Container(
-                  height: 95,
+                  height: 115,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -119,10 +123,10 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                             ),
                             trailing: repeatOption == 'Không'
                                 ? const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
-                            )
+                                    Icons.check_outlined,
+                                    color: Colors.blueAccent,
+                                    size: 25,
+                                  )
                                 : null,
                             onTap: () => _onTap(context, 'Không'),
                           ),
@@ -137,10 +141,10 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                             ),
                             trailing: repeatOption == ',Hằng ngày'
                                 ? const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
-                            )
+                                    Icons.check_outlined,
+                                    color: Colors.blueAccent,
+                                    size: 25,
+                                  )
                                 : null,
                             onTap: () => _onTap(context, ',Hằng ngày'),
                           ),
@@ -154,10 +158,10 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                             ),
                             trailing: repeatOption != 'Không'
                                 ? const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
-                            )
+                                    Icons.check_outlined,
+                                    color: Colors.blueAccent,
+                                    size: 25,
+                                  )
                                 : null,
                             onTap: () => _onTap(context, repeatOption),
                           ),
@@ -182,7 +186,8 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                     setState(() {
                       repeatOption = ',Mỗi $selectedDays ngày';
                     });
-                    Provider.of<TaskViewModel>(context, listen: false).updateRepeatOption(widget.task, repeatOption);
+                    Provider.of<TaskViewModel>(context, listen: false)
+                        .updateRepeatOption(widget.task, repeatOption);
                   }
                 },
                 child: Container(

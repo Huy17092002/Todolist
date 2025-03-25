@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                  padding: EdgeInsets.only(left: 15, right: 15, top: 25),
                   child: HomeSearchBar(),
                 ),
                 Padding(

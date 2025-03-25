@@ -4,7 +4,6 @@ import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/component/items/task_item.dart';
 import 'package:todolist/view/home/bottomsheet/list_info_bottomsheet.dart';
-import 'package:todolist/view/home/homepage/home_page.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
@@ -71,15 +70,6 @@ class TaskListPageState extends State<TaskListPage> {
                         );
                       },
                     ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.check_circle_outline, size: 30),
-                        title: Text(
-                          'Chọn lời nhắc',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
                     PopupMenuItem(
                       child: const ListTile(
                         leading: Icon(Icons.import_export, size: 30),
@@ -93,15 +83,6 @@ class TaskListPageState extends State<TaskListPage> {
                             .sortTasksByPriority(widget.taskList);
                       },
                     ),
-                    const PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.remove_red_eye_outlined, size: 30),
-                        title: Text(
-                          'Lời nhắc đã hoàn tất',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
                     PopupMenuItem(
                       child: ListTile(
                         leading: const Icon(Icons.delete_rounded,
@@ -114,13 +95,7 @@ class TaskListPageState extends State<TaskListPage> {
                           Provider.of<TaskListCollectionViewModel>(context,
                                   listen: false)
                               .deleteTaskList(widget.taskList);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const HomePage(),
-                          //   ),
-                          // );
-                          Navigator.of(context).pop(const HomePage());
+                          Navigator.pop(context);
                         },
                       ),
                     ),
@@ -180,7 +155,7 @@ class TaskListPageState extends State<TaskListPage> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 33, right: 290),
+        padding: const EdgeInsets.only(bottom: 33, right: 200),
         child: SingleChildScrollView(
           child: TextButton.icon(
             icon: const Icon(
@@ -199,8 +174,8 @@ class TaskListPageState extends State<TaskListPage> {
             onPressed: () {
               final newTask = Task(
                 id: 0,
-                title: "",
-                description: "",
+                title: widget.taskList.title,
+                description:'',
                 isCompleted: false,
               );
               Provider.of<TaskViewModel>(context, listen: false)

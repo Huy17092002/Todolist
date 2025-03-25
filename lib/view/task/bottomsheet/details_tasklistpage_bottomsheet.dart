@@ -5,6 +5,7 @@ import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/widget/datetime_picker.dart';
+import 'package:todolist/services/notification_service.dart';
 import 'package:todolist/widget/priority_selector.dart';
 
 class DetailsTaskListPageBottomsheet extends StatefulWidget {
@@ -24,21 +25,25 @@ class DetailsTaskListPageBottomsheet extends StatefulWidget {
 
 class _DetailsTaskListPageBottomsheetState
     extends State<DetailsTaskListPageBottomsheet> {
-  late TextEditingController titleController;
-  late TextEditingController descriptionController;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   DateTime? reminderTime;
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.task.title);
-    descriptionController =
-        TextEditingController(text: widget.task.description);
+    descriptionController = TextEditingController(text: widget.task.description);
+    initializeNotifications();
+  }
+
+  void initializeNotifications() async {
+    await NotificationService.initNotification();
   }
 
   @override
   Widget build(BuildContext context) {
-    final repeatOption = Provider.of<TaskViewModel>(context).repeatOption;
+    Provider.of<TaskViewModel>(context).repeatOption;
 
     return SingleChildScrollView(
       child: ClipRRect(
@@ -86,11 +91,11 @@ class _DetailsTaskListPageBottomsheetState
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      Navigator.pop(context);
                       widget.task.title = titleController.text;
                       widget.task.description = descriptionController.text;
                       widget.task.reminderTime = reminderTime;
-
                       Provider.of<TaskViewModel>(context, listen: false)
                           .updateTaskTitle(widget.taskList, widget.task,
                               titleController.text);
@@ -98,7 +103,15 @@ class _DetailsTaskListPageBottomsheetState
                           .updateTaskDescription(widget.taskList, widget.task,
                               descriptionController.text);
 
-                      Navigator.pop(context);
+                      if (widget.task.reminderTime != null) {
+                        await NotificationService.setScheduleNotification(
+                          scheduleDateTime: widget.task.reminderTime!,
+                          title: widget.task.title,
+                          body: widget.task.description ?? '',
+                          id: widget.task.id,
+                          isPlaySound: true,
+                        );
+                      }
                     },
                   ),
                 ],
@@ -161,7 +174,7 @@ class _DetailsTaskListPageBottomsheetState
                             builder: (BuildContext context) {
                               return RepeatIntervallTime(
                                 task: widget.task,
-                                taskList: widget.taskList,
+                                taskList:widget.taskList,
                               );
                             },
                           );
@@ -174,8 +187,7 @@ class _DetailsTaskListPageBottomsheetState
                             color: Colors.grey[300],
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 0, left: 10, right: 15),
+                            padding: const EdgeInsets.only(top: 0, left: 15),
                             child: Row(
                               children: [
                                 const Icon(
@@ -193,7 +205,7 @@ class _DetailsTaskListPageBottomsheetState
                                 ),
                                 const Spacer(),
                                 Text(
-                                  repeatOption,
+                                  widget.task.repeatOption ?? 'Không',
                                   style: const TextStyle(
                                     fontSize: 17,
                                     color: Colors.grey,

@@ -40,50 +40,56 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _searchController,
-                            onChanged: _filterResults,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.search),
-                              hintText: 'Nhập để tìm kiếm',
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0,
-                                  horizontal: 16.0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _searchController,
+                              onChanged: _filterResults,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.search),
+                                hintText: 'Nhập để tìm kiếm',
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 12.0,
+                                    horizontal: 16.0,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        if (searchQuery.isNotEmpty)
-                          GestureDetector(
-                            onTap: _clearSearch,
-                            child: const Padding(
-                              padding: EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.cancel,
-                                  color: Colors.grey, size: 20),
+                          if (searchQuery.isNotEmpty)
+                            GestureDetector(
+                              onTap: _clearSearch,
+                              child: const Padding(
+                                padding: EdgeInsets.only(right: 8.0),
+                                child: Icon(Icons.cancel,
+                                    color: Colors.grey, size: 20),
+                              ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 8),
                 GestureDetector(
                   onTap: Navigator.of(context).pop,
-                  child: const Text(
-                    'Hủy',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500),
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      'Hủy',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ],

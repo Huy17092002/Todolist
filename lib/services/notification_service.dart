@@ -9,6 +9,7 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
   static final BehaviorSubject<String> behaviorSubject = BehaviorSubject();
+  static void setPeriodicNotification({required int id, required String title, required String body, required bool isPlaySound, required int daysInterval}) {}
 
   static Future<void> initNotification() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -24,6 +25,7 @@ class NotificationService {
     tz.setLocalLocation(
       tz.getLocation(await FlutterTimezone.getLocalTimezone()),
     );
+
   }
 
   static Future<NotificationDetails> _notificationDetails(
@@ -59,6 +61,7 @@ class NotificationService {
     );
   }
 
+
   static Future<void> setScheduleNotification({
     required DateTime scheduleDateTime,
     required String title,
@@ -67,44 +70,27 @@ class NotificationService {
     required bool isPlaySound,
   }) async {
     final platformChannelSpecifics = await _notificationDetails(isPlaySound);
+
+    tz.TZDateTime scheduledTime = tz.TZDateTime(
+      tz.local,
+      scheduleDateTime.year,
+      scheduleDateTime.month,
+      scheduleDateTime.day,
+      scheduleDateTime.hour,
+      scheduleDateTime.minute,
+      scheduleDateTime.second,
+      scheduleDateTime.millisecond
+    );
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
       body,
-      tz.TZDateTime(
-        tz.local,
-        scheduleDateTime.year,
-        scheduleDateTime.month,
-        scheduleDateTime.day,
-      ),
+      scheduledTime,
       platformChannelSpecifics,
       matchDateTimeComponents: DateTimeComponents.time,
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
-      androidScheduleMode: AndroidScheduleMode.alarmClock,
-    );
-  }
-
-  static Future<void> setPeriodicNotification({
-    required int id,
-    required String title,
-    required String body,
-    required bool isPlaySound,
-    required int daysInterval,
-  }) async {
-    final platformChannelSpecifics = await _notificationDetails(isPlaySound);
-
-    DateTime now = DateTime.now();
-    DateTime firstScheduleDate = now.add(Duration(days: daysInterval));
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      tz.TZDateTime.from(firstScheduleDate,tz.local),
-      platformChannelSpecifics,
-      matchDateTimeComponents: DateTimeComponents.time,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.alarmClock,
     );
   }

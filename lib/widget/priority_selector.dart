@@ -17,7 +17,7 @@ class PrioritySelector extends StatefulWidget {
 }
 
 class _PrioritySelectorState extends State<PrioritySelector> {
-  late String dropdownValue;
+   String dropdownValue = 'None';
 
   @override
   void initState() {
@@ -87,7 +87,7 @@ class _PrioritySelectorState extends State<PrioritySelector> {
                 widget.task.priority = updatedPriority;
 
                 Provider.of<TaskViewModel>(context, listen: false)
-                    .updatePriority(widget.task);
+                    .updatePriority(widget.task,updatedPriority);
               },
               items: widget.list.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
