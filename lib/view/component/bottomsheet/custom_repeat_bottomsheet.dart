@@ -94,7 +94,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                 padding: const EdgeInsets.only(top: 25, left: 16, right: 16),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  height: _isExpanded ? 270 : 115,
+                  height: _isExpanded ? 270 : 130,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
