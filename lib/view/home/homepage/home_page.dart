@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/component/items/task_list_item.dart';
 import 'package:todolist/view/home/homepage/home_bottom_navigationbar.dart';
 import 'package:todolist/view/task/tasklist_page.dart';
@@ -45,6 +44,9 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }
+
+          final tasklists = taskListCollectionViewModel.taskListCollection?.tasklists ?? [];
+
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,53 +57,55 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 17, top: 10),
-                  child: Text(
-                    taskListCollectionViewModel.taskListCollection?.title ??
-                        'Danh sách của tôi',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      height: 1.5,
-                      color: Colors.black,
-                    ),
+                  child: Consumer<TaskListCollectionViewModel>(
+                    builder: (context, taskListCollectionViewModel, child) {
+                      return Text(
+                        taskListCollectionViewModel.taskListCollection?.title ??
+                            'Danh sách của tôi',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          height: 1.5,
+                          color: Colors.black,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white70),
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: taskListCollectionViewModel
-                              .taskListCollection?.tasklists.length ??
-                          0,
-                      itemBuilder: (BuildContext context, int index) {
-                        final item = taskListCollectionViewModel
-                                .taskListCollection?.tasklists[index] ??
-                            TaskList(title: '', tasks: []);
-                        return TaskListItem(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TaskListPage(
-                                  taskList: item,
+
+                if (tasklists.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white70),
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: tasklists.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final item = tasklists[index] ;
+                          return TaskListItem(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TaskListPage(
+                                    taskList: item,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          model: item,
-                        );
-                      },
+                              );
+                            },
+                            model: item,
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ),
+                  )
               ],
             ),
           );
@@ -111,3 +115,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

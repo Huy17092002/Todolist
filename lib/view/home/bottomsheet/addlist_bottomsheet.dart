@@ -52,7 +52,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 780,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(
@@ -82,14 +82,9 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                 ),
                 const SizedBox(width: 65),
                 TextButton(
-                  child: const Text(
-                    'Xong',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  onPressed: () {
+                  onPressed: _nameController.text.isEmpty
+                      ? null
+                      : () {
                     String name = _nameController.text;
                     Color colorDefault = selectedColor ?? Colors.blue;
                     final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
@@ -101,17 +96,14 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                       ),
                     );
                     Navigator.pop(context);
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => TaskListPage(taskList: TaskList(
-                    //       color: colorDefault,
-                    //       title: name,
-                    //       tasks: [],
-                    //     )),
-                    //   ),
-                    // );
                   },
-
+                  child:  const Text(
+                    'Xong',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.blue,
+                    ),
+                  ),
                 ),
               ],
             ),

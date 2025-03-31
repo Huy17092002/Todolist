@@ -4,8 +4,7 @@ import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
-
-import '../../../viewmodel/task_viewmodel.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
 
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
@@ -53,7 +52,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 780,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(
@@ -146,7 +145,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         context: context,
                         isScrollControlled: true,
                         builder: (BuildContext context) {
-                          return  DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task, );
+                          return DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task, );
                         },
                       );
                     },
@@ -168,7 +167,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(width: 238),
+                            SizedBox(width: 245),
                             Icon(
                               Icons.arrow_forward_ios,
                               size: 19,
@@ -188,7 +187,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         builder: (BuildContext context) {
                           return ListNameBottomsheet(
                             onSelect: onSelectTaskTitle,
-                            taskList: TaskList(title: '', tasks: []),
+                            taskList: widget.taskList,
                           );
                         },
                       );
@@ -211,7 +210,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(width: 90),
+                            const Spacer(),
                             Text(
                               selectedTaskListTitle,
                               style: const TextStyle(
@@ -219,7 +218,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(width: 10),
+                            const SizedBox(width: 5),
                             const Icon(
                               Icons.arrow_forward_ios,
                               color: Colors.grey,
@@ -239,3 +238,5 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     );
   }
 }
+
+

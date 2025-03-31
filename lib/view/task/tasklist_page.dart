@@ -93,7 +93,7 @@ class TaskListPageState extends State<TaskListPage> {
                         ),
                         onTap: () {
                           Provider.of<TaskListCollectionViewModel>(context,
-                                  listen: false)
+                              listen: false)
                               .deleteTaskList(widget.taskList);
                           Navigator.pop(context);
                         },
@@ -125,13 +125,17 @@ class TaskListPageState extends State<TaskListPage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                widget.taskList.title,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: widget.taskList.color,
-                ),
+              child: Consumer<TaskListCollectionViewModel>(
+                builder: (context, taskListCollectionViewModel, child) {
+                  return Text(
+                    widget.taskList.title,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: widget.taskList.color,
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 10),
@@ -174,8 +178,8 @@ class TaskListPageState extends State<TaskListPage> {
             onPressed: () {
               final newTask = Task(
                 id: 0,
-                title: widget.taskList.title,
-                description:'',
+                title: '',
+                description: '',
                 isCompleted: false,
               );
               Provider.of<TaskViewModel>(context, listen: false)
@@ -187,3 +191,7 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
+
+
+
+

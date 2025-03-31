@@ -53,7 +53,7 @@ class _DetailsTaskListPageBottomsheetState
         ),
         child: Container(
           color: Colors.grey,
-          height: 780,
+          height: 700,
           width: 500,
           child: Scaffold(
             appBar: AppBar(

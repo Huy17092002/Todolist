@@ -60,7 +60,7 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 770,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(

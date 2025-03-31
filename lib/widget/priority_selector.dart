@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../model/priority.dart';
-import '../model/task.dart';
-import '../viewmodel/task_viewmodel.dart';
+import 'package:todolist/model/priority.dart';
+import 'package:todolist/model/task.dart';
+import 'package:todolist/viewmodel/task_viewmodel.dart';
 
 class PrioritySelector extends StatefulWidget {
   final Task task;
@@ -17,7 +16,7 @@ class PrioritySelector extends StatefulWidget {
 }
 
 class _PrioritySelectorState extends State<PrioritySelector> {
-   String dropdownValue = 'None';
+  String dropdownValue = 'None';
 
   @override
   void initState() {
@@ -43,7 +42,7 @@ class _PrioritySelectorState extends State<PrioritySelector> {
         color: Colors.grey[300],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 14),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -67,37 +66,45 @@ class _PrioritySelectorState extends State<PrioritySelector> {
                 ),
               ],
             ),
-            DropdownButton<String>(
-              value: dropdownValue,
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                });
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 100),
+              child: DropdownButton<String>(
+                key: ValueKey<String>(dropdownValue),
+                value: dropdownValue,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue!;
+                  });
 
-                Priority updatedPriority;
-                if (newValue == 'None') {
-                  updatedPriority = Priority.none;
-                } else if (newValue == 'Low') {
-                  updatedPriority = Priority.low;
-                } else if (newValue == 'Normal') {
-                  updatedPriority = Priority.medium;
-                } else {
-                  updatedPriority = Priority.high;
-                }
-                widget.task.priority = updatedPriority;
+                  Priority updatedPriority;
+                  if (newValue == 'None') {
+                    updatedPriority = Priority.none;
+                  } else if (newValue == 'Low') {
+                    updatedPriority = Priority.low;
+                  } else if (newValue == 'Normal') {
+                    updatedPriority = Priority.medium;
+                  } else {
+                    updatedPriority = Priority.high;
+                  }
+                  widget.task.priority = updatedPriority;
 
-                Provider.of<TaskViewModel>(context, listen: false)
-                    .updatePriority(widget.task,updatedPriority);
-              },
-              items: widget.list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value,
-                      style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black87)),
-                );
-              }).toList(),
-              underline: Container(),
-              icon: const Icon(Icons.unfold_more, color: Colors.black45),
+                  Provider.of<TaskViewModel>(context, listen: false)
+                      .updatePriority(widget.task, updatedPriority);
+                },
+                items:
+                    widget.list.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400, color: Colors.black87),
+                    ),
+                  );
+                }).toList(),
+                underline: Container(),
+                icon: const Icon(Icons.unfold_more, color: Colors.black45),
+              ),
             ),
           ],
         ),
@@ -105,7 +112,3 @@ class _PrioritySelectorState extends State<PrioritySelector> {
     );
   }
 }
-
-
-
-

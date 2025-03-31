@@ -6,9 +6,9 @@ import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 
 class ListNameBottomsheet extends StatelessWidget {
   final dynamic onSelect;
-  final TaskList taskList;
+  final TaskList? taskList;
 
-  const ListNameBottomsheet({super.key, required this.onSelect, required this.taskList});
+  const ListNameBottomsheet({super.key,  this.onSelect, this.taskList});
 
 
   @override
@@ -22,7 +22,7 @@ class ListNameBottomsheet extends StatelessWidget {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 780,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(
