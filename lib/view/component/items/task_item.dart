@@ -43,7 +43,7 @@ class _TaskItemState extends State<TaskItem> {
               DateFormat('HH:mm, dd/MM/yyyy').format(widget.task.reminderTime!);
         }
 
-        String repeatOption = widget.task.repeatOption ??  '';
+        String repeatOption = widget.task.repeatOption ?? '';
         return Slidable(
           endActionPane: ActionPane(
             motion: const StretchMotion(),
