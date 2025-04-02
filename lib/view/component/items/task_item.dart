@@ -125,6 +125,7 @@ class _TaskItemState extends State<TaskItem> {
                             child: TextField(
                               controller: _titleController,
                               cursorHeight: 24,
+                              autofocus: widget.task.title.isEmpty,
                               decoration: InputDecoration(
                                 hintText: '',
                                 border: InputBorder.none,
@@ -225,6 +226,3 @@ class _TaskItemState extends State<TaskItem> {
     );
   }
 }
-
-
-

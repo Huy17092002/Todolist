@@ -1,6 +1,4 @@
 import 'package:todolist/model/priority.dart';
-import 'package:todolist/model/tasklist.dart';
-import 'location.dart';
 
 class Task {
   int id;
@@ -10,7 +8,6 @@ class Task {
   String? deadline;
   String repeat;
   Priority priority;
-  Location? location;
   DateTime? reminderTime;
   String? repeatOption;
 
@@ -20,7 +17,6 @@ class Task {
     this.description,
     required this.isCompleted,
     this.priority = Priority.none,
-    this.location,
     this.deadline='',
     this.repeat = '',
     this.reminderTime,

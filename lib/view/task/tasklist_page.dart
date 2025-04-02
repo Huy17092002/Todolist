@@ -17,6 +17,7 @@ class TaskListPage extends StatefulWidget {
 }
 
 class TaskListPageState extends State<TaskListPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +185,9 @@ class TaskListPageState extends State<TaskListPage> {
               );
               Provider.of<TaskViewModel>(context, listen: false)
                   .addTaskToTaskList(widget.taskList, newTask);
+
+              Future.delayed(const Duration(milliseconds: 100), () {
+              });
             },
           ),
         ),
@@ -191,7 +195,3 @@ class TaskListPageState extends State<TaskListPage> {
     );
   }
 }
-
-
-
-

@@ -2,43 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/services/notification_service.dart';
 import 'package:todolist/widget/repeatintervalltime_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:todolist/widget/datetime_picker.dart';
-import 'package:todolist/widget/priority_selector.dart';
 
 class DetailsTaskBottomsheet extends StatefulWidget {
   final Task task;
   final TaskList taskList;
-
+  final Function(DateTime?) onDateTimeChanged;
   const DetailsTaskBottomsheet({
     super.key,
     required this.task,
     required this.taskList,
+    required this.onDateTimeChanged,
   });
 
   @override
-  State<DetailsTaskBottomsheet> createState() =>
-      _DetailsTaskListPageBottomsheetState();
+  State<DetailsTaskBottomsheet> createState() => _DetailsTaskBottomsheetState();
 }
 
-class _DetailsTaskListPageBottomsheetState
-    extends State<DetailsTaskBottomsheet> {
+class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   DateTime? reminderTime;
+
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.task.title);
-    descriptionController =
-        TextEditingController(text: widget.task.description);
+    descriptionController = TextEditingController(text: widget.task.description);
+    reminderTime = widget.task.reminderTime;
+  }
+
+  void initializeNotifications() async {
+    await NotificationService.initNotification();
   }
 
   @override
   Widget build(BuildContext context) {
-    final repeatOption = Provider.of<TaskViewModel>(context).repeatOption;
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(10),
@@ -84,25 +87,25 @@ class _DetailsTaskListPageBottomsheetState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    Navigator.pop(context);
                     widget.task.title = titleController.text;
                     widget.task.description = descriptionController.text;
                     widget.task.reminderTime = reminderTime;
 
+                    widget.onDateTimeChanged(reminderTime);
+
                     Provider.of<TaskViewModel>(context, listen: false)
-                        .updateTaskTitle(widget.taskList, widget.task,
-                            titleController.text);
+                        .updateTaskTitle(widget.taskList, widget.task, titleController.text);
                     Provider.of<TaskViewModel>(context, listen: false)
-                        .updateTaskDescription(widget.taskList, widget.task,
-                            descriptionController.text);
-                    Navigator.pop(context);
+                        .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
                   },
-                ),
+                )
               ],
             ),
           ),
           body: ListView(
-            padding: const EdgeInsets.all( 15),
+            padding: const EdgeInsets.all(15),
             children: [
               DateTimePicker(
                 onDateTimeChanged: (newDateTime) {
@@ -133,7 +136,7 @@ class _DetailsTaskListPageBottomsheetState
                     color: Colors.grey[300],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 0, left: 10, right: 15),
+                    padding: const EdgeInsets.only(top: 0, left: 15),
                     child: Row(
                       children: [
                         const Icon(
@@ -151,7 +154,7 @@ class _DetailsTaskListPageBottomsheetState
                         ),
                         const Spacer(),
                         Text(
-                          repeatOption,
+                          widget.task.repeatOption ?? 'Không',
                           style: const TextStyle(
                             fontSize: 17,
                             color: Colors.grey,
@@ -169,14 +172,15 @@ class _DetailsTaskListPageBottomsheetState
                 ),
               ),
               const SizedBox(height: 20),
-              PrioritySelector(
-                task: widget.task,
-              ),
             ],
           ),
-
         ),
       ),
     );
   }
 }
+
+
+
+
+

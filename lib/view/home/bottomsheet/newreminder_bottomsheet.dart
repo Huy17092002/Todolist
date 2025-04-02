@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/model/priority.dart';
 import 'package:todolist/model/task.dart';
 import 'package:todolist/model/tasklist.dart';
+import 'package:todolist/services/notification_service.dart';
 import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
+import 'package:intl/intl.dart';
 
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
@@ -21,6 +24,9 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
   final TextEditingController descriptionController = TextEditingController();
 
   TaskList? selectedTaskList;
+  DateTime? reminderTime;
+  String? repeatOption = 'Không';
+  Priority priority = Priority.none;
 
   void onSelectTaskTitle(TaskList selectedTaskList) {
     setState(() {
@@ -29,18 +35,49 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     });
   }
 
-  void addNewTask() {
+  void addNewTask() async {
+    Navigator.pop(context);
     if (titleController.text.isNotEmpty && selectedTaskList != null) {
       final newTask = Task(
         id: DateTime.now().millisecond,
         title: titleController.text,
         description: descriptionController.text,
         isCompleted: false,
+        reminderTime: reminderTime,
+        repeat: repeatOption ?? '',
+        priority:priority,
       );
 
       Provider.of<TaskViewModel>(context, listen: false)
           .addTaskToTaskList(selectedTaskList!, newTask);
-      Navigator.pop(context);
+
+      if (newTask.reminderTime != null) {
+        await NotificationService.setScheduleNotification(
+          scheduleDateTime: newTask.reminderTime!,
+          title: newTask.title,
+          body: newTask.description ?? '',
+          id: newTask.id,
+          isPlaySound: true,
+        );
+      }
+    }
+  }
+
+  void initializeNotifications() async {
+    await NotificationService.initNotification();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    reminderTime = widget.task.reminderTime;
+  }
+
+  String getFormattedReminderTime() {
+    if (reminderTime != null) {
+      return DateFormat('yyyy-MM-dd – HH:mm').format(reminderTime!);
+    } else {
+      return '';
     }
   }
 
@@ -145,33 +182,114 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                         context: context,
                         isScrollControlled: true,
                         builder: (BuildContext context) {
-                          return DetailsTaskBottomsheet(taskList:widget.taskList, task: widget.task, );
+                          return DetailsTaskBottomsheet(
+                            onDateTimeChanged: (newDateTime) {
+                              setState(() {
+                                reminderTime = newDateTime;
+                              });
+                            },
+                            task: widget.task,
+                            taskList: widget.taskList,
+                          );
                         },
                       );
                     },
                     child: Container(
-                      height: 60,
+                      height: 55,
                       width: 350,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[300],
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 2, left: 20),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 0, left: 15),
                         child: Row(
                           children: [
-                            Text(
+                            const Text(
                               'Chi tiết',
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(width: 245),
-                            Icon(
+                            const Spacer(),
+                            Text(
+                              getFormattedReminderTime(),
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(width: 1),
+                            const Icon(
                               Icons.arrow_forward_ios,
-                              size: 19,
                               color: Colors.grey,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Chọn độ ưu tiên'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                                  children: Priority.values.map((priorityValue) {
+                                return RadioListTile<Priority>(
+                                  title: Text(priorityValue.name),
+                                  value: priorityValue,
+                                  groupValue: priority,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      priority = value!;
+                                    });
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              }).toList(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 350,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 0, left: 15),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Độ ưu tiên',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              priority.name,
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(width: 1),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey,
+                              size: 16,
                             ),
                           ],
                         ),
@@ -238,5 +356,4 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     );
   }
 }
-
 
