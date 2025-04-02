@@ -8,11 +8,13 @@ import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:intl/intl.dart';
+import 'package:todolist/widget/priority_selector.dart';
 
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
   get taskList => TaskList(title: '', tasks: []);
   get task => Task(id: 0, title: '', isCompleted: true, );
+
 
   @override
   NewReminderBottomsheetState createState() => NewReminderBottomsheetState();
@@ -22,7 +24,8 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
   String selectedTaskListTitle = 'chọn danh sách';
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-
+  final List<String> list = <String>['None', 'Low', 'Normal', 'High'];
+  String dropdownValue = 'None';
   TaskList? selectedTaskList;
   DateTime? reminderTime;
   String? repeatOption = 'Không';
@@ -45,7 +48,7 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
         isCompleted: false,
         reminderTime: reminderTime,
         repeat: repeatOption ?? '',
-        priority:priority,
+        priority: priority,
       );
 
       Provider.of<TaskViewModel>(context, listen: false)
@@ -234,30 +237,27 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      showDialog(
+                      showMenu<Priority>(
                         context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Chọn độ ưu tiên'),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                                  children: Priority.values.map((priorityValue) {
-                                return RadioListTile<Priority>(
-                                  title: Text(priorityValue.name),
-                                  value: priorityValue,
-                                  groupValue: priority,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      priority = value!;
-                                    });
-                                    Navigator.pop(context);
-                                  },
-                                );
-                              }).toList(),
+                        position: const RelativeRect.fromLTRB( 800,400,0,0),
+                        items: Priority.values.map((priorityValue) {
+                          return PopupMenuItem<Priority>(
+                            value: priorityValue,
+                            child: Row(
+                              children: [
+                                Text(priorityValue.name),
+                              ],
                             ),
                           );
-                        },
-                      );
+                        }).toList(),
+                        elevation: 8.0,
+                      ).then((selectedPriority) {
+                        if (selectedPriority != null) {
+                          setState(() {
+                            priority = selectedPriority;
+                          });
+                        }
+                      });
                     },
                     child: Container(
                       height: 55,
@@ -356,4 +356,12 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     );
   }
 }
+
+
+
+
+
+
+
+
 

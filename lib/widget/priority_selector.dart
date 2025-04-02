@@ -7,7 +7,7 @@ import 'package:todolist/viewmodel/task_viewmodel.dart';
 class PrioritySelector extends StatefulWidget {
   final Task task;
 
-  PrioritySelector({super.key, required this.task, String? selectedPriority, Null Function(dynamic newPriority)? onPriorityChanged});
+  PrioritySelector({super.key, required this.task});
 
   final List<String> list = <String>['None', 'Low', 'Normal', 'High'];
 

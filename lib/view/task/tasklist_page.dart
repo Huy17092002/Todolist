@@ -93,13 +93,15 @@ class TaskListPageState extends State<TaskListPage> {
                           style: TextStyle(fontSize: 18, color: Colors.red),
                         ),
                         onTap: () {
-                          Provider.of<TaskListCollectionViewModel>(context,
-                              listen: false)
-                              .deleteTaskList(widget.taskList);
                           Navigator.pop(context);
+                          Provider.of<TaskListCollectionViewModel>(context, listen: false)
+                              .deleteTaskList(widget.taskList);
+                          Future.delayed(const Duration(milliseconds: 300), () {
+                            Navigator.pop(context);
+                          });
                         },
                       ),
-                    ),
+                    )
                   ],
                 );
               },
