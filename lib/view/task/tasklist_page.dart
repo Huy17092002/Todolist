@@ -188,7 +188,7 @@ class TaskListPageState extends State<TaskListPage> {
               Provider.of<TaskViewModel>(context, listen: false)
                   .addTaskToTaskList(widget.taskList, newTask);
 
-              Future.delayed(const Duration(milliseconds: 100), () {
+              Future.delayed(const Duration(milliseconds: 50), () {
               });
             },
           ),
