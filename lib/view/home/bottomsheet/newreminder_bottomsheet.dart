@@ -237,62 +237,6 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                       ),
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     print('dhfes');
-                  //     showModalBottomSheet(
-                  //       context: context,
-                  //       isScrollControlled: true,
-                  //       builder: (BuildContext context) {
-                  //         return DetailsTaskBottomsheet(
-                  //           onDateTimeChanged: (newDateTime) {
-                  //             setState(() {
-                  //               reminderTime = newDateTime;
-                  //             });
-                  //           },
-                  //           task: widget.task,
-                  //           taskList: widget.taskList,
-                  //         );
-                  //       },
-                  //     );
-                  //   },
-                  //   child: Container(
-                  //     height: 55,
-                  //     width: 350,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //       color: Colors.grey[300],
-                  //     ),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.only(top: 0, left: 15),
-                  //       child: Row(
-                  //         children: [
-                  //           const Text(
-                  //             'Chi tiết',
-                  //             style: TextStyle(
-                  //               fontSize: 17,
-                  //               fontWeight: FontWeight.w500,
-                  //             ),
-                  //           ),
-                  //           const Spacer(),
-                  //           Text(
-                  //             getFormattedReminderTime(),
-                  //             style: const TextStyle(
-                  //               fontSize: 17,
-                  //               color: Colors.grey,
-                  //             ),
-                  //           ),
-                  //           const SizedBox(width: 1),
-                  //           const Icon(
-                  //             Icons.arrow_forward_ios,
-                  //             color: Colors.grey,
-                  //             size: 16,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
