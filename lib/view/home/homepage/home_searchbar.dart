@@ -12,12 +12,12 @@ class HomeSearchBar extends StatefulWidget {
 }
 
 class _HomeSearchBarState extends State<HomeSearchBar> {
-   bool isSearch = false;
-   bool isFix = false;
+  bool isSearch = false;
+  bool isFix = false;
   late double opacityFix;
   late double opacityCancel;
-   TextEditingController myController = TextEditingController();
-   FocusNode focusNode = FocusNode();
+  TextEditingController myController = TextEditingController();
+  FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
@@ -85,56 +85,58 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
         ),
         Row(
           children: [
-            GestureDetector(
-              child: AnimatedContainer(
-                width: isFix ? 305 : 321,
-                height: 35,
-                duration: kDuration,
-                curve: Curves.easeOutQuad,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        controller: myController,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: 'Tìm kiếm',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(bottom: 12.5),
-                        ),
-                        onTap: onTapSearch,
-                        onChanged: onSearchChanged,
-                      ),
-                    ),
-                    if (isSearch)
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            myController.clear();
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8.5, right: 4),
-                          child: Icon(
-                            Icons.cancel,
-                            color: Colors.grey[500],
-                            size: 17,
+            Expanded(
+              child: GestureDetector(
+                child: AnimatedContainer(
+                  height: 35,
+                  width: isFix ? 300 : 350,
+                  duration: kDuration,
+                  curve: Curves.easeOutQuad,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          focusNode: focusNode,
+                          controller: myController,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            hintText: 'Tìm kiếm',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(bottom: 12.5),
                           ),
+                          onTap: onTapSearch,
+                          onChanged: onSearchChanged,
                         ),
-                      )
-                  ],
+                      ),
+                      if (isSearch)
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              myController.clear();
+                            });
+                          },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 8.5, right: 4),
+                            child: Icon(
+                              Icons.cancel,
+                              color: Colors.grey[500],
+                              size: 17,
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
                 ),
               ),
             ),
-            AnimatedOpacity(
-              opacity: opacityCancel,
-              duration: kDuration,
+            Visibility(
+              visible: isSearch,
               child: GestureDetector(
                 onTap: cancel,
                 child: const Padding(
@@ -149,13 +151,10 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ],
     );
   }
 }
-
-
-

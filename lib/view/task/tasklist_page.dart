@@ -10,13 +10,25 @@ import 'package:todolist/viewmodel/tasklistcollection_viewmodel.dart';
 class TaskListPage extends StatefulWidget {
   final TaskList taskList;
 
-  const TaskListPage({super.key, required this.taskList});
+  const TaskListPage({
+    super.key,
+    required this.taskList,
+  });
+
 
   @override
   State<TaskListPage> createState() => TaskListPageState();
 }
 
 class TaskListPageState extends State<TaskListPage> {
+  Task? selectedTask;
+  FocusNode focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +55,40 @@ class TaskListPageState extends State<TaskListPage> {
                 ],
               ),
             ),
-            const SizedBox(width: 155),
+            const SizedBox(width: 218),
             IconButton(
-              icon: const Icon(Icons.pending_outlined, color: Colors.blue),
+              icon: selectedTask == null
+                  ? const Icon(
+                      Icons.pending_outlined,
+                      color: Colors.blue,
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        if (selectedTask != null &&
+                            selectedTask!.title.isEmpty) {
+                          Provider.of<TaskViewModel>(context, listen: false)
+                              .deleteTask(widget.taskList, selectedTask!);
+                          FocusScope.of(context).unfocus();
+                          setState(() {
+                            selectedTask = null;
+                          });
+                        } else if (selectedTask != null) {
+                          FocusScope.of(context).unfocus();
+                          setState(() {
+                            selectedTask = null;
+                          });
+                        } else {
+                          FocusScope.of(context).unfocus();
+                        }
+                      },
+                      child: const Text(
+                        'Xong',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
               onPressed: () {
                 showMenu(
                   context: context,
@@ -86,8 +129,11 @@ class TaskListPageState extends State<TaskListPage> {
                     ),
                     PopupMenuItem(
                       child: ListTile(
-                        leading: const Icon(Icons.delete_rounded,
-                            color: Colors.red, size: 30),
+                        leading: const Icon(
+                          Icons.delete_rounded,
+                          color: Colors.red,
+                          size: 30,
+                        ),
                         title: const Text(
                           'Xóa danh sách',
                           style: TextStyle(fontSize: 18, color: Colors.red),
@@ -102,21 +148,10 @@ class TaskListPageState extends State<TaskListPage> {
                         },
                       ),
                     )
+
                   ],
                 );
               },
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Xong',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.blue,
-                ),
-              ),
             ),
           ],
         ),
@@ -152,6 +187,11 @@ class TaskListPageState extends State<TaskListPage> {
                       return TaskItem(
                         task: task,
                         taskList: widget.taskList,
+                        onTaskSelected: (task) {
+                          setState(() {
+                            selectedTask = task;
+                          });
+                        },
                       );
                     },
                   );
@@ -162,7 +202,7 @@ class TaskListPageState extends State<TaskListPage> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 33, right: 200),
+        padding: const EdgeInsets.only(bottom: 2, right: 220),
         child: SingleChildScrollView(
           child: TextButton.icon(
             icon: const Icon(
@@ -187,9 +227,6 @@ class TaskListPageState extends State<TaskListPage> {
               );
               Provider.of<TaskViewModel>(context, listen: false)
                   .addTaskToTaskList(widget.taskList, newTask);
-
-              Future.delayed(const Duration(milliseconds: 50), () {
-              });
             },
           ),
         ),

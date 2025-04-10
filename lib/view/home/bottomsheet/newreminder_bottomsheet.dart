@@ -8,7 +8,6 @@ import 'package:todolist/view/home/bottomsheet/listname_bottomsheet.dart';
 import 'package:todolist/view/task/bottomsheet/detailstask_bottomsheet.dart';
 import 'package:todolist/viewmodel/task_viewmodel.dart';
 import 'package:intl/intl.dart';
-import 'package:todolist/widget/priority_selector.dart';
 
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
@@ -24,8 +23,6 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
   String selectedTaskListTitle = 'chọn danh sách';
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final List<String> list = <String>['None', 'Low', 'Normal', 'High'];
-  String dropdownValue = 'None';
   TaskList? selectedTaskList;
   DateTime? reminderTime;
   String? repeatOption = 'Không';
@@ -86,6 +83,9 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      print('ddsgesg');
+    });
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -99,19 +99,22 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
             leadingWidth: 400,
             leading: Row(
               children: [
-                TextButton(
-                  child: const Text(
-                    'Hủy',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.blue,
+                Padding(
+                  padding: const EdgeInsets.only(left: 7),
+                  child: TextButton(
+                    child: const Text(
+                      'Hủy',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.blue,
+                      ),
                     ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
                 ),
-                const SizedBox(width: 60),
+                const SizedBox(width: 67),
                 const Text(
                   'Lời nhắc mới',
                   style: TextStyle(
@@ -234,6 +237,62 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                       ),
                     ),
                   ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     print('dhfes');
+                  //     showModalBottomSheet(
+                  //       context: context,
+                  //       isScrollControlled: true,
+                  //       builder: (BuildContext context) {
+                  //         return DetailsTaskBottomsheet(
+                  //           onDateTimeChanged: (newDateTime) {
+                  //             setState(() {
+                  //               reminderTime = newDateTime;
+                  //             });
+                  //           },
+                  //           task: widget.task,
+                  //           taskList: widget.taskList,
+                  //         );
+                  //       },
+                  //     );
+                  //   },
+                  //   child: Container(
+                  //     height: 55,
+                  //     width: 350,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       color: Colors.grey[300],
+                  //     ),
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.only(top: 0, left: 15),
+                  //       child: Row(
+                  //         children: [
+                  //           const Text(
+                  //             'Chi tiết',
+                  //             style: TextStyle(
+                  //               fontSize: 17,
+                  //               fontWeight: FontWeight.w500,
+                  //             ),
+                  //           ),
+                  //           const Spacer(),
+                  //           Text(
+                  //             getFormattedReminderTime(),
+                  //             style: const TextStyle(
+                  //               fontSize: 17,
+                  //               color: Colors.grey,
+                  //             ),
+                  //           ),
+                  //           const SizedBox(width: 1),
+                  //           const Icon(
+                  //             Icons.arrow_forward_ios,
+                  //             color: Colors.grey,
+                  //             size: 16,
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {

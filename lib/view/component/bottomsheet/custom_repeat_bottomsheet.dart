@@ -43,7 +43,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 770,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(
@@ -65,7 +65,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(width: 70),
+                      SizedBox(width: 80),
                       Text(
                         'Custom',
                         style: TextStyle(
@@ -76,7 +76,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 80),
+                const SizedBox(width: 110),
                 GestureDetector(
                   onTap: _onSaveButtonPressed,
                   child: const Text('Lưu',

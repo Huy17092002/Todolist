@@ -56,7 +56,7 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
             leadingWidth: 400,
             leading: Row(
               children: [
-                const Padding(padding: EdgeInsets.only(left: 20)),
+                const Padding(padding: EdgeInsets.only(left: 25)),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: const Row(

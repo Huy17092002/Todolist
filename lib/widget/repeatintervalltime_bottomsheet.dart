@@ -82,7 +82,7 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(width: 70),
+                      SizedBox(width: 80),
                       Text(
                         'Lặp lại',
                         style: TextStyle(

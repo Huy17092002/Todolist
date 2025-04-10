@@ -168,6 +168,9 @@ class _DetailsTaskListPageBottomsheetState
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
+                          setState(() {
+                            print('ssss');
+                          });
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,

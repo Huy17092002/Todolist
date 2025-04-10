@@ -141,7 +141,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 ),
                 const SizedBox(width: 70),
                 Padding(
-                  padding: const EdgeInsets.only(top: 11),
+                  padding: const EdgeInsets.only(top: 11, left: 2),
                   child: CupertinoSwitch(
                     value: showDate,
                     onChanged: _toggleDate,
@@ -224,7 +224,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 ),
                 const SizedBox(width: 24),
                 Padding(
-                  padding: const EdgeInsets.only(top: 6),
+                  padding: const EdgeInsets.only(top: 6, left:2 ),
                   child: CupertinoSwitch(
                     value: showClock,
                     onChanged: _toggleClock,

@@ -10,16 +10,18 @@ import 'package:todolist/viewmodel/task_viewmodel.dart';
 class TaskItem extends StatefulWidget {
   final Task task;
   final TaskList taskList;
+  final Function(Task)? onTaskSelected;
 
-  const TaskItem({super.key, required this.task, required this.taskList});
+  const TaskItem({super.key, required this.task, required this.taskList, this.onTaskSelected});
 
   @override
   State<TaskItem> createState() => _TaskItemState();
 }
 
 class _TaskItemState extends State<TaskItem> {
-  late TextEditingController _titleController;
-  late TextEditingController _descriptionController;
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
+  late FocusNode _titleFocusNode;
   bool isChecked = false;
 
   @override
@@ -27,7 +29,22 @@ class _TaskItemState extends State<TaskItem> {
     super.initState();
     _titleController = TextEditingController(text: widget.task.title);
     _descriptionController = TextEditingController(text: widget.task.description);
+    _titleFocusNode = FocusNode();
     isChecked = widget.task.isCompleted;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.task.title.isEmpty) {
+        FocusScope.of(context).requestFocus(_titleFocusNode);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _titleFocusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -124,7 +141,11 @@ class _TaskItemState extends State<TaskItem> {
                           Expanded(
                             child: TextField(
                               controller: _titleController,
+                              focusNode: _titleFocusNode,
                               cursorHeight: 24,
+                              onTap: () {
+                                widget.onTaskSelected!(widget.task);
+                              },
                               decoration: InputDecoration(
                                 hintText: '',
                                 border: InputBorder.none,
@@ -169,6 +190,9 @@ class _TaskItemState extends State<TaskItem> {
                         child: TextField(
                           controller: _descriptionController,
                           cursorHeight: 17,
+                          onTap: () {
+                            widget.onTaskSelected!(widget.task);
+                          },
                           decoration: InputDecoration(
                             hintText: 'Ghi chú',
                             border: InputBorder.none,

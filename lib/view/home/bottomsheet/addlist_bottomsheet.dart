@@ -59,7 +59,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
             leadingWidth: 400,
             leading: Row(
               children: [
-                const Padding(padding: EdgeInsets.only(left: 5)),
+                const Padding(padding: EdgeInsets.only(left: 9)),
                 TextButton(
                   child: const Text(
                     'Hủy',
@@ -87,8 +87,7 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                       : () {
                     String name = _nameController.text;
                     Color colorDefault = selectedColor ?? Colors.blue;
-                    final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context, listen: false);
-                    taskListCollectionViewModel.addTaskList(
+                    Provider.of<TaskListCollectionViewModel>(context, listen: false).addTaskList(
                       TaskList(
                         title: name,
                         tasks: [],

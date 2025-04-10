@@ -61,14 +61,14 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
         topRight: Radius.circular(12),
       ),
       child: SizedBox(
-        height: 780,
+        height: 700,
         width: 500,
         child: Scaffold(
           appBar: AppBar(
             leadingWidth: 400,
             leading: Row(
               children: [
-                const Padding(padding: EdgeInsets.only(left: 5)),
+                const Padding(padding: EdgeInsets.only(left:10)),
                 TextButton(
                   child: const Text(
                     'Hủy',
@@ -78,7 +78,7 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                     Navigator.pop(context);
                   },
                 ),
-                const SizedBox(width: 30),
+                const SizedBox(width: 40),
                 const Text(
                   'Danh sách thông tin',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
