@@ -27,7 +27,6 @@ class _SearchTaskScreenState extends State<SearchTaskScreen> {
   void _clearSearch() {
     _searchController.clear();
     _filterResults('');
-    Navigator.pop(context);
   }
 
   @override
