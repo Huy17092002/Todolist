@@ -9,14 +9,14 @@ class PrioritySelector extends StatefulWidget {
 
   PrioritySelector({super.key, required this.task});
 
-  final List<String> list = <String>['None', 'Low', 'Normal', 'High'];
+  final List<String> list = <String>['Không', 'Thấp', 'Trung bình', 'Cao'];
 
   @override
   State<PrioritySelector> createState() => _PrioritySelectorState();
 }
 
 class _PrioritySelectorState extends State<PrioritySelector> {
-  String dropdownValue = 'None';
+  String dropdownValue = 'Không';
 
   @override
   void initState() {
@@ -77,17 +77,16 @@ class _PrioritySelectorState extends State<PrioritySelector> {
                   });
 
                   Priority updatedPriority;
-                  if (newValue == 'None') {
+                  if (newValue == 'Không') {
                     updatedPriority = Priority.none;
-                  } else if (newValue == 'Low') {
+                  } else if (newValue == 'Thấp') {
                     updatedPriority = Priority.low;
-                  } else if (newValue == 'Normal') {
+                  } else if (newValue == 'Trung bình') {
                     updatedPriority = Priority.medium;
                   } else {
                     updatedPriority = Priority.high;
                   }
                   widget.task.priority = updatedPriority;
-
                   Provider.of<TaskViewModel>(context, listen: false)
                       .updatePriority(widget.task, updatedPriority);
                 },

@@ -53,57 +53,51 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
         width: 500,
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 400,
-            leading: Row(
-              children: [
-                const Padding(padding: EdgeInsets.only(left: 25)),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: const Row(
-                    children: [
-                      Text(
-                        'Hủy',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 100),
-                const Text(
-                  'Chi Tiết',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(width: 100),
-                TextButton(
-                  child: const Text(
-                    'Lưu',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    widget.task.title = titleController.text;
-                    widget.task.description = descriptionController.text;
-                    widget.task.reminderTime = reminderTime;
-
-                    widget.onDateTimeChanged(reminderTime);
-
-                    Provider.of<TaskViewModel>(context, listen: false)
-                        .updateTaskTitle(widget.taskList, widget.task, titleController.text);
-                    Provider.of<TaskViewModel>(context, listen: false)
-                        .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
-                  },
-                )
-              ],
+            leading: TextButton(
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+              child: const Text('Huỷ',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blue,
+                fontWeight: FontWeight.w500,
+              ),
+              ),
             ),
+            centerTitle: true,
+            title:   const Text(
+              'Chi Tiết',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              TextButton(
+                child: const Text(
+                  'Lưu',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () async {
+                  Navigator.pop(context);
+                  widget.task.title = titleController.text;
+                  widget.task.description = descriptionController.text;
+                  widget.task.reminderTime = reminderTime;
+
+                  widget.onDateTimeChanged(reminderTime);
+
+                  Provider.of<TaskViewModel>(context, listen: false)
+                      .updateTaskTitle(widget.taskList, widget.task, titleController.text);
+                  Provider.of<TaskViewModel>(context, listen: false)
+                      .updateTaskDescription(widget.taskList, widget.task, descriptionController.text);
+                },
+              )
+            ],
           ),
+
+
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: [
@@ -179,8 +173,3 @@ class _DetailsTaskBottomsheetState extends State<DetailsTaskBottomsheet> {
     );
   }
 }
-
-
-
-
-

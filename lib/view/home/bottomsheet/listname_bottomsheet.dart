@@ -10,7 +10,6 @@ class ListNameBottomsheet extends StatelessWidget {
 
   const ListNameBottomsheet({super.key,  this.onSelect, this.taskList});
 
-
   @override
   Widget build(BuildContext context) {
     final taskListCollectionViewModel = Provider.of<TaskListCollectionViewModel>(context);
@@ -26,8 +25,7 @@ class ListNameBottomsheet extends StatelessWidget {
         width: 500,
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 80,
-            leadingWidth: 400,
+            leadingWidth: 165,
             leading: Row(
               children: [
                 const Padding(padding: EdgeInsets.only(left: 10)),
@@ -49,19 +47,21 @@ class ListNameBottomsheet extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Text(
-                  'Danh sách',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
               ],
+            ),
+            centerTitle: true,
+            title:  const Text(
+              'Danh sách',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           body: ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             itemCount: taskLists.length,
             itemBuilder: (BuildContext context, int index) {
               final TaskList taskList = taskLists[index];

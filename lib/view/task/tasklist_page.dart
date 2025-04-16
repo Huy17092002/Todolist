@@ -35,6 +35,100 @@ class TaskListPageState extends State<TaskListPage> {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 400,
+        actions: [
+          IconButton(
+            icon: selectedTask == null
+                ? const Icon(
+              Icons.pending_outlined,
+              color: Colors.blue,
+            )
+                : GestureDetector(
+              onTap: () {
+                if (selectedTask != null &&
+                    selectedTask!.title.isEmpty) {
+                  Provider.of<TaskViewModel>(context, listen: false)
+                      .deleteTask(widget.taskList, selectedTask!);
+                  FocusScope.of(context).unfocus();
+                  setState(() {
+                    selectedTask = null;
+                  });
+                } else {
+                  FocusScope.of(context).unfocus();
+                }
+              },
+              child: const Text(
+                'Xong',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            onPressed: () {
+              showMenu(
+                context: context,
+                position: const RelativeRect.fromLTRB(10, 99, 9, 0),
+                items: <PopupMenuEntry>[
+                  PopupMenuItem(
+                    child: const ListTile(
+                      leading: Icon(Icons.info_outline, size: 30),
+                      title: Text(
+                        'Thông tin danh sách',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return ListInfoBottomsheet(
+                            tasklist: widget.taskList,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: const ListTile(
+                      leading: Icon(Icons.import_export, size: 30),
+                      title: Text(
+                        'Sắp xếp theo độ ưu tiên',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    onTap: () {
+                      Provider.of<TaskViewModel>(context, listen: false)
+                          .sortTasksByPriority(widget.taskList);
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.delete_rounded,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                      title: const Text(
+                        'Xóa danh sách',
+                        style: TextStyle(fontSize: 18, color: Colors.red),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Provider.of<TaskListCollectionViewModel>(
+                            context, listen: false)
+                            .deleteTaskList(widget.taskList);
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
         leading: Row(
           children: [
             const Padding(padding: EdgeInsets.only(left: 10)),
@@ -54,104 +148,6 @@ class TaskListPageState extends State<TaskListPage> {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(width: 218),
-            IconButton(
-              icon: selectedTask == null
-                  ? const Icon(
-                      Icons.pending_outlined,
-                      color: Colors.blue,
-                    )
-                  : GestureDetector(
-                      onTap: () {
-                        if (selectedTask != null &&
-                            selectedTask!.title.isEmpty) {
-                          Provider.of<TaskViewModel>(context, listen: false)
-                              .deleteTask(widget.taskList, selectedTask!);
-                          FocusScope.of(context).unfocus();
-                          setState(() {
-                            selectedTask = null;
-                          });
-                        } else if (selectedTask != null) {
-                          FocusScope.of(context).unfocus();
-                          setState(() {
-                            selectedTask = null;
-                          });
-                        } else {
-                          FocusScope.of(context).unfocus();
-                        }
-                      },
-                      child: const Text(
-                        'Xong',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-              onPressed: () {
-                showMenu(
-                  context: context,
-                  position: const RelativeRect.fromLTRB(10, 99, 9, 0),
-                  items: <PopupMenuEntry>[
-                    PopupMenuItem(
-                      child: const ListTile(
-                        leading: Icon(Icons.info_outline, size: 30),
-                        title: Text(
-                          'Thông tin danh sách',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (BuildContext context) {
-                            return ListInfoBottomsheet(
-                              tasklist: widget.taskList,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    PopupMenuItem(
-                      child: const ListTile(
-                        leading: Icon(Icons.import_export, size: 30),
-                        title: Text(
-                          'Sắp xếp theo độ ưu tiên',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                      onTap: () {
-                        Provider.of<TaskViewModel>(context, listen: false)
-                            .sortTasksByPriority(widget.taskList);
-                      },
-                    ),
-                    PopupMenuItem(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.delete_rounded,
-                          color: Colors.red,
-                          size: 30,
-                        ),
-                        title: const Text(
-                          'Xóa danh sách',
-                          style: TextStyle(fontSize: 18, color: Colors.red),
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                          Provider.of<TaskListCollectionViewModel>(context, listen: false)
-                              .deleteTaskList(widget.taskList);
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            Navigator.pop(context);
-                          });
-                        },
-                      ),
-                    )
-
-                  ],
-                );
-              },
             ),
           ],
         ),
@@ -201,35 +197,43 @@ class TaskListPageState extends State<TaskListPage> {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 2, right: 220),
-        child: SingleChildScrollView(
-          child: TextButton.icon(
-            icon: const Icon(
-              Icons.add_circle,
-              size: 30,
-              color: Colors.blue,
-            ),
-            label: const Text(
-              'Lời nhắc mới',
-              style: TextStyle(
-                fontSize: 17,
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 2, right: 220),
+            child: SingleChildScrollView(
+              child: TextButton.icon(
+                icon: const Icon(
+                  Icons.add_circle,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                label: const Text(
+                  'Lời nhắc mới',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  final newTask = Task(
+                    id: 0,
+                    title: '',
+                    description: '',
+                    isCompleted: false,
+                  );
+                  setState(() {
+                    selectedTask = newTask;
+                  });
+                  Provider.of<TaskViewModel>(context, listen: false)
+                      .addTaskToTaskList(widget.taskList, newTask);
+                },
               ),
             ),
-            onPressed: () {
-              final newTask = Task(
-                id: 0,
-                title: '',
-                description: '',
-                isCompleted: false,
-              );
-              Provider.of<TaskViewModel>(context, listen: false)
-                  .addTaskToTaskList(widget.taskList, newTask);
-            },
           ),
-        ),
+        ],
       ),
     );
   }

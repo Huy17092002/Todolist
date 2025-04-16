@@ -33,7 +33,8 @@ class _DetailsTaskListPageBottomsheetState
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.task.title);
-    descriptionController = TextEditingController(text: widget.task.description);
+    descriptionController =
+        TextEditingController(text: widget.task.description);
     initializeNotifications();
   }
 
@@ -46,42 +47,43 @@ class _DetailsTaskListPageBottomsheetState
     Provider.of<TaskViewModel>(context).repeatOption;
 
     return SingleChildScrollView(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-        child: Container(
-          color: Colors.grey,
-          height: 700,
-          width: 500,
-          child: Scaffold(
-            appBar: AppBar(
-              leadingWidth: 400,
-              leading: Row(
-                children: [
-                  const Padding(padding: EdgeInsets.only(left: 20)),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Hủy',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+          child: Container(
+            color: Colors.grey,
+            height: 700,
+            width: 500,
+            child: Scaffold(
+              appBar: AppBar(
+                leading: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Huỷ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(width: 100),
-                  const Text(
+                ),
+                centerTitle: true,
+                title: const Center(
+                  child: Text(
                     'Chi Tiết',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(width: 100),
+                ),
+                actions: [
                   TextButton(
                     child: const Text(
                       'Lưu',
@@ -98,10 +100,10 @@ class _DetailsTaskListPageBottomsheetState
                       widget.task.reminderTime = reminderTime;
                       Provider.of<TaskViewModel>(context, listen: false)
                           .updateTaskTitle(widget.taskList, widget.task,
-                              titleController.text);
+                          titleController.text);
                       Provider.of<TaskViewModel>(context, listen: false)
                           .updateTaskDescription(widget.taskList, widget.task,
-                              descriptionController.text);
+                          descriptionController.text);
 
                       if (widget.task.reminderTime != null) {
                         await NotificationService.setScheduleNotification(
@@ -116,123 +118,111 @@ class _DetailsTaskListPageBottomsheetState
                   ),
                 ],
               ),
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 21),
-                  child: Column(
-                    children: [
-                      Container(
+                body: ListView(
+                  padding: const EdgeInsets.all(16),
+                  children: [
+                    Container(
+                      width: 350,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              controller: titleController,
+                              decoration: const InputDecoration(
+                                hintText: 'Tiêu đề',
+                                border: UnderlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: TextField(
+                              controller: descriptionController,
+                              decoration: const InputDecoration(
+                                hintText: 'Mô tả',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    DateTimePicker(
+                      onDateTimeChanged: (newDateTime) {
+                        setState(() {
+                          reminderTime = newDateTime;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (BuildContext context) {
+                            return RepeatIntervallTime(
+                              task: widget.task,
+                              taskList: widget.taskList,
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 55,
                         width: 350,
-                        height: 112,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.grey[300],
                         ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextField(
-                                controller: titleController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Tiêu đề',
-                                  border: UnderlineInputBorder(),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 0, left: 15),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.repeat_on,
+                                color: Colors.grey,
+                                size: 42,
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Lặp lại',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: TextField(
-                                controller: descriptionController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Mô tả',
-                                  border: InputBorder.none,
+                              const Spacer(),
+                              Text(
+                                widget.task.repeatOption ?? 'Không',
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.grey,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      DateTimePicker(
-                        onDateTimeChanged: (newDateTime) {
-                          setState(() {
-                            reminderTime = newDateTime;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            print('ssss');
-                          });
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext context) {
-                              return RepeatIntervallTime(
-                                task: widget.task,
-                                taskList:widget.taskList,
-                              );
-                            },
-                          );
-                        },
-                        child: Container(
-                          height: 55,
-                          width: 350,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[300],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 0, left: 15),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.repeat_on,
-                                  color: Colors.grey,
-                                  size: 42,
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  'Lặp lại',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Text(
-                                  widget.task.repeatOption ?? 'Không',
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(width: 1),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.grey,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
+                              const SizedBox(width: 1),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.grey,
+                                size: 16,
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      PrioritySelector(
-                        task: widget.task,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
+                    const SizedBox(height: 20),
+                    PrioritySelector(
+                      task: widget.task,
+                    ),
+                  ],
+                )
             ),
           ),
         ),

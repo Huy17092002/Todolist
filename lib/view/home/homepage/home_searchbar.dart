@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/configs.dart';
 import 'package:todolist/model/tasklist.dart';
-import 'search_task_screen.dart';
+import 'package:todolist/view/home/homepage/search_task_screen.dart';
 
 class HomeSearchBar extends StatefulWidget {
-  const HomeSearchBar({super.key, this.taskList});
-  final TaskList? taskList;
+  const HomeSearchBar({super.key});
 
   @override
   State<HomeSearchBar> createState() => _HomeSearchBarState();
 }
 
 class _HomeSearchBarState extends State<HomeSearchBar> {
-  bool isSearch = false;
-  bool isFix = false;
+  late bool isSearch;
+  late bool isFix;
   late double opacityFix;
   late double opacityCancel;
-  TextEditingController myController = TextEditingController();
-  FocusNode focusNode = FocusNode();
+  late TextEditingController myController;
+  late FocusNode focusNode;
 
   @override
   void initState() {
@@ -70,16 +69,11 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
           child: GestureDetector(
             onTap: onTapSearch,
             child: AnimatedContainer(
-              width: isFix ? 30 : 25,
-              height: isFix ? 0 : 20,
+              width: isFix ? 40 : 55,
+              height: isFix ? 0 : 33,
               duration: kDuration,
               curve: Curves.easeOutQuad,
               alignment: Alignment.center,
-              child: AnimatedOpacity(
-                opacity: opacityFix,
-                duration: kDuration,
-                curve: Curves.easeOutCirc,
-              ),
             ),
           ),
         ),
@@ -88,8 +82,8 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
             Expanded(
               child: GestureDetector(
                 child: AnimatedContainer(
+                  width: isFix ? 305 : 360,
                   height: 35,
-                  width: isFix ? 300 : 350,
                   duration: kDuration,
                   curve: Curves.easeOutQuad,
                   decoration: BoxDecoration(
@@ -135,25 +129,26 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                 ),
               ),
             ),
-            Visibility(
-              visible: isSearch,
-              child: GestureDetector(
-                onTap: cancel,
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Text(
-                    'Huỷ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w500,
+            if (isSearch)
+              Visibility(
+                visible: isSearch,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: GestureDetector(
+                    onTap: cancel,
+                    child: const Text(
+                      'Huỷ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.red,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
           ],
-        ),
+        )
       ],
     );
   }

@@ -22,97 +22,96 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<TaskListCollectionViewModel>(
-        builder: (context, taskListCollectionViewModel, child) {
-          if (taskListCollectionViewModel.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.red,
-              ),
-            );
-          }
-
-          if (taskListCollectionViewModel.error != null) {
-            return Center(
-              child: Text(
-                taskListCollectionViewModel.error ?? 'Lỗi không tải được',
-                style: const TextStyle(
-                  fontSize: 24,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: Consumer<TaskListCollectionViewModel>(
+          builder: (context, taskListCollectionViewModel, child) {
+            if (taskListCollectionViewModel.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(
                   color: Colors.red,
                 ),
-              ),
-            );
-          }
+              );
+            }
 
-          final tasklists = taskListCollectionViewModel.taskListCollection?.tasklists ?? [];
-
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 25),
-                  child: HomeSearchBar(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17, top: 10),
-                  child: Consumer<TaskListCollectionViewModel>(
-                    builder: (context, taskListCollectionViewModel, child) {
-                      return Text(
-                        taskListCollectionViewModel.taskListCollection?.title ??
-                            'Danh sách của tôi',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          height: 1.5,
-                          color: Colors.black,
-                        ),
-                      );
-                    },
+            if (taskListCollectionViewModel.error != null) {
+              return Center(
+                child: Text(
+                  taskListCollectionViewModel.error ?? 'Lỗi không tải được',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: Colors.red,
                   ),
                 ),
-                const SizedBox(height: 5),
+              );
+            }
 
-                if (tasklists.isNotEmpty)
+            final tasklists = taskListCollectionViewModel.taskListCollection?.tasklists ?? [];
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15,right: 15, top: 40),
+                    child: HomeSearchBar(),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white70),
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: tasklists.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = tasklists[index] ;
-                          return TaskListItem(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TaskListPage(
-                                    taskList: item,
-                                  ),
-                                ),
-                              );
-                            },
-                            model: item,
-                          );
-                        },
+                    padding: const EdgeInsets.only(left: 17, top: 10),
+                    child: Text(
+                      taskListCollectionViewModel.taskListCollection?.title ?? 'Danh sách của tôi',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        height: 1.5,
+                        color: Colors.black,
                       ),
                     ),
-                  )
-              ],
-            ),
-          );
-        },
+                  ),
+                 const SizedBox(height: 10),
+                  if (tasklists.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white70),
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.symmetric(horizontal: 15,),
+                          itemCount: tasklists.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = tasklists[index];
+                            return TaskListItem(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TaskListPage(
+                                      taskList: item,
+                                    ),
+                                  ),
+                                );
+                              },
+                              model: item,
+                            );
+                          },
+                        ),
+                      ),
+                    )
+                ],
+              ),
+            );
+          },
+        ),
+        bottomNavigationBar: const HomeBottomNavigationBar(),
       ),
-      bottomNavigationBar: const HomeBottomNavigationBar(),
     );
   }
 }
-

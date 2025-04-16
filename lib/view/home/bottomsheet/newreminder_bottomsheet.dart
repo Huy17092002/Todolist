@@ -12,8 +12,7 @@ import 'package:intl/intl.dart';
 class NewReminderBottomsheet extends StatefulWidget {
   const NewReminderBottomsheet({super.key});
   get taskList => TaskList(title: '', tasks: []);
-  get task => Task(id: 0, title: '', isCompleted: true, );
-
+  get task => Task(id: 0, title: '', isCompleted: true);
 
   @override
   NewReminderBottomsheetState createState() => NewReminderBottomsheetState();
@@ -81,48 +80,64 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     }
   }
 
+  String priorityText(Priority priority) {
+    switch (priority) {
+      case Priority.low:
+        return 'Thấp';
+      case Priority.medium:
+        return 'Trung bình';
+      case Priority.high:
+        return 'Cao';
+      default:
+        return 'Không';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      print('ddsgesg');
-    });
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(12),
-        topRight: Radius.circular(12),
-      ),
-      child: SizedBox(
-        height: 700,
-        width: 500,
-        child: Scaffold(
-          appBar: AppBar(
-            leadingWidth: 400,
-            leading: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 7),
-                  child: TextButton(
-                    child: const Text(
-                      'Hủy',
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.blue,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+        child: SizedBox(
+          height: 700,
+          child: Scaffold(
+            appBar: AppBar(
+              leadingWidth: 75,
+              leading: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: TextButton(
+                      child: const Text(
+                        'Hủy',
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.blue,
+                        ),
                       ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
-                ),
-                const SizedBox(width: 67),
-                const Text(
+                ],
+              ),
+              title: const Center(
+                child: Text(
                   'Lời nhắc mới',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 70),
+              ),
+              actions: [
                 TextButton(
                   onPressed: addNewTask,
                   child: const Text(
@@ -136,222 +151,232 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
                 ),
               ],
             ),
-          ),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: Container(
-                      width: 350,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[300],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextField(
-                                controller: titleController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Tiêu đề',
-                                  border: UnderlineInputBorder(),
-                                ),
+            body: ListView(
+              children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Container(
+                            width: 350,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[300],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextField(
+                                      controller: titleController,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Tiêu đề',
+                                        border: UnderlineInputBorder(),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: TextField(
+                                      controller: descriptionController,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Ghi chú',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: TextField(
-                                controller: descriptionController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Ghi chú',
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (BuildContext context) {
+                                return DetailsTaskBottomsheet(
+                                  onDateTimeChanged: (newDateTime) {
+                                    setState(() {
+                                      reminderTime = newDateTime;
+                                    });
+                                  },
+                                  task: widget.task,
+                                  taskList: widget.taskList,
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            height: 55,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[300],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 0, left: 15),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    'Chi tiết',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    getFormattedReminderTime(),
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 1),
+                                  const Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.grey,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {
+                            showMenu<Priority>(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(800, 400, 0, 0),
+                              items: Priority.values.map((priorityValue) {
+                                return PopupMenuItem<Priority>(
+                                  value: priorityValue,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        priorityText(priorityValue),
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              elevation: 8.0,
+                            ).then((selectedPriority) {
+                              if (selectedPriority != null) {
+                                setState(() {
+                                  priority = selectedPriority;
+                                });
+                              }
+                            });
+                          },
+                          child: Container(
+                            height: 55,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[300],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 0, left: 15),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    'Độ ưu tiên',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    priorityText(priority),
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 1),
+                                  const Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.grey,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (BuildContext context) {
+                                return ListNameBottomsheet(
+                                  onSelect: onSelectTaskTitle,
+                                  taskList: widget.taskList,
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            height: 60,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[300],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 2, left: 15),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    'Danh sách',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    selectedTaskListTitle,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  const Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.grey,
+                                    size: 18,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext context) {
-                          return DetailsTaskBottomsheet(
-                            onDateTimeChanged: (newDateTime) {
-                              setState(() {
-                                reminderTime = newDateTime;
-                              });
-                            },
-                            task: widget.task,
-                            taskList: widget.taskList,
-                          );
-                        },
-                      );
-                    },
-                    child: Container(
-                      height: 55,
-                      width: 350,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[300],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 0, left: 15),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Chi tiết',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              getFormattedReminderTime(),
-                              style: const TextStyle(
-                                fontSize: 17,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(width: 1),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                              size: 16,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
-                      showMenu<Priority>(
-                        context: context,
-                        position: const RelativeRect.fromLTRB( 800,400,0,0),
-                        items: Priority.values.map((priorityValue) {
-                          return PopupMenuItem<Priority>(
-                            value: priorityValue,
-                            child: Row(
-                              children: [
-                                Text(priorityValue.name),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                        elevation: 8.0,
-                      ).then((selectedPriority) {
-                        if (selectedPriority != null) {
-                          setState(() {
-                            priority = selectedPriority;
-                          });
-                        }
-                      });
-                    },
-                    child: Container(
-                      height: 55,
-                      width: 350,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[300],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 0, left: 15),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Độ ưu tiên',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              priority.name,
-                              style: const TextStyle(
-                                fontSize: 17,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(width: 1),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                              size: 16,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext context) {
-                          return ListNameBottomsheet(
-                            onSelect: onSelectTaskTitle,
-                            taskList: widget.taskList,
-                          );
-                        },
-                      );
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 350,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[300],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 2, left: 15),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Danh sách',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              selectedTaskListTitle,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -359,12 +384,3 @@ class NewReminderBottomsheetState extends State<NewReminderBottomsheet> {
     );
   }
 }
-
-
-
-
-
-
-
-
-

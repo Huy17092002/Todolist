@@ -10,8 +10,7 @@ class RepeatIntervallTime extends StatefulWidget {
   final TaskList taskList;
   final Task task;
 
-  const RepeatIntervallTime(
-      {super.key, required this.task, required this.taskList});
+  const RepeatIntervallTime({super.key, required this.task, required this.taskList});
 
   @override
   State<RepeatIntervallTime> createState() => _RepeatIntervallTimeState();
@@ -23,8 +22,7 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
   @override
   void initState() {
     super.initState();
-    repeatOption =
-        Provider.of<TaskViewModel>(context, listen: false).repeatOption;
+    repeatOption = Provider.of<TaskViewModel>(context, listen: false).repeatOption;
   }
 
   void _onTap(BuildContext context, String option) {
@@ -32,8 +30,7 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
       repeatOption = option;
     });
 
-    Provider.of<TaskViewModel>(context, listen: false)
-        .updateRepeatOption(widget.task, option);
+    Provider.of<TaskViewModel>(context, listen: false).updateRepeatOption(widget.task, option);
 
     if (widget.task.reminderTime != null) {
       _scheduleNotification(option);
@@ -64,7 +61,7 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
         width: 500,
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 400,
+            leadingWidth: 86,
             leading: Row(
               children: [
                 const Padding(padding: EdgeInsets.only(left: 10)),
@@ -82,76 +79,67 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(width: 80),
-                      Text(
-                        'Lặp lại',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                     ],
                   ),
                 ),
               ],
             ),
+            centerTitle: true,
+            title: const Text(
+              'Lặp lại',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          body: Column(
+          body: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
             children: [
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
-                child: Container(
-                  height: 115,
-                  width: 360,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey[300],
-                  ),
-                  child: ListView(
-                    padding: const EdgeInsets.only(top: 1),
-                    children: [
-                      Column(
-                        children: [
-                          ListTile(
-                            title: const Text(
-                              'Không',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                            trailing: repeatOption == 'Không'
-                                ? const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
-                            )
-                                : null,
-                            onTap: () => _onTap(context, 'Không'),
-                          ),
-                          const Divider(height: 0, thickness: 0.7),
-                          ListTile(
-                            title: const Text(
-                              'Hàng ngày',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                            trailing: repeatOption == 'Hằng ngày'
-                                ? const Icon(
-                              Icons.check_outlined,
-                              color: Colors.blueAccent,
-                              size: 25,
-                            )
-                                : null,
-                            onTap: () => _onTap(context, 'Hằng ngày'),
-                          ),
-                        ],
+              Container(
+                width: 360,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[300],
+                ),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: const Text(
+                        'Không',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
-                    ],
-                  ),
+                      trailing: repeatOption == 'Không'
+                          ? const Icon(
+                        Icons.check_outlined,
+                        color: Colors.blueAccent,
+                        size: 25,
+                      )
+                          : null,
+                      onTap: () => _onTap(context, 'Không'),
+                    ),
+                    const Divider(height: 0, thickness: 0.7),
+                    ListTile(
+                      title: const Text(
+                        'Hàng ngày',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      trailing: repeatOption == 'Hằng ngày'
+                          ? const Icon(
+                        Icons.check_outlined,
+                        color: Colors.blueAccent,
+                        size: 25,
+                      )
+                          : null,
+                      onTap: () => _onTap(context, 'Hằng ngày'),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
@@ -167,14 +155,13 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
 
                   if (selectedDays != null) {
                     setState(() {
-                      repeatOption = ',Mỗi $selectedDays ngày';
+                      repeatOption = 'Mỗi $selectedDays ngày';
                     });
                     Provider.of<TaskViewModel>(context, listen: false)
                         .updateRepeatOption(widget.task, repeatOption);
                   }
                 },
                 child: Container(
-                  height: 50,
                   width: 360,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -203,6 +190,3 @@ class _RepeatIntervallTimeState extends State<RepeatIntervallTime> {
     );
   }
 }
-
-
-

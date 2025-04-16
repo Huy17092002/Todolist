@@ -55,35 +55,34 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(12),
-        topRight: Radius.circular(12),
-      ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: SizedBox(
         height: 700,
-        width: 500,
-        child: Scaffold(
-          appBar: AppBar(
-            leadingWidth: 400,
-            leading: Row(
-              children: [
-                const Padding(padding: EdgeInsets.only(left:10)),
-                TextButton(
-                  child: const Text(
-                    'Hủy',
-                    style: TextStyle(fontSize: 17, color: Colors.blue),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+          ),
+          child: Scaffold(
+            appBar: AppBar(
+              leading: TextButton(
+                child: const Text(
+                  'Hủy',
+                  style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
-                const SizedBox(width: 40),
-                const Text(
-                  'Danh sách thông tin',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(width: 45),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              centerTitle: true,
+              title: const Text(
+                'Danh sách thông tin',
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              ),
+              actions: [
                 TextButton(
                   child: const Text(
                     'Xong',
@@ -98,16 +97,12 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                 ),
               ],
             ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Column(
+            body: ListView(
+              padding: const EdgeInsets.all(16),
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
-                    height: 200,
-                    width: 350,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.grey[300],
@@ -132,8 +127,8 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          width: 320,
-                          height: 53,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                           child: TextField(
                             controller: nameController,
                             textAlign: TextAlign.center,
@@ -145,7 +140,8 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              suffixIcon: nameController.text.isNotEmpty ? GestureDetector(
+                              suffixIcon: nameController.text.isNotEmpty
+                                  ? GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     nameController.clear();
@@ -163,43 +159,35 @@ class _ListInfoBottomsheetState extends State<ListInfoBottomsheet> {
                                   : null,
                             ),
                           ),
-                        ),
+                          ),
+
+                        )
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 30),
                 Container(
-                  height: 65,
-                  width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.grey[300],
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 10),
-                        child: Row(
-                          children: [
-                            buildColorContainer(Colors.red),
-                            const SizedBox(width: 10),
-                            buildColorContainer(Colors.orange),
-                            const SizedBox(width: 10),
-                            buildColorContainer(Colors.yellow),
-                            const SizedBox(width: 10),
-                            buildColorContainer(Colors.green),
-                            const SizedBox(width: 10),
-                            buildColorContainer(Colors.blue),
-                            const SizedBox(width: 10),
-                            buildColorContainer(Colors.purple),
-                          ],
-                        ),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all( 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        buildColorContainer(Colors.red),
+                        buildColorContainer(Colors.orange),
+                        buildColorContainer(Colors.yellow),
+                        buildColorContainer(Colors.green),
+                        buildColorContainer(Colors.blue),
+                        buildColorContainer(Colors.purple),
+                      ],
+                    ),
                   ),
                 ),
+
               ],
             ),
           ),

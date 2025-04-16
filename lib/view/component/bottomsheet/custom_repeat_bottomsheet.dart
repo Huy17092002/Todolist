@@ -47,7 +47,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
         width: 500,
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 400,
+            leadingWidth: 390,
             leading: Row(
               children: [
                 const Padding(padding: EdgeInsets.only(left: 10)),
@@ -76,26 +76,30 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 110),
-                GestureDetector(
-                  onTap: _onSaveButtonPressed,
-                  child: const Text('Lưu',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue,
-                      )),
-                )
               ],
             ),
+            actions: [
+              TextButton(
+                onPressed: _onSaveButtonPressed,
+                child: const Text(
+                  'Lưu',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+            ],
           ),
-          body: Column(
+          body: ListView(
+            padding: const EdgeInsets.all(16),
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 25, left: 16, right: 16),
+                padding: const EdgeInsets.only(top: 25),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   height: _isExpanded ? 270 : 130,
-                  width: 360,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.grey[300],
@@ -137,37 +141,28 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                         onTap: _toggleExpansion,
                       ),
                       if (_isExpanded)
-                        Expanded(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                 width: 300,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: CupertinoPicker(
-                                        itemExtent: 30.0,
-                                        onSelectedItemChanged: (int index) {
-                                          setState(() {
-                                            _selectedValue = index;
-                                          });
-                                        },
-                                        children: List<Widget>.generate(1000,
-                                            (int index) {
-                                          return Center(child: Text('$index'));
-                                        }),
-                                      ),
-                                    ),
-                                    const Text(
-                                      'Ngày',
-                                      style: TextStyle(
-                                          fontSize: 24, color: Colors.black),
-                                    ),
-                                  ],
+                                child: CupertinoPicker(
+                                  itemExtent: 30.0,
+                                  onSelectedItemChanged: (int index) {
+                                    setState(() {
+                                      _selectedValue = index;
+                                    });
+                                  },
+                                  children: List<Widget>.generate(1000, (int index) {
+                                    return Center(child: Text('$index'));
+                                  }),
                                 ),
+                              ),
+                              const Text(
+                                'Ngày',
+                                style: TextStyle(fontSize: 24, color: Colors.black),
                               ),
                             ],
                           ),
@@ -177,7 +172,7 @@ class CustomRepeatBottomsheetState extends State<CustomRepeatBottomsheet> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 24, top: 5),
+                padding: const EdgeInsets.only(left: 20, top: 5),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
