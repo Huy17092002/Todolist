@@ -52,7 +52,12 @@ class TaskListPageState extends State<TaskListPage> {
                   setState(() {
                     selectedTask = null;
                   });
-                } else {
+                } else if (selectedTask != null) {
+                  FocusScope.of(context).unfocus();
+                  setState(() {
+                    selectedTask = null;
+                  });
+                }else {
                   FocusScope.of(context).unfocus();
                 }
               },

@@ -117,108 +117,103 @@ class _AddListBottomsheetState extends State<AddListBottomsheet> {
                   ),
                 ],
               ),
-              body: GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                },
-                child: ListView(
-                  padding: const EdgeInsets.all(16),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Container(
-                        height: 200,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: selectedColor ?? Colors.blue,
-                                ),
-                                child: const Icon(
-                                  Icons.format_list_bulleted_rounded,
-                                  color: Colors.white,
-                                  size: 65,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              height: 53,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: TextField(
-                                  controller: _nameController,
-                                  textAlign: TextAlign.center,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: 'Tên danh sách',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    suffixIcon: showClearIcon
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                _nameController.clear();
-                                                showClearIcon = false;
-                                              });
-                                            },
-                                            child: const Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Icon(
-                                                Icons.cancel,
-                                                color: Colors.grey,
-                                                size: 25,
-                                              ),
-                                            ),
-                                          )
-                                        : null,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Container(
-                      height: 65,
+              body: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                      height: 200,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[300],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              buildColorContainer(Colors.red),
-                              buildColorContainer(Colors.orange),
-                              buildColorContainer(Colors.yellow),
-                              buildColorContainer(Colors.green),
-                              buildColorContainer(Colors.blue),
-                              buildColorContainer(Colors.purple),
-                            ]),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: selectedColor ?? Colors.blue,
+                              ),
+                              child: const Icon(
+                                Icons.format_list_bulleted_rounded,
+                                color: Colors.white,
+                                size: 65,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            height: 53,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: TextField(
+                                controller: _nameController,
+                                textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: 'Tên danh sách',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  suffixIcon: showClearIcon
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _nameController.clear();
+                                              showClearIcon = false;
+                                            });
+                                          },
+                                          child: const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 10),
+                                            child: Icon(
+                                              Icons.cancel,
+                                              color: Colors.grey,
+                                              size: 25,
+                                            ),
+                                          ),
+                                        )
+                                      : null,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 30),
+                  Container(
+                    height: 65,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey[300],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            buildColorContainer(Colors.red),
+                            buildColorContainer(Colors.orange),
+                            buildColorContainer(Colors.yellow),
+                            buildColorContainer(Colors.green),
+                            buildColorContainer(Colors.blue),
+                            buildColorContainer(Colors.purple),
+                          ]),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
