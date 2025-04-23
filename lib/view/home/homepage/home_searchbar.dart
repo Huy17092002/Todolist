@@ -140,7 +140,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
                       'Huỷ',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.red,
+                        color: Colors.blue,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
